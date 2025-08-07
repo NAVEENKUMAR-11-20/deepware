@@ -53,24 +53,24 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="#home" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://deepware.vercel.app/services" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Services
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://deepware.vercel.app/testimonials" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="#testimonials" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Testimonials
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://deepware.vercel.app/register" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="#register" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Start Project
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
