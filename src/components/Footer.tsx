@@ -58,17 +58,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <Link to="https://deepware.vercel.app/services" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/testimonials" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <Link to="https://deepware.vercel.app/testimonials" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Testimonials
                 </Link>
               </li>
               <li>
-                <Link to="/register" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <Link to="https://deepware.vercel.app/register" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Start Project
                 </Link>
               </li>
