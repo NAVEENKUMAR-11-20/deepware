@@ -28,7 +28,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/in/naveenkumar-p-034658300/"
+                href="https://www.linkedin.com/in/naveen-kumar-p-034658300/"
                 className="h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
                 aria-label="LinkedIn"
               >
