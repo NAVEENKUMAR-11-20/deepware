@@ -50,7 +50,7 @@ const Navbar = () => {
               Testimonials
             </a>
             <a href
-             ="/register"
+             ="#register"
               className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all"
             >
               Start Project
