@@ -123,7 +123,7 @@ const RegistrationPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfpQC4VnSfBqRc2cHuuvY0DEM6IsxSlG7Khcq60l3Og6G0-Tg/viewform?usp=dialog"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"
                 className="px-8 py-3 bg-blue-800 text-white rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center"
               >
                 <svg
@@ -137,7 +137,7 @@ const RegistrationPage = () => {
                 Call Us
               </a>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfpQC4VnSfBqRc2cHuuvY0DEM6IsxSlG7Khcq60l3Og6G0-Tg/viewform?usp=dialog"
+                href="https://mail.google.com/mail/u/0/?hl=en#inbox?compose=new"
                 className="px-8 py-3 bg-transparent border border-blue-400 text-white rounded-full font-medium hover:bg-blue-800 transition-colors inline-flex items-center justify-center"
               >
                 <svg
