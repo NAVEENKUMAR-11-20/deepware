@@ -137,7 +137,7 @@ const RegistrationPage = () => {
                 Call Us
               </a>
               <a
-                href="https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSPFqskmbJDhJWrKfVMhmwZRHsnfCnRcDNlzKVxvkvjXRQDCSQBKFzVqLnQwpWGCSKmtmLrS"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfpQC4VnSfBqRc2cHuuvY0DEM6IsxSlG7Khcq60l3Og6G0-Tg/viewform?usp=dialog"
                 className="px-8 py-3 bg-transparent border border-blue-400 text-white rounded-full font-medium hover:bg-blue-800 transition-colors inline-flex items-center justify-center"
               >
                 <svg
