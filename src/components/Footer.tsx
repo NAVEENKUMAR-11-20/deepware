@@ -19,7 +19,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://x.com/NaveenKuma1120"
                 className="h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
                 aria-label="Twitter"
               >
@@ -80,7 +80,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="https://webdevelopment-gamma.vercel.app/" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Web Development
                 </a>
               </li>
@@ -92,11 +92,6 @@ const Footer = () => {
               <li>
                 <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Poster/Pemplet Design
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
-                  All Design & Develpoments
                 </a>
               </li>
               <li>
