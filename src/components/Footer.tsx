@@ -85,7 +85,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="https://logo-indol.vercel.app/" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Logo Design
                 </a>
               </li>
