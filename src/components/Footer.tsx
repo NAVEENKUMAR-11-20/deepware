@@ -90,7 +90,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="https://post-woad-kappa.vercel.app/" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Poster/Pemplet Design
                 </a>
               </li>
