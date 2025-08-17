@@ -152,12 +152,6 @@ const HomePage = () => {
                 delay={0.3}
               /> 
             </Link>
-              <ServiceCard
-                icon={<BarChart size={24} />}
-                title="All Design & Deveploments"
-                description="Data-driven strategies that increase visibility, engagement, and conversion rates for your business."
-                delay={0.4}
-              />
           </div>
         </div>
       </section>
