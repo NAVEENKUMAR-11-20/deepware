@@ -128,15 +128,18 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard
-              icon={<Code size={24} />}
-              title="Web Development"
-              description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
-              delay={0}
-            />
+            <Link to="https://webdevelopment-gamma.vercel.app/">
+              <ServiceCard
+                icon={<Code size={24} />}
+                title="Web Development"
+                description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
+                delay={0}
+              />
+            </Link>
             <ServiceCard
               icon={<Smartphone size={24} />}
               title="Logo Design"
+      
               description="Native and cross-platform mobile applications that deliver seamless experiences across all devices."
               delay={0.1}
             />
