@@ -136,37 +136,28 @@ const HomePage = () => {
                 delay={0}
               />
             </Link>
-            <ServiceCard
-              icon={<Smartphone size={24} />}
-              title="Logo Design"
-      
-              description="Native and cross-platform mobile applications that deliver seamless experiences across all devices."
-              delay={0.1}
-            />
-            <ServiceCard
-              icon={<Palette size={24} />}
-              title="UI/UX Design"
-              description="User-centered design that creates intuitive, engaging, and memorable digital experiences."
-              delay={0.2}
-            />
-            <ServiceCard
-              icon={<ShoppingCart size={24} />}
-              title="Poster/Pemplet Design"
-              description="Online stores that drive sales with seamless checkout processes and effective product displays."
-              delay={0.3}
-            />
-            <ServiceCard
-              icon={<BarChart size={24} />}
-              title="All Design & Deveploments"
-              description="Data-driven strategies that increase visibility, engagement, and conversion rates for your business."
-              delay={0.4}
-            />
-            <ServiceCard
-              icon={<Code size={24} />}
-              title="Custom Software"
-              description="Tailored software solutions designed to address your specific business challenges and goals."
-              delay={0.5}
-            />
+            <Link to="https://logo-indol.vercel.app/">
+              <ServiceCard
+                icon={<Smartphone size={24} />}
+                title="Logo Design"
+                description="Native and cross-platform mobile applications that deliver seamless experiences across all devices."
+                delay={0.1}
+              />
+            </Link>
+            <Link to="https://post-woad-kappa.vercel.app/">
+              <ServiceCard
+                icon={<ShoppingCart size={24} />}
+                title="Poster/Pemplet Design"
+                description="Online stores that drive sales with seamless checkout processes and effective product displays."
+                delay={0.3}
+              /> 
+            </Link>
+              <ServiceCard
+                icon={<BarChart size={24} />}
+                title="All Design & Deveploments"
+                description="Data-driven strategies that increase visibility, engagement, and conversion rates for your business."
+                delay={0.4}
+              />
           </div>
         </div>
       </section>
