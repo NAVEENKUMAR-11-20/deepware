@@ -196,7 +196,7 @@ const HomePage = () => {
               delay={0.1}
             />
             <TestimonialCard
-              quote="Working with Deep Ware was a game-changer for our e-commerce business. They understood our vision and executed it flawlessly."
+              quote="Working with Deep Ware was a game-changer for our business. They understood our vision and executed it flawlessly."
               author="Emma Rodriguez"
               company="StyleShop"
               image="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
