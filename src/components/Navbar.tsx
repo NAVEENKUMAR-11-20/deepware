@@ -36,7 +36,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2">
              <img src="/lo.png"
               alt="Deep Ware Studio Logo"
-              className="h-10 w-auto object-contain"/>
+              className="h-16 w-auto object-contain"/>
             <span className="font-bold text-xl text-gray-900">Deep Ware Studio</span>
           </Link>
 
