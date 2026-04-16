@@ -37,7 +37,7 @@ const Navbar = () => {
              <img src="/lo.png"
               alt="Deep Ware Studio Logo"
               className="h-16 w-auto object-contain"/>
-            <span className="font-bold text-xl text-gray-900">Deep Ware Studio</span>
+            <span className="font-bold text-xl text-gray-900">Deep Ware</span>
           </Link>
 
           {/* Desktop Menu */}
