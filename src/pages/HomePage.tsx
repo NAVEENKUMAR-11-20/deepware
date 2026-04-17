@@ -182,7 +182,7 @@ const HomePage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
-              quote="Deep Ware completely transformed our online presence. Their team delivered a website that not only looks stunning but also performs exceptionally well."
+              quote="DenveX completely transformed our online presence. Their team delivered a website that not only looks stunning but also performs exceptionally well."
               author="Sarah Johnson"
               company="TechStart Inc."
               image="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -196,7 +196,7 @@ const HomePage = () => {
               delay={0.1}
             />
             <TestimonialCard
-              quote="Working with Deep Ware was a game-changer for our business. They understood our vision and executed it flawlessly."
+              quote="Working with DenveX was a game-changer for our business. They understood our vision and executed it flawlessly."
               author="Emma Rodriguez"
               company="StyleShop"
               image="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
