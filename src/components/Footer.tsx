@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Code size={24} className="text-blue-500" />
-              <span className="font-bold text-xl">Deep Ware</span>
+              <span className="font-bold text-xl">DenveX</span>
             </div>
             <p className="text-gray-400 mb-4">
               Creating innovative digital solutions that help businesses thrive in the modern world.
@@ -116,14 +116,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-blue-500 mr-2 flex-shrink-0" />
-                <span className="text-gray-400">deepwarestudio@gmail.com</span>
+                <span className="text-gray-400">teamdenvex@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-          <p>&copy; {currentYear} Deep Ware. All rights reserved.</p>
+          <p>&copy; {currentYear} Denvex. All rights reserved.</p>
         </div>
       </div>
     </footer>
