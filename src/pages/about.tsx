@@ -40,7 +40,7 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mt-16 mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Meet Our Team
