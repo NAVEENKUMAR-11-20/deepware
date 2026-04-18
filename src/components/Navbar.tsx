@@ -51,10 +51,22 @@ const Navbar = () => {
             >
               Home
             </a>
-            <a href="#services" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
+
+            <a
+              href="#services"
+              className={`font-medium transition-colors ${
+                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
+              }`}
+            >
               Services
             </a>
-            <a href="#testimonials" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
+
+            <a
+              href="#testimonials"
+              className={`font-medium transition-colors ${
+                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
+              }`}
+            >
               Testimonials
             </a>
             <Link to="/register"
