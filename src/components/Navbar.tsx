@@ -68,7 +68,7 @@ const Navbar = () => {
           className="md:hidden absolute top-full left-0 right-0 p-4 bg-white text-black shadow-xl"
         >
           <div className="flex flex-col space-y-4">
-            <Link to="#home" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
+            <Link to="/#home" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               Home
             </Link>
 
@@ -76,12 +76,12 @@ const Navbar = () => {
               Services
             </Link>
 
-            <Link to="#testimonials" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
+            <Link to="/#testimonials" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               Testimonials
             </Link>
 
             <Link
-              to="#register"
+              to="/register"
               className="px-4 py-2 text-center bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium"
             >
               Start Project
