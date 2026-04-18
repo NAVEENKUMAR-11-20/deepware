@@ -82,7 +82,7 @@ const Navbar = () => {
               Testimonials
             </a>
 
-             <Link to="/about" className="px-4 py-2font-medium text-gray-800 hover:text-blue-600">
+             <Link to="/about" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               About
             </Link>
 
