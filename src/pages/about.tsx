@@ -8,7 +8,6 @@ const team = [
     image: "/team1.jpg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
-    email: "naveenkumar1120@gmail.com",
     description:
       "Passionate developer focused on building scalable web applications and modern digital experiences.",
   },
@@ -17,8 +16,7 @@ const team = [
     role: "Full Stack Developer & UI / UX Designer",
     image: "/team2.jpg",
     github: "https://github.com/member2",
-    linkedin: "https://linkedin.com/in/member2",
-    email: "dhineshsampath2007@gmail.com",
+    linkedin: "https://linkedin.com/in/member2",   
     description:
       "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications with engaging user experiences.",
   },
@@ -28,7 +26,6 @@ const team = [
     image: "/team3.jpg",
     github: "https://github.com/member3",
     linkedin: "https://linkedin.com/in/member3",
-    email: "@gmail.com",
     description:
       "Full-stack developer specializing in backend development, building scalable web applications with efficient server-side systems and responsive, user-friendly frontends.",
   },
@@ -108,9 +105,7 @@ const About = () => {
                   <Linkedin className="w-5 h-5 cursor-pointer hover:text-blue-300 transition" />
                 </a>
 
-                <a href={`mailto:${member.email}`}>
-                  <Mail className="w-5 h-5 cursor-pointer hover:text-blue-300 transition" />
-                </a>
+              
               </div>
 
             </motion.div>
