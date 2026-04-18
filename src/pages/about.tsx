@@ -46,7 +46,7 @@ const About = () => {
             Meet Our Team
           </h1>
           <p className="text-blue-200 max-w-2xl mx-auto">
-            The passionate team behind DenveX Studio creating modern,
+            The passionate team behind DenveX creating modern,
             scalable and innovative digital solutions.
           </p>
         </motion.div>
@@ -101,7 +101,7 @@ const About = () => {
           <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
 
           <p className="text-blue-100 max-w-3xl mx-auto">
-            At DenveX Studio, we believe in building modern digital products
+            At DenveX, we believe in building modern digital products
             that combine beautiful design with powerful technology. Our mission
             is to help businesses grow by creating scalable, innovative and
             user-friendly digital solutions.
