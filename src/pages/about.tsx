@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 const team = [
   {
     name: "Naveen Kumar",
-    role: "Full Stack Developer",
+    role: "Founder & Full Stack Developer",
     image: "/team1.jpg",
     description:
       "Passionate developer focused on building scalable web applications and modern digital experiences.",
