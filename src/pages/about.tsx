@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 const team = [
   {
-    name: "Naveen Kumar",
+    name: "Naveen Kumar P",
     role: "Founder & Full Stack Developer",
     image: "/parker.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
