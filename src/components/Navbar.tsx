@@ -26,11 +26,13 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm py-2' : 'bg-transparent py-4'
-      }`}
-    >
+  <nav
+    className={`fixed w-full z-50 transition-all duration-300 ${
+      scrolled
+        ? 'bg-white/95 text-black backdrop-blur-sm shadow-sm py-2'
+        : 'bg-transparent text-white py-4'
+    }`}
+  >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px]">
           <Link to="/" className="flex items-center gap-2">
