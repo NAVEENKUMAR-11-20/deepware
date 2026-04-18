@@ -32,7 +32,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center h-[80px]">
+        <div className="flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px]">
           <Link to="/" className="flex items-center gap-2">
              <img src="/logo.png"
               alt="DenveX Studio Logo"
