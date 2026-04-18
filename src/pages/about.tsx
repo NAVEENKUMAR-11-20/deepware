@@ -10,14 +10,14 @@ const team = [
       "Passionate developer focused on building scalable web applications and modern digital experiences.",
   },
   {
-    name: "Arjun",
+    name: "Dhinesh S",
     role: "UI / UX Designer",
     image: "/team2.jpg",
     description:
       "Creative designer crafting beautiful, user-friendly interfaces and engaging user experiences.",
   },
   {
-    name: "Rahul",
+    name: "Aswin L",
     role: "Frontend Developer",
     image: "/team3.jpg",
     description:
