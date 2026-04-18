@@ -23,7 +23,7 @@ const team = [
   {
     name: "Aswin L",
     role: "Backend Developer",
-    image: "/team3.jpg",
+    image: "/aswin.jpeg",
     github: "https://github.com/member3",
     linkedin: "https://linkedin.com/in/member3",
     description:
