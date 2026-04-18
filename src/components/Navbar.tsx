@@ -43,7 +43,12 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
+            <a
+              href="/"
+              className={`font-medium transition-colors ${
+                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
+              }`}
+            >
               Home
             </a>
             <a href="#services" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
