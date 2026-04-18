@@ -4,24 +4,24 @@ import { Github, Linkedin, Mail } from "lucide-react";
 const team = [
   {
     name: "Naveen Kumar",
-    role: "Founder & Full Stack Developer",
+    role: "Full Stack Developer",
     image: "/team1.jpg",
     description:
       "Passionate developer focused on building scalable web applications and modern digital experiences.",
   },
   {
     name: "Dhinesh S",
-    role: "Founder & Full Stack Developer & UI / UX Designer",
+    role: "Full Stack Developer & UI / UX Designer",
     image: "/team2.jpg",
     description:
-      "Creative designer crafting beautiful, user-friendly interfaces and engaging user experiences.",
+      "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications with engaging user experiences.",
   },
   {
     name: "Aswin L",
-    role: "Frontend Developer",
+    role: "Backend Developer",
     image: "/team3.jpg",
     description:
-      "Specialist in React and modern frontend technologies creating fast and responsive interfaces.",
+      "Full-stack developer specializing in backend development, building scalable web applications with efficient server-side systems and responsive, user-friendly frontends.",
   },
 ];
 
