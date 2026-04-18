@@ -7,8 +7,8 @@ const team = [
     role: "Founder & Full Stack Developer",
     image: "/team1.jpg",
     github: "https://github.com/NAVEENKUMAR-11-20",
-    linkedin: "https://linkedin.com/in/member1",
-    email: "member1@gmail.com",
+    linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
+    email: "naveenkumar1120@gmail.com",
     description:
       "Passionate developer focused on building scalable web applications and modern digital experiences.",
   },
@@ -18,7 +18,7 @@ const team = [
     image: "/team2.jpg",
     github: "https://github.com/member2",
     linkedin: "https://linkedin.com/in/member2",
-    email: "member2@gmail.com",
+    email: "dhineshsampath2007@gmail.com",
     description:
       "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications with engaging user experiences.",
   },
@@ -28,7 +28,7 @@ const team = [
     image: "/team3.jpg",
     github: "https://github.com/member3",
     linkedin: "https://linkedin.com/in/member3",
-    email: "member3@gmail.com",
+    email: "@gmail.com",
     description:
       "Full-stack developer specializing in backend development, building scalable web applications with efficient server-side systems and responsive, user-friendly frontends.",
   },
