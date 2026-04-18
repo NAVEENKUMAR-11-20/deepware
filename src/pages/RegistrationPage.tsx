@@ -101,7 +101,9 @@ const RegistrationPage = () => {
                   <h3 className="text-gray-900 text-xl font-semibold mb-6">Ready to begin?</h3>
                   
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"  
+                    target="_blank" 
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:from-blue-700 hover:to-indigo-700 mb-4 group"
                   >
                     Open Requirements Form
@@ -136,8 +138,7 @@ const RegistrationPage = () => {
                 </svg>
                 Call Us
               </a>
-              <a
-                href="https://mail.google.com/mail/u/0/?hl=en#inbox?compose=new"
+              <a href="mailto:your@email.com"
                 className="px-8 py-3 bg-transparent border border-blue-400 text-white rounded-full font-medium hover:bg-blue-800 transition-colors inline-flex items-center justify-center"
               >
                 <svg
