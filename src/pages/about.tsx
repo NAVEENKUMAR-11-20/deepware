@@ -52,16 +52,17 @@ const About = () => {
         </motion.div>
 
         {/* Team Cards */}
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
 
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
-            >
+         {team.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className={`bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center shadow-xl hover:shadow-2xl hover:scale-105 transition-all 
+                ${index === 2 ? "md:col-span-2 md:w-1/2 md:mx-auto" : ""}`}
+              >
               {/* image */}
               <img
                 src={member.image}
