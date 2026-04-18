@@ -36,8 +36,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2">
              <img src="/logo.png"
               alt="DenveX Studio Logo"
-              className="h-68 w-auto object-contain"/>
-            <span className="font-bold text-xl text-gray-900"></span>
+              className="h-[60px] w-auto object-contain"/>
           </Link>
 
           {/* Desktop Menu */}
