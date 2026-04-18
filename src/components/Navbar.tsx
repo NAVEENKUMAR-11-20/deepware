@@ -12,7 +12,7 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white text-black shadow-md py-3">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-slate-900 text-white md:bg-white md:text-black shadow-md py-3">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px]">
 
@@ -50,7 +50,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-800"
+            className="md:hidden text-white"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -65,18 +65,18 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="md:hidden absolute top-full left-0 right-0 p-4 bg-white text-black shadow-xl"
+          className="md:hidden absolute top-full left-0 right-0 p-4 bg-slate-900 text-white shadow-xl"
         >
           <div className="flex flex-col space-y-4">
-            <a href="#Home" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
+            <a href="#Home" className="px-4 py-2 font-medium text-white hover:text-blue-300">
               Home
             </a>
 
-            <a href="#Services" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
+            <a href="#Services" className="px-4 py-2 font-medium text-white hover:text-blue-300">
               Services
             </a>
 
-            <a href="#Testimonials" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
+            <a href="#Testimonials" className="px-4 py-2 font-medium text-white hover:text-blue-300">
               Testimonials
             </a>
 
