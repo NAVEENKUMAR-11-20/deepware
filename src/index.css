@@ -12,15 +12,21 @@
 }
 
 @layer base {
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply font-sans text-gray-800;
+    @apply font-sans text-gray-800 bg-white dark:bg-slate-900 dark:text-white;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
   }
+
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
 }
