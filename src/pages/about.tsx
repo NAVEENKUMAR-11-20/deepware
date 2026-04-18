@@ -22,7 +22,7 @@ const team = [
   },
   {
     name: "Aswin L",
-    role: "Backend Developer",
+    role: "Frontend & Backend Developer",
     image: "/aswin.jpeg",
     github: "https://github.com/member3",
     linkedin: "https://linkedin.com/in/member3",
