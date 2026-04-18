@@ -69,7 +69,7 @@ const Navbar = () => {
             className="md:hidden text-black bg-white p-2 rounded-full hover:bg-gray-100 focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={24} color="black" className="text-black" /> : <Menu size={24} color="black" className="text-black" />}
           </button>
 
         </div>
