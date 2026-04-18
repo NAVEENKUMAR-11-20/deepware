@@ -21,7 +21,7 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="DenveX Studio Logo"
-              className="h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain"
+              className="h-16df md:h-[80px] lg:h-[100px] w-auto object-contain"
             />
           </Link>
 
