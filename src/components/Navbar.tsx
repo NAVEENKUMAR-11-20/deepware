@@ -78,7 +78,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-800 focus:outline-none"
+            className={`md:hidden focus:outline-none ${
+  scrolled ? "text-gray-800" : "text-white"
+}`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
