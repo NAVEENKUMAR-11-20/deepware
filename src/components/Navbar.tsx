@@ -1,75 +1,48 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 5);
-  };
-
-  window.addEventListener("scroll", handleScroll, { passive: true });
-
-  handleScroll(); // run once on load
-
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
 
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
   return (
-  <nav
-  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-    scrolled
-      ? "bg-white text-black shadow-md py-2"
-      : "bg-transparent text-white py-4"
-  }`}
-  >
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white text-black shadow-md py-3">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center h-[60px] md:h-[70px] lg:h-[80px]">
+
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-             <img src="/logo.png"
+            <img
+              src="/logo.png"
               alt="DenveX Studio Logo"
-              className="h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain"/>
+              className="h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/"
-              className={`font-medium transition-colors ${
-                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
-              }`}
-            >
+            <a href="/" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
               Home
             </a>
 
-            <a
-              href="#services"
-              className={`font-medium transition-colors ${
-                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
-              }`}
-            >
+            <a href="#services" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
               Services
             </a>
 
-            <a
-              href="#testimonials"
-              className={`font-medium transition-colors ${
-                scrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
-              }`}
-            >
+            <a href="#testimonials" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
               Testimonials
             </a>
-            <Link to="/register"
-              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all">
+
+            <Link
+              to="/register"
+              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all"
+            >
               Start Project
             </Link>
           </div>
@@ -77,7 +50,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-           className={`md:hidden ${scrolled ? "text-gray-800" : "text-white"}`}
+            className="md:hidden text-gray-800"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -95,21 +68,18 @@ const Navbar = () => {
           className="md:hidden bg-white shadow-xl absolute top-full left-0 right-0 p-4"
         >
           <div className="flex flex-col space-y-4">
-            <Link to="/" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600 transition-colors">
+            <Link to="/" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               Home
             </Link>
-            <Link
-              to="/#services"
-              className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600 transition-colors"
-            >
+
+            <Link to="/#services" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               Services
             </Link>
-            <Link
-              to="/#testimonials"
-              className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600 transition-colors"
-            >
+
+            <Link to="/#testimonials" className="px-4 py-2 font-medium text-gray-800 hover:text-blue-600">
               Testimonials
             </Link>
+
             <Link
               to="/register"
               className="px-4 py-2 text-center bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium"
