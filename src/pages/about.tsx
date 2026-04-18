@@ -80,12 +80,28 @@ const About = () => {
                 {member.description}
               </p>
 
-              {/* social icons */}
-              <div className="flex justify-center gap-4">
+          {/* social icons */}
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://github.com/NAVEENKUMAR-11-20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="w-5 h-5 cursor-pointer hover:text-blue-300" />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/username"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Linkedin className="w-5 h-5 cursor-pointer hover:text-blue-300" />
+              </a>
+
+              <a href="mailto:email@example.com">
                 <Mail className="w-5 h-5 cursor-pointer hover:text-blue-300" />
-              </div>
+              </a>
+            </div>
             </motion.div>
           ))}
 
