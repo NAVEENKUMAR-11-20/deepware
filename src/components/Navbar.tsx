@@ -37,7 +37,7 @@ const Navbar = () => {
              <img src="/DXlogo.jpg"
               alt="DenveX Studio Logo"
               className="h-16 w-auto object-contain"/>
-            <span className="font-bold text-xl text-gray-900">DenveX</span>
+            <span className="font-bold text-xl text-gray-900"></span>
           </Link>
 
           {/* Desktop Menu */}
