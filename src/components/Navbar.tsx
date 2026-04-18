@@ -38,7 +38,9 @@ const Navbar = () => {
             <a href="#testimonials" className="font-medium text-gray-800 hover:text-blue-600 transition-colors">
               Testimonials
             </a>
-
+            <Link to="/about" className="font-medium text-gray-800 hover:text-blue-600">
+              About
+            </Link>
             <Link
               to="/register"
               className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all"
