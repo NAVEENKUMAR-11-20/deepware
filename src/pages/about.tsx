@@ -91,23 +91,22 @@ const About = () => {
 
         </div>
 
-        {/* Vision Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-10 text-center shadow-xl"
-        >
-          <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
+      {/* Vision Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-24 mb-24 bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-10 text-center shadow-xl"
+          >
+            <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
 
-          <p className="text-blue-100 max-w-3xl mx-auto">
-            At DenveX, we believe in building modern digital products
-            that combine beautiful design with powerful technology. Our mission
-            is to help businesses grow by creating scalable, innovative and
-            user-friendly digital solutions.
-          </p>
-        </motion.div>
-
+            <p className="text-blue-100 max-w-3xl mx-auto">
+              At DenveX, we believe in building modern digital products
+              that combine beautiful design with powerful technology. Our mission
+              is to help businesses grow by creating scalable, innovative and
+              user-friendly digital solutions.
+            </p>
+          </motion.div>
       </div>
     </div>
   );
