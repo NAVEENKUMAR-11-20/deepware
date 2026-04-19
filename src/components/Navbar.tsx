@@ -1,11 +1,25 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const navigateToSection = (section: string) => {
+    setIsOpen(false); // Close mobile menu
+    if (location.pathname !== '/') {
+      navigate(`/#${section}`);
+    } else {
+      // If already on home page, just scroll
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   useEffect(() => {
     setIsOpen(false);
@@ -27,26 +41,26 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
             >
               Home
-            </a>
+            </Link>
 
-            <a
-              href="#services"
+            <button
+              onClick={() => navigateToSection('services')}
               className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
             >
               Services
-            </a>
+            </button>
 
-            <a
-              href="#testimonials"
+            <button
+              onClick={() => navigateToSection('testimonials')}
               className="font-medium text-gray-800 hover:text-blue-600 transition-colors"
             >
               Testimonials
-            </a>
+            </button>
 
             <Link
               to="/about"
@@ -85,26 +99,26 @@ const Navbar = () => {
         >
           <div className="flex flex-col space-y-4">
 
-            <a
-              href="/home"
+            <Link
+              to="/"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Home
-            </a>
+            </Link>
 
-            <a
-              href="/services"
-              className="px-4 py-2 font-medium hover:text-blue-600"
+            <button
+              onClick={() => navigateToSection('services')}
+              className="px-4 py-2 font-medium hover:text-blue-600 text-left"
             >
               Services
-            </a>
+            </button>
 
-            <a
-              href="/testimonials"
-              className="px-4 py-2 font-medium hover:text-blue-600"
+            <button
+              onClick={() => navigateToSection('testimonials')}
+              className="px-4 py-2 font-medium hover:text-blue-600 text-left"
             >
               Testimonials
-            </a>
+            </button>
 
             <Link
               to="/about"

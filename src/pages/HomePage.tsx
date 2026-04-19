@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Code, Smartphone, Palette, ShoppingCart, BarChart } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash === '#services' && servicesRef.current) {
