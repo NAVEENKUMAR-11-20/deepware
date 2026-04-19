@@ -86,21 +86,21 @@ const Navbar = () => {
           <div className="flex flex-col space-y-4">
 
             <a
-              href="#home"
+              href="/home"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Home
             </a>
 
             <a
-              href="#services"
+              href="/services"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Services
             </a>
 
             <a
-              href="#testimonials"
+              href="/testimonials"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Testimonials
