@@ -93,14 +93,14 @@ const Navbar = () => {
             </a>
 
             <a
-              href="#Services"
+              href="#services"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Services
             </a>
 
             <a
-              href="#Testimonials"
+              href="#testimonials"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               Testimonials
