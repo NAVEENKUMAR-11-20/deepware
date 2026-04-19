@@ -189,7 +189,7 @@ const HomePage = () => {
               delay={0}
             />
             <TestimonialCard
-              quote="The mobile app they built for us has received incredible feedback from our users. The attention to detail and user experience is unmatched."
+              quote="The web app they built for us has received incredible feedback from our users. The attention to detail and user experience is unmatched."
               author="Omkar Varma"
               company="FinanceApp"
               image=""
