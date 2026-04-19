@@ -18,13 +18,13 @@ const Footer = () => {
               Creating innovative digital solutions that help businesses thrive in the modern world.
             </p>
             <div className="flex space-x-4">
-              <Link
-                to="/portfolio"
+              <a
+                href="https://naveen-sport.vercel.app/"
                 className="h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
                 aria-label="Portfolio"
               >
                 <Briefcase size={16} className="text-white" />
-              </Link>
+              </a>
               <a
                 href="https://www.linkedin.com/in/naveen-kumar-p-034658300/"
                 className="h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
