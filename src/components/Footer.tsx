@@ -67,9 +67,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <Link to="/portfolio" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a href="https://naveen-sport.vercel.app/" className="text-gray-400 hover:text-blue-500 transition-colors">
                   Portfolio
-                </Link>
+                </a>
               </li>
               <li>
                 <a href="/about" className="text-gray-400 hover:text-blue-500 transition-colors">
