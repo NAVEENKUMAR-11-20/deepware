@@ -5,7 +5,7 @@ const team = [
   {
     name: "Naveen Kumar P",
     role: "Founder & Full Stack Developer",
-    image: "/parker.jpeg",
+    image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
     description:
