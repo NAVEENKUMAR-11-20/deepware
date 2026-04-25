@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Code, Smartphone, ShoppingCart} from 'lucide-react';
+import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
+import GlassPanel from '../components/GlassPanel';
 
 const HomePage = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -17,102 +18,122 @@ const HomePage = () => {
       }
     };
 
-    // Handle hash on initial load
     handleHashChange();
 
-    // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       {/* Hero Section */}
-      <section className="pt-24 md:pt-32 lg:pt-40 pb-16 md:pb-24 relative overflow-hidden bg-gradient-to-r from-indigo-900 via-blue-800 to-indigo-900">
-        {/* Background elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-500 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
+      <section className="pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 relative overflow-hidden">
+        {/* Animated gradient blobs - hero section specific */}
+        <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
+        <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-12 md:mb-20">
-            <motion.h1
+          <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-100 to-white"
+              className="inline-block mb-6"
             >
-              Transforming Ideas Into Digital Reality
+              <div className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 backdrop-blur-sm">
+                <p className="text-sm font-medium bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
+                  Welcome to DenveX Studio
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+            >
+              <span className="gradient-text">Transforming Ideas</span>
+              <br />
+              <span className="text-white">Into Digital Reality</span>
             </motion.h1>
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
             >
-              We create stunning websites, powerful applications, and unforgettable digital experiences for businesses that want to stand out.
+              We create stunning websites, powerful applications, and unforgettable digital experiences for businesses that want to stand out in the digital landscape.
             </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               <Link
                 to="/register"
-                className="px-8 py-3 bg-white text-blue-800 rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:bg-gray-100"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
               >
                 Start Your Project
               </Link>
               <a
                 href="#services"
-                className="px-8 py-3 bg-blue-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:bg-blue-600 flex items-center justify-center gap-2"
+                className="px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 text-white rounded-full font-semibold hover:bg-white/20 transition-all flex items-center justify-center gap-2"
               >
-                Our Services <ArrowDown size={16} />
+                Our Services <ArrowDown size={18} />
               </a>
+            </motion.div>
+
+            {/* Scroll indicator */}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex justify-center mt-12"
+            >
+              <div className="text-gray-400">
+                <ArrowDown size={24} />
+              </div>
             </motion.div>
           </div>
 
-          {/* Decorative code blocks */}
-          <div className="hidden md:flex justify-between opacity-50">
-            <div className="bg-gray-900 rounded-lg p-4 shadow-xl w-56">
-              <pre className="text-blue-400 text-xs">
-                <code>{`function createWebsite() {\n  return amazing;\n}`}</code>
+          {/* Code blocks with glass effect */}
+          <div className="hidden lg:grid grid-cols-2 gap-8 max-w-2xl mx-auto mt-20">
+            <GlassPanel variant="dark" blur="lg" className="p-6">
+              <pre className="text-cyan-300 text-sm font-mono">
+                <code>{`function createWebsite() {
+  return amazing;
+}`}</code>
               </pre>
-            </div>
-            <div className="bg-gray-900 rounded-lg p-4 shadow-xl w-56">
-              <pre className="text-green-400 text-xs">
-                <code>{`<DevFlow>\n  Your vision\n</DevFlow>`}</code>
+            </GlassPanel>
+            <GlassPanel variant="dark" blur="lg" className="p-6">
+              <pre className="text-emerald-300 text-sm font-mono">
+                <code>{`<DenveX>
+  Your Vision
+</DenveX>`}</code>
               </pre>
-            </div>
+            </GlassPanel>
           </div>
-        </div>
-
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="none">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M0 0L60 10C120 20 240 40 360 50C480 60 600 60 720 50C840 40 960 20 1080 15C1200 10 1320 20 1380 25L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z"
-              fill="#F8FAFC"
-            />
-          </svg>
         </div>
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} id="services" className="py-20 md:py-28 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section ref={servicesRef} id="services" className="py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-500/10 blur-3xl opacity-40" />
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-gradient-to-tl from-blue-600/15 to-violet-500/10 blur-3xl opacity-40" />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
             >
               Our Services
             </motion.h2>
@@ -120,52 +141,53 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-600 leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-gray-300 leading-relaxed text-lg"
             >
-              We offer a comprehensive range of digital solutions to help your business succeed in the digital landscape.
+              We offer comprehensive digital solutions tailored to help your business thrive and stand out in the digital landscape.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Link to="https://webdevelopment-gamma.vercel.app/">
-              <ServiceCard
-                icon={<Code size={24} />}
-                title="Web Development"
-                description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
-                delay={0}
-              />
-            </Link>
-            <Link to="https://logo-indol.vercel.app/">
-              <ServiceCard
-                icon={<Smartphone size={24} />}
-                title="Logo Design"
-                description="Native and cross-platform mobile applications that deliver seamless experiences across all devices."
-                delay={0.1}
-              />
-            </Link>
-            <Link to="https://post-woad-kappa.vercel.app/">
-              <ServiceCard
-                icon={<ShoppingCart size={24} />}
-                title="Poster/Pemplet Design"
-                description="Online stores that drive sales with seamless checkout processes and effective product displays."
-                delay={0.3}
-              /> 
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ServiceCard
+              icon={<Code size={28} />}
+              title="Web Development"
+              description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
+              link="https://webdevelopment-gamma.vercel.app/"
+              delay={0}
+            />
+            <ServiceCard
+              icon={<Smartphone size={28} />}
+              title="Logo Design"
+              description="Stunning visual identities and professional logos that capture your brand's essence and values."
+              link="https://logo-indol.vercel.app/"
+              delay={0.1}
+            />
+            <ServiceCard
+              icon={<ShoppingCart size={28} />}
+              title="Design & Branding"
+              description="Complete design solutions from posters to pamphlets that elevate your brand presence."
+              link="https://post-woad-kappa.vercel.app/"
+              delay={0.2}
+            />
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section ref={testimonialsRef} id="testimonials" className="py-20 md:py-28 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section ref={testimonialsRef} id="testimonials" className="py-24 md:py-32 relative">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-bl from-violet-600/20 to-blue-500/10 blur-3xl opacity-40" />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
             >
               What Our Clients Say
             </motion.h2>
@@ -173,46 +195,49 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-600 leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-gray-300 leading-relaxed text-lg"
             >
               Don't just take our word for it. Here's what our clients have to say about working with us.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <TestimonialCard
               quote="DenveX completely transformed our online presence. Their team delivered a website that not only looks stunning but also performs exceptionally well."
               author="Hariharan"
               company="TechStart Inc."
-              image=""
               delay={0}
             />
             <TestimonialCard
               quote="The web app they built for us has received incredible feedback from our users. The attention to detail and user experience is unmatched."
               author="Omkar Varma"
               company="FinanceApp"
-              image=""
               delay={0.1}
             />
             <TestimonialCard
               quote="Working with DenveX was a game-changer for our business. They understood our vision and executed it flawlessly."
               author="Tamilselvan"
               company="StyleShop"
-              image=""
               delay={0.2}
             />
           </div>
 
           {/* Client Logos */}
-          <div className="mt-20">
-            <h3 className="text-center text-gray-500 text-sm uppercase tracking-wider mb-10">Trusted by innovative companies</h3>
+          <div className="mt-24">
+            <p className="text-center text-gray-400 text-sm uppercase tracking-widest mb-12">Trusted by innovative companies</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {/* Placeholder logos - would be replaced with actual client logos */}
-              {['Acme Inc.', 'TechCorp', 'Innovate', 'FutureBrand', 'Elevate'].map((company, index) => (
-                <div key={index} className="text-xl font-bold bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent">
+              {['TechCorp', 'Innovate', 'FutureBrand', 'Elevate', 'Acme'].map((company, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-lg font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent"
+                >
                   {company}
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -220,39 +245,46 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-6"
-          >
-            Ready to Start Your Project?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed"
-          >
-            Let's turn your vision into reality. Fill out our project requirements form and we'll get back to you within 24 hours.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link
-              to="/register"
-              className="px-8 py-3 bg-white text-blue-700 rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:bg-gray-100"
+      <section className="py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-violet-600/20" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full bg-radial-gradient opacity-40 blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-16 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
             >
-              Get Started
-            </Link>
-          </motion.div>
+              Ready to Start Your Project?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed text-lg"
+            >
+              Let's turn your vision into reality. Fill out our project requirements form and we'll get back to you within 24 hours.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Link
+                to="/register"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
+              >
+                Get Started Now
+              </Link>
+            </motion.div>
+          </GlassPanel>
         </div>
       </section>
     </div>
@@ -263,24 +295,31 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  link: string;
   delay: number;
 }
 
-const ServiceCard = ({ icon, title, description, delay }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, description, link, delay }: ServiceCardProps) => {
   return (
-    <motion.div
+    <motion.a
+      href={link}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 group"
+      className="group"
     >
-      <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-5 group-hover:bg-blue-600 group-hover:text-white transition-all">
-        {icon}
-      </div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </motion.div>
+      <GlassPanel variant="gradient" blur="md" className="p-8 h-full hover:border-blue-400/40">
+        <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center text-blue-300 mb-6 group-hover:from-blue-500/50 group-hover:to-cyan-500/50 transition-all">
+          {icon}
+        </div>
+        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-200 transition-colors">{title}</h3>
+        <p className="text-gray-300 leading-relaxed">{description}</p>
+        <div className="mt-6 flex items-center text-blue-300 group-hover:text-blue-200 transition-colors">
+          Learn more →
+        </div>
+      </GlassPanel>
+    </motion.a>
   );
 };
 
@@ -288,34 +327,31 @@ interface TestimonialCardProps {
   quote: string;
   author: string;
   company: string;
-  image: string;
   delay: number;
 }
 
-const TestimonialCard = ({ quote, author, company, image, delay }: TestimonialCardProps) => {
+const TestimonialCard = ({ quote, author, company, delay }: TestimonialCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-all"
     >
-      <div className="mb-4">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span key={star} className="text-yellow-400">
-            ★
-          </span>
-        ))}
-      </div>
-      <p className="text-gray-700 mb-6 italic">"{quote}"</p>
-      <div className="flex items-center">
-        <img src={image} alt={author} className="w-12 h-12 rounded-full object-cover mr-4" />
-        <div>
-          <h4 className="font-semibold text-gray-900">{author}</h4>
-          <p className="text-gray-600 text-sm">{company}</p>
+      <GlassPanel variant="dark" blur="md" className="p-8 h-full">
+        <div className="flex gap-1 mb-4">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span key={star} className="text-yellow-400 text-lg">
+              ★
+            </span>
+          ))}
         </div>
-      </div>
+        <p className="text-gray-300 mb-6 italic leading-relaxed">"{quote}"</p>
+        <div>
+          <h4 className="font-semibold text-white">{author}</h4>
+          <p className="text-gray-400 text-sm">{company}</p>
+        </div>
+      </GlassPanel>
     </motion.div>
   );
 };
