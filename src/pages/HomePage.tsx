@@ -98,25 +98,6 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Code blocks with glass effect */}
-          <div className="hidden lg:grid grid-cols-2 gap-8 max-w-2xl mx-auto mt-20">
-            <GlassPanel variant="dark" blur="lg" className="p-6">
-              <pre className="text-cyan-300 text-sm font-mono">
-                <code>{`function createWebsite() {
-  return amazing;
-}`}</code>
-              </pre>
-            </GlassPanel>
-            <GlassPanel variant="dark" blur="lg" className="p-6">
-              <pre className="text-emerald-300 text-sm font-mono">
-                <code>{`<DenveX>
-  Your Vision
-</DenveX>`}</code>
-              </pre>
-            </GlassPanel>
-          </div>
-        </div>
       </section>
 
       {/* Services Section */}
