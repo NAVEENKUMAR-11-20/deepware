@@ -147,7 +147,15 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-4 text-center text-gray-400 text-sm">
-            <p>&copy; {currentYear} Denvex. All rights reserved.</p>
+            <p className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3 sm:justify-center">
+              <span>&copy; {currentYear} Denvex. All rights reserved.</span>
+              <Link
+                to="/terms-and-conditions"
+                className="text-gray-400 hover:text-white hover:underline transition-colors"
+              >
+                Terms & Conditions
+              </Link>
+            </p>
           </div>
         </div>
       </div>
