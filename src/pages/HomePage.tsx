@@ -3,6 +3,7 @@ import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
+import InteractiveDottedHalo from '../components/InteractiveDottedHalo';
 
 const HomePage = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ const HomePage = () => {
     <div className="relative">
       {/* Hero Section */}
       <section className="pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 -z-20 pointer-events-none dotted-halo-bg" />
+        <InteractiveDottedHalo />
         {/* Animated gradient blobs - hero section specific */}
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
         <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
