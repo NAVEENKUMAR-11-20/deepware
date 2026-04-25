@@ -145,6 +145,36 @@
     background-size: 200px 200px;
   }
 
+  /* Dotted circular halo background */
+  .dotted-halo-bg {
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.95) 0%, rgba(10, 16, 40, 0.95) 40%, rgba(7, 10, 25, 1) 100%);
+  }
+
+  .dotted-halo-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(56, 189, 248, 0.32) 1px, transparent 1px),
+      radial-gradient(circle, rgba(34, 211, 238, 0.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+    background-size: 18px 18px, 36px 36px, 72px 72px;
+    background-position: center center, center center, center center;
+    opacity: 0.95;
+    -webkit-mask-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 28%, rgba(255, 255, 255, 0.2) 60%, transparent 100%);
+    mask-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 28%, rgba(255, 255, 255, 0.2) 60%, transparent 100%);
+  }
+
+  .dotted-halo-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.16) 0%, transparent 55%);
+    filter: blur(60px);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
   /* Scroll blur overlay */
   .scroll-blur-overlay {
     -webkit-backdrop-filter: blur(var(--blur-amount, 0px));
