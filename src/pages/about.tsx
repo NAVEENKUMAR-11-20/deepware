@@ -85,8 +85,13 @@ const About = () => {
               </h3>
 
               {/* Role */}
-              <p className="text-blue-300 text-sm font-medium mb-4">
+              <p className="text-blue-300 text-sm font-medium mb-2">
                 {founder.role}
+              </p>
+
+              {/* Secondary title */}
+              <p className="text-slate-300 text-sm mb-4">
+                {founder.title}
               </p>
 
               {/* Description */}
