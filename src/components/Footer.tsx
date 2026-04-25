@@ -143,7 +143,7 @@ const Footer = () => {
                   event.currentTarget.alt = 'MSME logo not available';
                 }}
               />
-              <span className="text-sm font-medium">MSME Registered Certificate</span>
+              <span className="text-sm font-medium">MSME Verified Enterprise</span>
             </div>
           </div>
           <div className="mt-4 text-center text-gray-400 text-sm">
