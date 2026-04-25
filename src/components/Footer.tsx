@@ -133,20 +133,20 @@ const Footer = () => {
 
         {/* MSME Badge and Copyright */}
         <div className="border-t border-white/10 mt-16 pt-12">
-          <GlassPanel variant="dark" blur="lg" className="p-6 mb-8 bg-sky-950/95 border-sky-500/20">
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                <img
-                  src="/msme.png"
-                  alt="MSME Registered Logo"
-                  className="h-16 w-auto object-contain"
-                  loading="lazy"
-                  onError={(event) => {
-                    event.currentTarget.alt = 'MSME logo not available';
-                  }}
-                />
-              <span className="text-sm font-medium text-cyan-100">MSME Verified Enterprise</span>
+          <div className="flex flex-col items-center justify-center gap-4 mb-8 sm:flex-row sm:gap-6">
+            <div className="flex items-center justify-center rounded-full border border-sky-500/30 bg-slate-950/90 px-4 py-3 shadow-[0_12px_50px_-42px_rgba(56,189,248,0.75)]">
+              <img
+                src="/msme.png"
+                alt="MSME Registered Logo"
+                className="h-14 w-auto object-contain"
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.alt = 'MSME logo not available';
+                }}
+              />
             </div>
-          </GlassPanel>
+            <span className="text-sm font-medium text-cyan-100">MSME Verified Enterprise</span>
+          </div>
 
           <div className="text-center text-gray-400 text-sm">
             <p className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3 sm:justify-center">
