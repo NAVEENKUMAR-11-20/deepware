@@ -3,6 +3,7 @@ import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
+import InteractiveDottedHalo from '../components/InteractiveDottedHalo';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -93,12 +94,12 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div ref={heroBgRef} className="hero-background-fixed" />
-      <div className="fixed inset-0 -z-10 pointer-events-none">
+      <div ref={heroBgRef} className="hero-background-fixed pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
         <div className="absolute inset-0 bg-grid-pattern opacity-20" />
         <div className="absolute top-20 left-[10%] w-[32rem] h-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
         <div className="absolute bottom-10 right-[8%] w-[24rem] h-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
+        <InteractiveDottedHalo />
       </div>
 
       {/* Hero Section */}
