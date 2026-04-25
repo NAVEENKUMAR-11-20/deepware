@@ -134,7 +134,7 @@ const Footer = () => {
         {/* MSME Badge and Copyright */}
         <div className="border-t border-white/10 mt-16 pt-12">
           <div className="flex flex-col items-center justify-center gap-4 mb-8 sm:flex-row sm:gap-6">
-            <div className="flex items-center justify-center rounded-full border border-cyan-200/40 bg-slate-100/15 px-4 py-3 shadow-[0_12px_50px_-42px_rgba(192,255,255,0.35)] backdrop-blur-sm">
+            <div className="flex items-center justify-center rounded-full border border-cyan-300/40 bg-slate-800/90 ring-1 ring-cyan-300/15 px-4 py-3 shadow-[0_12px_40px_-28px_rgba(56,189,248,0.45)] backdrop-blur-sm">
               <img
                 src="/msme.png"
                 alt="MSME Registered Logo"
