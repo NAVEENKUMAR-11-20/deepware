@@ -25,6 +25,7 @@ const InteractiveDottedHalo = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
     const resetCanvas = () => {
       const parent = canvas.parentElement ?? canvas;
       const width = parent.clientWidth;
@@ -51,15 +52,15 @@ const InteractiveDottedHalo = () => {
 
     const generateDots = () => {
       const { centerX, centerY, maxRadius } = sizeRef.current;
-      const rings = 16;
+      const rings = isMobile ? 8 : 16;
       const points: DotPoint[] = [];
 
       for (let ring = 0; ring < rings; ring += 1) {
         const progress = ring / (rings - 1);
-        const radius = lerp(2.6, 8.2, 1 - progress);
-        const alpha = lerp(0.18, 0.92, 1 - progress);
-        const ringRadius = lerp(maxRadius * 0.18, maxRadius, progress);
-        const count = Math.round(18 + progress * 24 + ring * 0.8);
+        const radius = lerp(isMobile ? 1.6 : 2.6, isMobile ? 5.2 : 8.2, 1 - progress);
+        const alpha = lerp(isMobile ? 0.16 : 0.18, isMobile ? 0.75 : 0.92, 1 - progress);
+        const ringRadius = lerp(maxRadius * (isMobile ? 0.22 : 0.18), maxRadius, progress);
+        const count = Math.round((isMobile ? 10 : 18) + progress * (isMobile ? 12 : 24) + ring * (isMobile ? 0.4 : 0.8));
 
         for (let i = 0; i < count; i += 1) {
           const angle = (Math.PI * 2 * i) / count + (ring % 2 === 0 ? 0 : 0.12);
@@ -121,22 +122,24 @@ const InteractiveDottedHalo = () => {
 
       const cursorX = centerX + pointerRef.current.x;
       const cursorY = centerY + pointerRef.current.y;
-      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * 0.28, 0.12);
-      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * 0.22, 0.12);
+      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * (isMobile ? 0.14 : 0.28), isMobile ? 0.08 : 0.12);
+      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * (isMobile ? 0.1 : 0.22), isMobile ? 0.08 : 0.12);
       offsetRef.current.x = motionX;
       offsetRef.current.y = motionY;
 
       ctx.save();
       ctx.translate(motionX, motionY);
-      ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
-      ctx.shadowBlur = 14;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 0;
+      if (!isMobile) {
+        ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
+        ctx.shadowBlur = 14;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+      }
 
-      const pulse = 1 + Math.sin(performance.now() * 0.002) * 0.08;
-      const cursorRadius = 70 + pointerRef.current.strength * 16;
+      const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.002) * 0.08;
+      const cursorRadius = isMobile ? 48 : 70 + pointerRef.current.strength * 16;
 
-      ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
+      ctx.fillStyle = `rgba(56, 189, 248, ${isMobile ? 0.05 : 0.08})`;
       ctx.beginPath();
       ctx.arc(cursorX - motionX, cursorY - motionY, cursorRadius, 0, Math.PI * 2);
       ctx.fill();

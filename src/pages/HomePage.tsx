@@ -14,9 +14,12 @@ const HomePage = () => {
   const heroContentRef = useRef<HTMLDivElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
   const servicesContentRef = useRef<HTMLDivElement>(null);
+  const isMobileRef = useRef(false);
 
   useLayoutEffect(() => {
-    const maxScroll = 440;
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
+    isMobileRef.current = isMobile;
+    const maxScroll = isMobile ? 320 : 440;
     const scrollState = {
       current: 0,
       target: 0,
@@ -27,14 +30,14 @@ const HomePage = () => {
       const next = lerp(scrollState.current, scrollState.target, 0.18);
       scrollState.current = next;
       const progress = clamp(next / maxScroll, 0, 1);
-      const heroTranslate = -progress * 110;
+      const heroTranslate = -progress * (isMobileRef.current ? 70 : 110);
       const heroOpacity = clamp(1 - progress * 1.15, 0, 1);
-      const heroScale = clamp(1 - progress * 0.03, 0.97, 1);
-      const blurAmount = clamp(progress * 20, 0, 20);
+      const heroScale = clamp(1 - progress * (isMobileRef.current ? 0.02 : 0.03), isMobileRef.current ? 0.98 : 0.97, 1);
+      const blurAmount = clamp(progress * (isMobileRef.current ? 8 : 20), 0, isMobileRef.current ? 8 : 20);
       const brightness = clamp(1 - progress * 0.14, 0.82, 1);
-      const heroTextBlur = clamp(progress * 1.6, 0, 1.6);
-      const servicesProgress = clamp((next - 100) / (maxScroll - 100), 0, 1);
-      const servicesTranslate = lerp(45, 0, servicesProgress);
+      const heroTextBlur = isMobileRef.current ? 0 : clamp(progress * 1.6, 0, 1.6);
+      const servicesProgress = clamp((next - (isMobileRef.current ? 80 : 100)) / (maxScroll - (isMobileRef.current ? 80 : 100)), 0, 1);
+      const servicesTranslate = lerp(isMobileRef.current ? 30 : 45, 0, servicesProgress);
       const servicesOpacity = clamp(servicesProgress, 0, 1);
 
       if (heroContentRef.current) {
