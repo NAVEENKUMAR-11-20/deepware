@@ -118,9 +118,6 @@ const About = () => {
             </GlassPanel>
           </motion.div>
 
-          {/* Vertical Connector */}
-          <div className="hidden md:block w-px h-8 bg-gradient-to-b from-white/20 to-white/10 mb-4"></div>
-
           {/* Horizontal Connector and Team */}
           <div className="flex items-center w-full max-w-4xl">
             <div className="hidden md:block w-8 h-px bg-gradient-to-r from-transparent to-white/10"></div>
