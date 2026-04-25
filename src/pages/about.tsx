@@ -24,7 +24,7 @@ const team = [
     name: "Aswin L",
     role: "Frontend & Backend Developer",
     image: "/aswin.jpeg",
-    github: "https://github.com/member3",
+    github: "https://github.com/AswinL",
     linkedin: "https://linkedin.com/in/member3",
     description:
       "Full-stack developer specializing in backend development, building scalable web applications with efficient server-side systems and responsive, user-friendly frontends.",
