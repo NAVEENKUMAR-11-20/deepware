@@ -5,12 +5,12 @@ import GlassPanel from "../components/GlassPanel";
 const team = [
   {
     name: "Naveen Kumar P",
-    role: "Founder & CEO <br /> Full Stack Developer",
+    role: "Founder & CEO",
     image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
     description:
-      "Passionate developer focused on building scalable web applications and modern digital experiences.",
+      "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
   {
     name: "Dhinesh S",
@@ -89,7 +89,7 @@ const About = () => {
               </p>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm mb-8 leading-relaxed">
+              <p className="text-slate-300 text-sm mb-8 leading-relaxed max-w-xl mx-auto">
                 {founder.description}
               </p>
 
