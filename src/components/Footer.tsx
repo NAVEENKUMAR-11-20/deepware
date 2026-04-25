@@ -134,12 +134,12 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <img
-              src="https://www.bing.com/ck/a?!&&p=4b9a401faee8a776f4cbb98edda57306ceb51cb0b46e30df25b6f55d670fdecfJmltdHM9MTc3NzA3NTIwMA&ptn=3&ver=2&hsh=4&fclid=0fc6cc50-50b4-652d-0348-da2651d6643c&u=a1L2ltYWdlcy9zZWFyY2g_cT1tc21lK2xvZ28maWQ9QjZEMzdBNEQ1MkQ2QjM5Q0JEQjU5QkM3QzM4N0JCNjNCMzBCOTM5OSZGT1JNPUlRRlJCQQ"
+              src="/msme-logo.png"
               alt="MSME Registered Logo"
               className="h-12 w-auto object-contain"
               loading="lazy"
               onError={(event) => {
-                event.currentTarget.src = '/logo.png';
+                event.currentTarget.alt = 'MSME logo not available';
               }}
             />
             <p>&copy; {currentYear} Denvex. All rights reserved.</p>
