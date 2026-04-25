@@ -67,11 +67,6 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://naveen-sport.vercel.app/" className="text-gray-400 hover:text-blue-300 transition-colors">
-                  Portfolio
-                </a>
-              </li>
-              <li>
                 <a href="/about" className="text-gray-400 hover:text-blue-300 transition-colors">
                   About
                 </a>
