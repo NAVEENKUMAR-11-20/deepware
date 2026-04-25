@@ -5,7 +5,7 @@ import GlassPanel from "../components/GlassPanel";
 const team = [
   {
     name: "Naveen Kumar P",
-    role: "Founder & Full Stack Developer",
+    role: "Founder & CEO <br /> Full Stack Developer",
     image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
@@ -32,6 +32,9 @@ const team = [
   },
 ];
 
+const founder = team[0];
+const teamMembers = team.slice(1);
+
 const About = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 relative overflow-hidden">
@@ -57,64 +60,130 @@ const About = () => {
           </p>
         </motion.div>
 
-        {/* Team Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <GlassPanel variant="dark" blur="lg" className="p-8 h-full text-center hover:border-blue-400/40">
-                {/* Image */}
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-28 h-28 mx-auto rounded-full object-cover border-3 border-blue-400/50 mb-6"
-                />
+        {/* Team Hierarchy */}
+        <div className="flex flex-col items-center mb-20">
+          {/* Founder */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0 }}
+            className="scale-125 mb-8"
+          >
+            <GlassPanel variant="dark" blur="lg" className="p-8 h-full text-center border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20">
+              {/* Image */}
+              <img
+                src={founder.image}
+                alt={founder.name}
+                className="w-28 h-28 mx-auto rounded-full object-cover border-3 border-blue-400/50 mb-6"
+              />
 
-                {/* Name */}
-                <h3 className="text-2xl font-semibold text-white mb-2">
-                  {member.name}
-                </h3>
+              {/* Name */}
+              <h3 className="text-2xl font-semibold text-white mb-2">
+                {founder.name}
+              </h3>
 
-                {/* Role */}
-                <p className="text-blue-300 text-sm font-medium mb-4">
-                  {member.role}
-                </p>
+              {/* Role */}
+              <p className="text-blue-300 text-sm font-medium mb-4">
+                {founder.role}
+              </p>
 
-                {/* Description */}
-                <p className="text-gray-300 text-sm mb-8 leading-relaxed">
-                  {member.description}
-                </p>
+              {/* Description */}
+              <p className="text-gray-300 text-sm mb-8 leading-relaxed">
+                {founder.description}
+              </p>
 
-                {/* Social Links */}
-                <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
-                  <a
-                    href={member.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="GitHub"
-                    className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
-                  >
-                    <Github size={18} />
-                  </a>
+              {/* Social Links */}
+              <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
+                <a
+                  href={founder.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                  className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
+                >
+                  <Github size={18} />
+                </a>
 
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="LinkedIn"
-                    className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
-                  >
-                    <Linkedin size={18} />
-                  </a>
-                </div>
-              </GlassPanel>
-            </motion.div>
-          ))}
+                <a
+                  href={founder.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                  className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
+            </GlassPanel>
+          </motion.div>
+
+          {/* Vertical Connector */}
+          <div className="hidden md:block w-px h-8 bg-gradient-to-b from-white/20 to-white/10 mb-4"></div>
+
+          {/* Horizontal Connector and Team */}
+          <div className="flex items-center w-full max-w-4xl">
+            <div className="hidden md:block w-8 h-px bg-gradient-to-r from-transparent to-white/10"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+              {teamMembers.map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                >
+                  <GlassPanel variant="dark" blur="lg" className="p-8 h-full text-center hover:border-blue-400/40">
+                    {/* Image */}
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-28 h-28 mx-auto rounded-full object-cover border-3 border-blue-400/50 mb-6"
+                    />
+
+                    {/* Name */}
+                    <h3 className="text-2xl font-semibold text-white mb-2">
+                      {member.name}
+                    </h3>
+
+                    {/* Role */}
+                    <p className="text-blue-300 text-sm font-medium mb-4">
+                      {member.role}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-gray-300 text-sm mb-8 leading-relaxed">
+                      {member.description}
+                    </p>
+
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="GitHub"
+                        className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
+                      >
+                        <Github size={18} />
+                      </a>
+
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="LinkedIn"
+                        className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
+                      >
+                        <Linkedin size={18} />
+                      </a>
+                    </div>
+                  </GlassPanel>
+                </motion.div>
+              ))}
+            </div>
+            <div className="hidden md:block w-8 h-px bg-gradient-to-l from-transparent to-white/10"></div>
+          </div>
         </div>
 
         {/* Vision Section */}
