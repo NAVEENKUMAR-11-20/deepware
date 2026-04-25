@@ -131,17 +131,22 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <img
-              src="/msme.png"
-              alt="MSME Registered Logo"
-              className="h-12 w-auto object-contain"
-              loading="lazy"
-              onError={(event) => {
-                event.currentTarget.alt = 'MSME logo not available';
-              }}
-            />
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="rounded-3xl bg-slate-100 px-6 py-6 text-slate-900 shadow-sm">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <img
+                src="/msme.png"
+                alt="MSME Registered Logo"
+                className="h-14 w-auto object-contain"
+                loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.alt = 'MSME logo not available';
+                }}
+              />
+              <span className="text-sm font-medium">MSME Registered Certificate</span>
+            </div>
+          </div>
+          <div className="mt-4 text-center text-gray-400 text-sm">
             <p>&copy; {currentYear} Denvex. All rights reserved.</p>
           </div>
         </div>
