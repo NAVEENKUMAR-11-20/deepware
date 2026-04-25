@@ -134,7 +134,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <img
-              src="/msme-logo.png"
+              src="/msme.png"
               alt="MSME Registered Logo"
               className="h-12 w-auto object-contain"
               loading="lazy"
