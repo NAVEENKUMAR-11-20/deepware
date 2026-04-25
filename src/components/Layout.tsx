@@ -17,11 +17,12 @@ const Layout = () => {
 
       {/* Scroll effect overlay */}
       <div
-        className="fixed inset-0 z-5 pointer-events-none"
-        style={{
-          backdropFilter: `blur(${scrollState.blurAmount}px)`,
-          opacity: Math.max(1 - scrollState.blurAmount / 12, 0.95),
-          willChange: 'backdrop-filter, opacity',
+        className="fixed inset-0 z-5 pointer-events-none scroll-blur-overlay"
+        ref={(el) => {
+          if (el) {
+            el.style.setProperty('--blur-amount', `${scrollState.blurAmount}px`);
+            el.style.setProperty('--blur-opacity', Math.max(1 - scrollState.blurAmount / 12, 0.95).toString());
+          }
         }}
       />
 

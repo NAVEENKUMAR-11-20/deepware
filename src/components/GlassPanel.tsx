@@ -37,9 +37,9 @@ const GlassPanel: React.FC<GlassPanelProps> = ({
         transition-all
         duration-300
         hover:border-white/30
+        glass-panel-will-change
         ${className}
       `}
-      style={{ willChange: 'backdrop-filter' }}
     >
       {children}
     </div>
