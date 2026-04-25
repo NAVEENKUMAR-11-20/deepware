@@ -69,6 +69,13 @@ const Navbar = () => {
             </Link>
 
             <Link
+              to="/contact"
+              className="font-medium text-gray-800 hover:text-blue-600"
+            >
+              Contact
+            </Link>
+
+            <Link
               to="/register"
               className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all"
             >
@@ -124,6 +131,13 @@ const Navbar = () => {
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
               About
+            </Link>
+
+            <Link
+              to="/contact"
+              className="px-4 py-2 font-medium hover:text-blue-600"
+            >
+              Contact
             </Link>
 
             <Link
