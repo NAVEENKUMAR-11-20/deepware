@@ -3,7 +3,6 @@ import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
-import InteractiveDottedHalo from '../components/InteractiveDottedHalo';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -29,17 +28,19 @@ const HomePage = () => {
       const progress = clamp(next / maxScroll, 0, 1);
       const heroTranslate = -progress * 110;
       const heroOpacity = clamp(1 - progress * 1.15, 0, 1);
-      const heroScale = clamp(1 - progress * 0.04, 0.94, 1);
-      const blurAmount = clamp(progress * 22, 0, 22);
-      const brightness = clamp(1 - progress * 0.16, 0.76, 1);
-      const servicesProgress = clamp((next - 120) / (maxScroll - 120), 0, 1);
-      const servicesTranslate = lerp(50, 0, servicesProgress);
-      const servicesOpacity = clamp(servicesProgress * 1.25, 0, 1);
+      const heroScale = clamp(1 - progress * 0.03, 0.97, 1);
+      const blurAmount = clamp(progress * 20, 0, 20);
+      const brightness = clamp(1 - progress * 0.14, 0.82, 1);
+      const heroTextBlur = clamp(progress * 1.6, 0, 1.6);
+      const servicesProgress = clamp((next - 100) / (maxScroll - 100), 0, 1);
+      const servicesTranslate = lerp(45, 0, servicesProgress);
+      const servicesOpacity = clamp(servicesProgress, 0, 1);
 
       if (heroContentRef.current) {
         heroContentRef.current.style.setProperty('--hero-translate', `${heroTranslate}px`);
         heroContentRef.current.style.setProperty('--hero-opacity', `${heroOpacity}`);
         heroContentRef.current.style.setProperty('--hero-scale', `${heroScale}`);
+        heroContentRef.current.style.setProperty('--hero-text-blur', `${heroTextBlur}px`);
       }
 
       if (heroBgRef.current) {
@@ -91,12 +92,19 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen overflow-hidden">
+      <div ref={heroBgRef} className="hero-background-fixed" />
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+        <div className="absolute top-20 left-[10%] w-[32rem] h-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute bottom-10 right-[8%] w-[24rem] h-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
+      </div>
+
       {/* Hero Section */}
       <section className="pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 relative overflow-hidden">
-        <InteractiveDottedHalo />
-        <div ref={heroBgRef} className="absolute inset-0 -z-10 hero-bg-blur" />
-        {/* Animated gradient blobs - hero section specific */}
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_24%),radial-gradient(circle_at_80%_20%,rgba(96,165,250,0.12),transparent_22%)] opacity-80 pointer-events-none" />
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
         <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
 
