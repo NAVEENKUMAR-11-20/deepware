@@ -15,7 +15,7 @@ const team = [
     name: "Dhinesh S",
     role: "Full Stack Developer & UI / UX Designer",
     image: "/team2.jpg",
-    github: "https://github.com/member2",
+    github: "https://github.com/DHINESH2307",
     linkedin: "https://linkedin.com/in/member2",   
     description:
       "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications with engaging user experiences.",
@@ -24,7 +24,7 @@ const team = [
     name: "Aswin L",
     role: "Frontend & Backend Developer",
     image: "/aswin.jpeg",
-    github: "https://github.com/AswinL",
+    github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
     description:
       "Full-stack developer specializing in backend development, building scalable web applications with efficient server-side systems and responsive, user-friendly frontends.",
