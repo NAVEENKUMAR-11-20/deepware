@@ -5,11 +5,67 @@ import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
 import InteractiveDottedHalo from '../components/InteractiveDottedHalo';
 
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
+
 const HomePage = () => {
   const servicesRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const heroBgRef = useRef<HTMLDivElement>(null);
+  const servicesContentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    const maxScroll = 440;
+    const scrollState = {
+      current: 0,
+      target: 0,
+      frame: 0 as number | null,
+    };
+
+    const updateStyles = () => {
+      const next = lerp(scrollState.current, scrollState.target, 0.18);
+      scrollState.current = next;
+      const progress = clamp(next / maxScroll, 0, 1);
+      const heroTranslate = -progress * 110;
+      const heroOpacity = clamp(1 - progress * 1.15, 0, 1);
+      const heroScale = clamp(1 - progress * 0.04, 0.94, 1);
+      const blurAmount = clamp(progress * 22, 0, 22);
+      const brightness = clamp(1 - progress * 0.16, 0.76, 1);
+      const servicesProgress = clamp((next - 120) / (maxScroll - 120), 0, 1);
+      const servicesTranslate = lerp(50, 0, servicesProgress);
+      const servicesOpacity = clamp(servicesProgress * 1.25, 0, 1);
+
+      if (heroContentRef.current) {
+        heroContentRef.current.style.setProperty('--hero-translate', `${heroTranslate}px`);
+        heroContentRef.current.style.setProperty('--hero-opacity', `${heroOpacity}`);
+        heroContentRef.current.style.setProperty('--hero-scale', `${heroScale}`);
+      }
+
+      if (heroBgRef.current) {
+        heroBgRef.current.style.setProperty('--hero-blur', `${blurAmount}px`);
+        heroBgRef.current.style.setProperty('--hero-brightness', `${brightness}`);
+      }
+
+      if (servicesContentRef.current) {
+        servicesContentRef.current.style.setProperty('--services-translate', `${servicesTranslate}px`);
+        servicesContentRef.current.style.setProperty('--services-opacity', `${servicesOpacity}`);
+      }
+
+      if (Math.abs(scrollState.current - scrollState.target) > 0.5) {
+        scrollState.frame = requestAnimationFrame(updateStyles);
+      } else {
+        scrollState.frame = null;
+      }
+    };
+
+    const handleScroll = () => {
+      scrollState.target = clamp(window.scrollY, 0, maxScroll);
+      if (!scrollState.frame) {
+        scrollState.frame = requestAnimationFrame(updateStyles);
+      }
+    };
+
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash === '#services' && servicesRef.current) {
@@ -20,9 +76,18 @@ const HomePage = () => {
     };
 
     handleHashChange();
+    handleScroll();
 
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+
+    return () => {
+      if (scrollState.frame) {
+        cancelAnimationFrame(scrollState.frame);
+      }
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   return (
@@ -30,12 +95,13 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 relative overflow-hidden">
         <InteractiveDottedHalo />
+        <div ref={heroBgRef} className="absolute inset-0 -z-10 hero-bg-blur" />
         {/* Animated gradient blobs - hero section specific */}
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
         <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
+          <div ref={heroContentRef} className="max-w-4xl mx-auto text-center mb-16 md:mb-24 hero-scroll-content">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -111,7 +177,7 @@ const HomePage = () => {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <div ref={servicesContentRef} className="text-center max-w-3xl mx-auto mb-20 services-reveal">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

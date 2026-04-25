@@ -157,6 +157,28 @@
   .glass-panel-will-change {
     will-change: backdrop-filter;
   }
+
+  .hero-bg-blur {
+    background: rgba(3, 8, 20, 0.08);
+    -webkit-backdrop-filter: blur(var(--hero-blur, 0px));
+    backdrop-filter: blur(var(--hero-blur, 0px));
+    filter: brightness(var(--hero-brightness, 1));
+    transition: filter 0.18s ease-out, backdrop-filter 0.18s ease-out;
+    will-change: filter, backdrop-filter;
+  }
+
+  .hero-scroll-content {
+    transform: translateY(var(--hero-translate, 0)) scale(var(--hero-scale, 1));
+    opacity: var(--hero-opacity, 1);
+    transform-origin: center top;
+    will-change: transform, opacity;
+  }
+
+  .services-reveal {
+    opacity: var(--services-opacity, 0);
+    transform: translateY(var(--services-translate, 50px));
+    will-change: transform, opacity;
+  }
 }
 
 @layer base {
