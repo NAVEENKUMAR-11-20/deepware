@@ -6,7 +6,7 @@ const TermsAndConditions = () => {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Terms & Conditions – DenveX
           </h1>
-          <p className="text-gray-700">Effective Date: [Insert Date]</p>
+          <p className="text-gray-700">Latest Update: 4/25/2026</p>
           <p className="text-gray-700 leading-relaxed">
             Welcome to DenveX. By accessing or using our website and services, you agree to the following Terms & Conditions.
           </p>
