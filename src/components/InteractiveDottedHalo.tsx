@@ -103,63 +103,66 @@ const InteractiveDottedHalo = () => {
       updatePointer(point.clientX, point.clientY);
     };
 
-    const drawBackground = () => {
+      const drawBackground = () => {
       const { width, height, centerX, centerY, maxRadius } = sizeRef.current;
-      const baseGradient = ctx.createLinearGradient(0, 0, width, height);
-      baseGradient.addColorStop(0, '#041229');
-      baseGradient.addColorStop(0.5, '#081d44');
-      baseGradient.addColorStop(1, '#030814');
-      ctx.fillStyle = baseGradient;
-      ctx.fillRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
 
-      const halo = ctx.createRadialGradient(centerX, centerY, maxRadius * 0.08, centerX, centerY, maxRadius * 1.1);
-      halo.addColorStop(0, 'rgba(56, 189, 248, 0.18)');
-      halo.addColorStop(0.6, 'rgba(34, 211, 238, 0.06)');
-      halo.addColorStop(1, 'rgba(10, 16, 40, 0)');
-      ctx.fillStyle = halo;
+      const glow = ctx.createRadialGradient(centerX, centerY, maxRadius * 0.1, centerX, centerY, maxRadius * 0.92);
+      glow.addColorStop(0, 'rgba(56, 189, 248, 0.16)');
+      glow.addColorStop(0.4, 'rgba(56, 189, 248, 0.05)');
+      glow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
     };
 
     const draw = () => {
       const { width, height, centerX, centerY } = sizeRef.current;
-      ctx.clearRect(0, 0, width, height);
       drawBackground();
 
       const cursorX = centerX + pointerRef.current.x;
       const cursorY = centerY + pointerRef.current.y;
-      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * 0.12, 0.1);
-      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * 0.08, 0.1);
+      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * 0.28, 0.12);
+      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * 0.22, 0.12);
       offsetRef.current.x = motionX;
       offsetRef.current.y = motionY;
 
       ctx.save();
       ctx.translate(motionX, motionY);
+      ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
+      ctx.shadowBlur = 14;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+
+      const pulse = 1 + Math.sin(performance.now() * 0.002) * 0.08;
+      const cursorRadius = 70 + pointerRef.current.strength * 16;
 
       ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
       ctx.beginPath();
-      ctx.arc(cursorX - motionX, cursorY - motionY, 68 + pointerRef.current.strength * 12, 0, Math.PI * 2);
+      ctx.arc(cursorX - motionX, cursorY - motionY, cursorRadius, 0, Math.PI * 2);
       ctx.fill();
 
+      ctx.globalCompositeOperation = 'lighter';
       dotsRef.current.forEach((dot) => {
         const dx = dot.x - cursorX;
         const dy = dot.y - cursorY;
         const distance = Math.hypot(dx, dy);
         const influence = clamp(1 - distance / 170, 0, 1);
-        const repel = influence * pointerRef.current.strength * 12;
+        const repel = influence * pointerRef.current.strength * 18;
         const angle = Math.atan2(dy, dx);
         const repelledX = dot.x + Math.cos(angle) * repel;
         const repelledY = dot.y + Math.sin(angle) * repel;
-        const size = dot.radius * (1 + influence * 0.16);
+        const size = dot.radius * (1 + influence * 0.48) * pulse;
 
-        ctx.globalAlpha = dot.alpha * (0.75 + influence * 0.18);
-        ctx.fillStyle = 'rgba(89, 177, 255, 1)';
+        ctx.globalAlpha = dot.alpha * (0.85 + influence * 0.4);
+        ctx.fillStyle = `rgba(166, 221, 255, ${0.75 + influence * 0.25})`;
         ctx.beginPath();
         ctx.arc(repelledX, repelledY, size, 0, Math.PI * 2);
         ctx.fill();
       });
-
+      ctx.globalCompositeOperation = 'source-over';
       ctx.restore();
       ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
     };
 
     const animate = () => {
@@ -190,7 +193,7 @@ const InteractiveDottedHalo = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 -z-20 w-full h-full pointer-events-none"
+      className="absolute inset-0 z-10 w-full h-full pointer-events-none"
     />
   );
 };

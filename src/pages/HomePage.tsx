@@ -94,11 +94,11 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div ref={heroBgRef} className="hero-background-fixed pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-        <div className="absolute top-20 left-[10%] w-[32rem] h-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute bottom-10 right-[8%] w-[24rem] h-[24rem] rounded-full bg-cyan-500/10 blur-3xl" />
+      <div ref={heroBgRef} className="hero-background-fixed relative pointer-events-none">
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
+        <div className="absolute inset-0 z-0 bg-grid-pattern opacity-22" />
+        <div className="absolute top-20 left-[10%] z-0 w-[32rem] h-[28rem] rounded-full bg-blue-500/14 blur-3xl" />
+        <div className="absolute bottom-10 right-[8%] z-0 w-[24rem] h-[24rem] rounded-full bg-cyan-500/14 blur-3xl" />
         <InteractiveDottedHalo />
       </div>
 
