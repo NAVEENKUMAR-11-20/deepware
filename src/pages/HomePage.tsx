@@ -98,6 +98,7 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
+        </div>
       </section>
 
       {/* Services Section */}

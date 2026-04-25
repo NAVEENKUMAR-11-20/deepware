@@ -147,6 +147,7 @@
 
   /* Scroll blur overlay */
   .scroll-blur-overlay {
+    -webkit-backdrop-filter: blur(var(--blur-amount, 0px));
     backdrop-filter: blur(var(--blur-amount, 0px));
     opacity: var(--blur-opacity, 0.95);
     will-change: backdrop-filter, opacity;
