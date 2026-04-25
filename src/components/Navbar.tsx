@@ -120,13 +120,6 @@ const Navbar = () => {
             </button>
 
             <Link
-              to="/portfolio"
-              className="px-4 py-2 font-medium hover:text-blue-600"
-            >
-              Portfolio
-            </Link>
-
-            <Link
               to="/about"
               className="px-4 py-2 font-medium hover:text-blue-600"
             >
