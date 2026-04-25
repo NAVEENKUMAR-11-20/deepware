@@ -133,9 +133,9 @@ const Footer = () => {
 
         {/* MSME Badge and Copyright */}
         <div className="border-t border-white/10 mt-16 pt-12">
-          <GlassPanel variant="light" blur="lg" className="p-6 mb-8">
+          <GlassPanel variant="dark" blur="lg" className="p-6 mb-8 bg-sky-950/95 border-sky-500/20">
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-              <div className="rounded-3xl bg-slate-950/20 p-3">
+              <div className="rounded-3xl bg-sky-900/95 p-4 shadow-[0_0_40px_rgba(56,189,248,0.12)]">
                 <img
                   src="/msme.png"
                   alt="MSME Registered Logo"
@@ -146,7 +146,7 @@ const Footer = () => {
                   }}
                 />
               </div>
-              <span className="text-sm font-medium text-white">MSME Verified Enterprise</span>
+              <span className="text-sm font-medium text-cyan-100">MSME Verified Enterprise</span>
             </div>
           </GlassPanel>
 
