@@ -90,7 +90,7 @@ const About = () => {
               </p>
 
               {/* Secondary title */}
-              <p className="text-slate-300 text-sm mb-4">
+              <p className="text-blue-300 text-sm font-medium mb-2">
                 {founder.title}
               </p>
 
