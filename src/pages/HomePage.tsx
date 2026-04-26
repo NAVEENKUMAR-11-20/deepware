@@ -3,6 +3,7 @@ import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
+import CanvasBackground from '../components/CanvasBackground';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -100,6 +101,7 @@ const HomePage = () => {
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
         <div className="absolute top-20 left-[10%] z-0 w-[32rem] h-[28rem] rounded-full bg-blue-500/14 blur-3xl" />
         <div className="absolute bottom-10 right-[8%] z-0 w-[24rem] h-[24rem] rounded-full bg-cyan-500/14 blur-3xl" />
+        <CanvasBackground />
       </div>
 
       {/* Hero Section */}

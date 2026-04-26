@@ -119,77 +119,8 @@ const CanvasBackground = () => {
     };
 
     const drawBackground = () => {
-      const { width, height, centerX, centerY } = sizeRef.current;
-      ctx.clearRect(0, 0, width, height);
-
-      // Base gradient
-      const baseGradient = ctx.createLinearGradient(0, 0, 0, height);
-      baseGradient.addColorStop(0, '#0f172a');
-      baseGradient.addColorStop(1, '#020617');
-      ctx.fillStyle = baseGradient;
-      ctx.fillRect(0, 0, width, height);
-
-      // Animated gradient overlay
-      const time = performance.now() * 0.0005;
-      const overlayGradient = ctx.createLinearGradient(
-        Math.sin(time) * width * 0.5 + width * 0.5,
-        Math.cos(time) * height * 0.5 + height * 0.5,
-        Math.sin(time + Math.PI) * width * 0.5 + width * 0.5,
-        Math.cos(time + Math.PI) * height * 0.5 + height * 0.5
-      );
-      overlayGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      overlayGradient.addColorStop(0.5, 'rgba(56, 189, 248, 0.1)');
-      overlayGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = overlayGradient;
-      ctx.fillRect(0, 0, width, height);
-
-      // Primary glow blob
-      ctx.save();
-      ctx.filter = 'blur(20px)';
-      ctx.globalAlpha = 0.4;
-      const primaryOffsetX = parallaxRef.current.x * 8;
-      const primaryOffsetY = parallaxRef.current.y * 8;
-      const primaryGlow = ctx.createRadialGradient(
-        centerX - 200 + primaryOffsetX, centerY - 200 + primaryOffsetY, 0,
-        centerX - 200 + primaryOffsetX, centerY - 200 + primaryOffsetY, 192
-      );
-      primaryGlow.addColorStop(0, 'rgba(56, 189, 248, 0.4)');
-      primaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = primaryGlow;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
-
-      // Secondary glow blob
-      ctx.save();
-      ctx.filter = 'blur(20px)';
-      ctx.globalAlpha = 0.3;
-      const secondaryOffsetX = parallaxRef.current.x * 6;
-      const secondaryOffsetY = parallaxRef.current.y * 6;
-      const secondaryGlow = ctx.createRadialGradient(
-        centerX + 200 + secondaryOffsetX, centerY + 200 + secondaryOffsetY, 0,
-        centerX + 200 + secondaryOffsetX, centerY + 200 + secondaryOffsetY, 160
-      );
-      secondaryGlow.addColorStop(0, 'rgba(139, 92, 246, 0.3)');
-      secondaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = secondaryGlow;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
-
-      // Tertiary glow blob
-      ctx.save();
-      ctx.filter = 'blur(20px)';
-      ctx.globalAlpha = 0.2;
-      const tertiaryOffsetX = parallaxRef.current.x * 4;
-      const tertiaryOffsetY = parallaxRef.current.y * 4;
-      const tertiaryGlow = ctx.createRadialGradient(
-        centerX + 150 + tertiaryOffsetX, centerY - 150 + tertiaryOffsetY, 0,
-        centerX + 150 + tertiaryOffsetX, centerY - 150 + tertiaryOffsetY, 144
-      );
-      tertiaryGlow.addColorStop(0, 'rgba(20, 184, 166, 0.2)');
-      tertiaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = tertiaryGlow;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
+      // Only clear, backgrounds are handled by CSS
+      ctx.clearRect(0, 0, sizeRef.current.width, sizeRef.current.height);
     };
 
     const draw = () => {
@@ -199,11 +130,16 @@ const CanvasBackground = () => {
       const cursorX = centerX + pointerRef.current.x;
       const cursorY = centerY + pointerRef.current.y;
 
+      // Global pattern offset based on mouse
+      const patternOffsetX = parallaxRef.current.x * 30; // 30px range
+      const patternOffsetY = parallaxRef.current.y * 30;
+
       // Draw dots with interaction
       ctx.save();
+      ctx.translate(patternOffsetX, patternOffsetY); // Apply global offset
       if (!isMobile) {
-        ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
-        ctx.shadowBlur = 14;
+        ctx.shadowColor = 'rgba(56, 189, 248, 0.8)';
+        ctx.shadowBlur = 8;
       }
 
       const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.002) * 0.08;
@@ -212,15 +148,15 @@ const CanvasBackground = () => {
         const dx = dot.baseX - cursorX;
         const dy = dot.baseY - cursorY;
         const distance = Math.hypot(dx, dy);
-        const influence = clamp(1 - distance / 170, 0, 1);
-        const repel = influence * pointerRef.current.strength * 18;
+        const influence = clamp(1 - distance / 200, 0, 1); // Increased radius
+        const repel = influence * pointerRef.current.strength * 25; // Increased repel
         const angle = Math.atan2(dy, dx);
         const repelledX = dot.baseX + Math.cos(angle) * repel;
         const repelledY = dot.baseY + Math.sin(angle) * repel;
-        const size = dot.radius * (1 + influence * 0.48) * pulse;
+        const size = dot.radius * (1 + influence * 0.6) * pulse; // Increased influence
 
-        ctx.globalAlpha = dot.alpha * (0.85 + influence * 0.4);
-        ctx.fillStyle = `rgba(166, 221, 255, ${0.75 + influence * 0.25})`;
+        ctx.globalAlpha = dot.alpha * (1.2 + influence * 0.5); // Increased base alpha
+        ctx.fillStyle = `rgba(166, 221, 255, ${0.9 + influence * 0.3})`; // Brighter base
         ctx.beginPath();
         ctx.arc(repelledX, repelledY, size, 0, Math.PI * 2);
         ctx.fill();
@@ -258,8 +194,8 @@ const CanvasBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full"
-      style={{ zIndex: -10 }}
+      className="absolute inset-0 w-full h-full"
+      style={{ zIndex: 1 }}
     />
   );
 };

@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import CanvasBackground from './CanvasBackground';
 import { useScrollBlur, useScrollSpotlight } from '../hooks/useScrollEffects';
 
 const Layout = () => {
@@ -13,7 +12,7 @@ const Layout = () => {
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-x-hidden" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
       {/* Canvas background layer */}
-      <CanvasBackground />
+      {/* CanvasBackground moved to HomePage */}
 
       {/* Scroll effect overlay */}
       <div
