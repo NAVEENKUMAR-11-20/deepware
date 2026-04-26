@@ -13,7 +13,7 @@ const RegistrationPage = () => {
         <div className="absolute top-1/2 left-[10%] w-96 h-96 rounded-full bg-gradient-to-bl from-blue-500/15 to-indigo-500/10 blur-3xl opacity-50" />
         <div className="absolute bottom-1/3 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-sky-600/12 to-violet-500/8 blur-3xl opacity-40" />
       </div>
-      
+
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
 
@@ -51,7 +51,7 @@ const RegistrationPage = () => {
             <div className="grid md:grid-cols-5 gap-4">
               <div className="md:col-span-3 bg-gradient-to-br from-[#1a3660] to-[#162d50] rounded-xl p-8 border border-white/10">
                 <h2 className="text-2xl font-semibold mb-6">Project Requirements</h2>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ const RegistrationPage = () => {
                   className="mb-8"
                 >
                   <h3 className="text-xl font-medium mb-4">What to Expect</h3>
-                  
+
                   <ul className="space-y-4">
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -90,12 +90,12 @@ const RegistrationPage = () => {
                     </li>
                   </ul>
                 </motion.div>
-                
+
                 <div className="text-sm text-blue-200">
                   <p>After you submit the form, our team will review your requirements and contact you within 24 hours to discuss next steps.</p>
                 </div>
               </div>
-              
+
               <div className="md:col-span-2 bg-[#0f2240]/80 backdrop-blur-md rounded-xl p-8 border border-white/10 text-center flex flex-col items-center justify-center">
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
@@ -104,17 +104,17 @@ const RegistrationPage = () => {
                   className="w-full"
                 >
                   <h3 className="text-white text-xl font-semibold mb-6">Ready to begin?</h3>
-                  
+
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"  
-                    target="_blank" 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all hover:from-blue-600 hover:to-cyan-600 mb-4 group"
                   >
                     Open Requirements Form
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
-                  
+
                   <p className="text-gray-400 text-sm">
                     Your information is secure and will only be used to contact you about your project.
                   </p>
@@ -122,15 +122,14 @@ const RegistrationPage = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-12 text-center">
             <h3 className="text-xl font-semibold mb-4">Have Questions?</h3>
             <p className="text-blue-200 mb-6">
               If you'd prefer to speak with someone directly before submitting your requirements, we're here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"
+              <a href="tel:+917358349394"
                 className="px-8 py-3 bg-blue-800 text-white rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center"
               >
                 <svg
@@ -143,7 +142,7 @@ const RegistrationPage = () => {
                 </svg>
                 Call Us
               </a>
-              <a href="mailto:your@email.com"
+              <a href="mailto:teamdenvex@gmail.com"
                 className="px-8 py-3 bg-transparent border border-blue-400 text-white rounded-full font-medium hover:bg-blue-800 transition-colors inline-flex items-center justify-center"
               >
                 <svg
