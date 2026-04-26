@@ -18,6 +18,10 @@ const InteractiveDottedHalo = () => {
   // Separate raw target from the smoothed (rendered) position
   const pointerTargetRef = useRef({ x: 0, y: 0 });
   const offsetRef = useRef({ x: 0, y: 0 });
+  // Parallax targets and smoothed CSS translate offset
+  const parallaxTargetRef = useRef({ x: 0, y: 0 });
+  const parallaxRef = useRef({ x: 0, y: 0 });
+  const translateRef = useRef({ x: 0, y: 0 });
   const sizeRef = useRef({ width: 0, height: 0, centerX: 0, centerY: 0, dpr: 1, maxRadius: 0 });
   const resizeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -88,6 +92,10 @@ const InteractiveDottedHalo = () => {
       // Store raw target — no lerp, no heavy math here
       pointerTargetRef.current.x = clamp(point.clientX - centerX, -width * 0.6, width * 0.6);
       pointerTargetRef.current.y = clamp(point.clientY - centerY, -height * 0.6, height * 0.6);
+
+      // Store raw parallax target (normalized -1 to 1 from center)
+      parallaxTargetRef.current.x = (point.clientX / window.innerWidth - 0.5) * 2;
+      parallaxTargetRef.current.y = (point.clientY / window.innerHeight - 0.5) * 2;
     };
 
     const drawBackground = () => {
@@ -131,8 +139,25 @@ const InteractiveDottedHalo = () => {
 
       drawBackground();
 
+      // ── GPU-accelerated whole-canvas translation (translate3d) ──
+      parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.25);
+      parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.25);
+
+      const maxShift = isMobile ? 25 : 50; // px — visible but subtle parallax range
+      const targetTranslateX = parallaxRef.current.x * maxShift;
+      const targetTranslateY = parallaxRef.current.y * maxShift;
+      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.18);
+      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.18);
+
+      // Apply via CSS translate3d — composited on GPU, zero canvas redraw cost
+      if (canvas) {
+        canvas.style.transform = `translate3d(${translateRef.current.x}px, ${translateRef.current.y}px, 0)`;
+      }
+
       const cursorX = centerX + smoothX;
       const cursorY = centerY + smoothY;
+
+      // Internal motion offset for cursor glow positioning
       const motionLerp = isMobile ? 0.08 : 0.12;
       const motionMultX = isMobile ? 0.14 : 0.28;
       const motionMultY = isMobile ? 0.1 : 0.22;
@@ -142,7 +167,6 @@ const InteractiveDottedHalo = () => {
       offsetRef.current.y = motionY;
 
       ctx.save();
-      ctx.translate(motionX, motionY);
       if (!isMobile) {
         ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
         ctx.shadowBlur = 14;
@@ -156,7 +180,7 @@ const InteractiveDottedHalo = () => {
 
       ctx.fillStyle = `rgba(56, 189, 248, ${isMobile ? 0.05 : 0.08})`;
       ctx.beginPath();
-      ctx.arc(cursorX - motionX, cursorY - motionY, cursorRadius, 0, Math.PI * 2);
+      ctx.arc(cursorX, cursorY, cursorRadius, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.globalCompositeOperation = 'lighter';

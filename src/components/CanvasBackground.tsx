@@ -21,6 +21,8 @@ const CanvasBackground = () => {
   const pointerTargetRef = useRef({ x: 0, y: 0 });
   const parallaxRef = useRef({ x: 0, y: 0 });
   const parallaxTargetRef = useRef({ x: 0, y: 0 });
+  // Smoothed CSS translate offset (applied via translate3d for GPU compositing)
+  const translateRef = useRef({ x: 0, y: 0 });
   const sizeRef = useRef({ width: 0, height: 0, centerX: 0, centerY: 0, dpr: 1, maxRadius: 0 });
   const resizeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -102,9 +104,9 @@ const CanvasBackground = () => {
       pointerTargetRef.current.x = clamp(point.clientX - centerX, -width * 0.6, width * 0.6);
       pointerTargetRef.current.y = clamp(point.clientY - centerY, -height * 0.6, height * 0.6);
 
-      // Store raw parallax target
-      parallaxTargetRef.current.x = point.clientX / window.innerWidth;
-      parallaxTargetRef.current.y = point.clientY / window.innerHeight;
+      // Store raw parallax target (normalized -1 to 1 from center)
+      parallaxTargetRef.current.x = (point.clientX / window.innerWidth - 0.5) * 2;
+      parallaxTargetRef.current.y = (point.clientY / window.innerHeight - 0.5) * 2;
     };
 
     const drawBackground = () => {
@@ -142,18 +144,26 @@ const CanvasBackground = () => {
       parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.25);
       parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.25);
 
+      // ── GPU-accelerated whole-canvas translation (translate3d) ──
+      // Smooth lerp toward target offset for fluid motion
+      const maxShift = 50; // px — visible but subtle parallax range
+      const targetTranslateX = parallaxRef.current.x * maxShift;
+      const targetTranslateY = parallaxRef.current.y * maxShift;
+      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.18);
+      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.18);
+
+      // Apply via CSS translate3d — composited on GPU, zero canvas redraw cost
+      if (canvas) {
+        canvas.style.transform = `translate3d(${translateRef.current.x}px, ${translateRef.current.y}px, 0)`;
+      }
+
       drawBackground();
 
       const cursorX = centerX + smoothX;
       const cursorY = centerY + smoothY;
 
-      // Global pattern offset based on mouse
-      const patternOffsetX = parallaxRef.current.x * 30; // 30px range
-      const patternOffsetY = parallaxRef.current.y * 30;
-
       // Draw dots with interaction
       ctx.save();
-      ctx.translate(patternOffsetX, patternOffsetY); // Apply global offset
       ctx.shadowColor = 'rgba(56, 189, 248, 0.8)';
       ctx.shadowBlur = 8;
 
