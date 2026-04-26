@@ -144,7 +144,7 @@ const Footer = () => {
 
           <div className="text-center text-gray-400 text-sm">
             <p className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3 sm:justify-center">
-              <span>&copy; {currentYear} DenveX. All rights reserved.</span>
+              <span>&copy; {currentYear} DenveX.  All rights reserved.</span>
               <Link
                 to="/terms-and-conditions"
                 className="text-gray-400 hover:text-blue-300 hover:underline transition-colors"
