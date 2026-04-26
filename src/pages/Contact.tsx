@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Instagram, Send, CheckCircle2, AlertCircle, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Send, CheckCircle2, AlertCircle, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
@@ -36,7 +36,9 @@ const Contact = () => {
     try {
       // Use EmailJS as requested
       // We ensure the script is loaded and initialized from index.html
-      const response = await (window as any).emailjs.send("service_f37sh79", "template_exrmu2n", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const emailjs = (window as any).emailjs;
+      const response = await emailjs.send("service_f37sh79", "template_exrmu2n", {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -51,7 +53,7 @@ const Contact = () => {
         setStatus('error');
         setErrorMessage('Something went wrong. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
       setErrorMessage('Failed to send message. Please check your credentials or connection.');
     }

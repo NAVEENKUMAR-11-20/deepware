@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
 import CanvasBackground from '../components/CanvasBackground';
+import { TestimonialSection } from '../components/Testimonials';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -245,54 +246,13 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section ref={testimonialsRef} id="testimonials" className="py-24 md:py-32 relative">
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-bl from-violet-600/20 to-blue-500/10 blur-3xl opacity-40" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold mb-6 text-white"
-            >
-              What Our Clients Say
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-gray-300 leading-relaxed text-lg"
-            >
-              Don't just take our word for it. Here's what our clients have to say about working with us.
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TestimonialCard
-              quote="DenveX completely transformed our online presence. Their team delivered a website that not only looks stunning but also performs exceptionally well."
-              author="Hariharan"
-              company="TechStart Inc."
-              delay={0}
-            />
-            <TestimonialCard
-              quote="The web app they built for us has received incredible feedback from our users. The attention to detail and user experience is unmatched."
-              author="Omkar Varma"
-              company="FinanceApp"
-              delay={0.1}
-            />
-            <TestimonialCard
-              quote="Working with DenveX was a game-changer for our business. They understood our vision and executed it flawlessly."
-              author="Tamilselvan"
-              company="StyleShop"
-              delay={0.2}
-            />
-          </div>
+          <TestimonialSection />
 
           {/* Client Logos */}
           <div className="mt-24">
@@ -394,37 +354,5 @@ const ServiceCard = ({ icon, title, description, link, delay }: ServiceCardProps
   );
 };
 
-interface TestimonialCardProps {
-  quote: string;
-  author: string;
-  company: string;
-  delay: number;
-}
-
-const TestimonialCard = ({ quote, author, company, delay }: TestimonialCardProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-    >
-      <GlassPanel variant="dark" blur="md" className="p-8 h-full">
-        <div className="flex gap-1 mb-4">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span key={star} className="text-yellow-400 text-lg">
-              ★
-            </span>
-          ))}
-        </div>
-        <p className="text-gray-300 mb-6 italic leading-relaxed">"{quote}"</p>
-        <div>
-          <h4 className="font-semibold text-white">{author}</h4>
-          <p className="text-gray-400 text-sm">{company}</p>
-        </div>
-      </GlassPanel>
-    </motion.div>
-  );
-};
 
 export default HomePage;
