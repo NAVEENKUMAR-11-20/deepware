@@ -37,11 +37,11 @@ const Contact = () => {
       // Use EmailJS as requested
       // We ensure the script is loaded and initialized from index.html
       const response = await (window as any).emailjs.send("service_f37sh79", "template_exrmu2n", {
-        name: (document.querySelector("[name='name']") as HTMLInputElement).value,
-        email: (document.querySelector("[name='email']") as HTMLInputElement).value,
-        phone: (document.querySelector("[name='phone']") as HTMLInputElement).value,
-        subject: (document.querySelector("[name='subject']") as HTMLInputElement).value,
-        message: (document.querySelector("[name='message']") as HTMLTextAreaElement).value
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
       });
 
       if (response.status === 200) {
