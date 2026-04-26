@@ -34,7 +34,8 @@ const TestimonialSection: React.FC = () => {
       if (error) throw error;
       setReviews(data || []);
     } catch (err: unknown) {
-      console.error('Error fetching reviews:', err instanceof Error ? err.message : String(err));
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      console.error('Error fetching reviews:', errorMessage);
       // Fallback to initial reviews if fetch fails
       setReviews(INITIAL_REVIEWS);
     } finally {
@@ -95,8 +96,9 @@ const TestimonialSection: React.FC = () => {
         setReviews([data[0], ...reviews]);
       }
     } catch (err: unknown) {
-      console.error('Error adding review:', err instanceof Error ? err.message : String(err));
-      alert('Failed to submit review. Please try again.');
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      console.error('Error adding review:', errorMessage);
+      alert(`Failed to submit review: ${errorMessage}`);
     }
   };
 
