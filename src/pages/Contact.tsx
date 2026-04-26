@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Instagram, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram, Send, CheckCircle2, AlertCircle, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
@@ -162,13 +162,13 @@ const Contact = () => {
                     <Linkedin size={20} />
                   </a>
                   <a
-                    href="https://www.instagram.com/"
+                    href="https://github.com/NAVEENKUMAR-11-20"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-gray-300 hover:bg-pink-600/30 hover:text-pink-300 transition-all"
-                    title="Instagram"
+                    title="Github"
                   >
-                    <Instagram size={20} />
+                    <Github size={20} />
                   </a>
                   <a
                     href="mailto:teamdenvex@gmail.com"
