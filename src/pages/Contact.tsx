@@ -171,9 +171,10 @@ const Contact = () => {
                     <Github size={20} />
                   </a>
                   <a
-                    href="mailto:teamdenvex@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=teamdenvex@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-gray-300 hover:bg-emerald-600/30 hover:text-emerald-300 transition-all"
-                    title="Email"
                   >
                     <Mail size={20} />
                   </a>
