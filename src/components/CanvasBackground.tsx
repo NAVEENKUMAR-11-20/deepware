@@ -108,8 +108,8 @@ const CanvasBackground = () => {
     const updateParallax = (mouseX: number, mouseY: number) => {
       const x = mouseX / window.innerWidth;
       const y = mouseY / window.innerHeight;
-      parallaxRef.current.x = lerp(parallaxRef.current.x, x, 0.1);
-      parallaxRef.current.y = lerp(parallaxRef.current.y, y, 0.1);
+      parallaxRef.current.x = lerp(parallaxRef.current.x, x, 0.2);
+      parallaxRef.current.y = lerp(parallaxRef.current.y, y, 0.2);
     };
 
     const handlePointerMove = (event: MouseEvent | TouchEvent) => {
@@ -119,7 +119,7 @@ const CanvasBackground = () => {
     };
 
     const drawBackground = () => {
-      const { centerX, centerY } = sizeRef.current;
+      const { width, height, centerX, centerY } = sizeRef.current;
       ctx.clearRect(0, 0, width, height);
 
       // Base gradient
@@ -143,16 +143,15 @@ const CanvasBackground = () => {
       ctx.fillStyle = overlayGradient;
       ctx.fillRect(0, 0, width, height);
 
-      // Glow blobs with parallax
-      const blobOffsetX = parallaxRef.current.x * 100;
-      const blobOffsetY = parallaxRef.current.y * 100;
-
       // Primary glow blob
       ctx.save();
+      ctx.filter = 'blur(20px)';
       ctx.globalAlpha = 0.4;
+      const primaryOffsetX = parallaxRef.current.x * 8;
+      const primaryOffsetY = parallaxRef.current.y * 8;
       const primaryGlow = ctx.createRadialGradient(
-        centerX - 200 + blobOffsetX * 0.8, centerY - 200 + blobOffsetY * 0.8, 0,
-        centerX - 200 + blobOffsetX * 0.8, centerY - 200 + blobOffsetY * 0.8, 192
+        centerX - 200 + primaryOffsetX, centerY - 200 + primaryOffsetY, 0,
+        centerX - 200 + primaryOffsetX, centerY - 200 + primaryOffsetY, 192
       );
       primaryGlow.addColorStop(0, 'rgba(56, 189, 248, 0.4)');
       primaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -162,10 +161,13 @@ const CanvasBackground = () => {
 
       // Secondary glow blob
       ctx.save();
+      ctx.filter = 'blur(20px)';
       ctx.globalAlpha = 0.3;
+      const secondaryOffsetX = parallaxRef.current.x * 6;
+      const secondaryOffsetY = parallaxRef.current.y * 6;
       const secondaryGlow = ctx.createRadialGradient(
-        centerX + 200 + blobOffsetX * 0.6, centerY + 200 + blobOffsetY * 0.6, 0,
-        centerX + 200 + blobOffsetX * 0.6, centerY + 200 + blobOffsetY * 0.6, 160
+        centerX + 200 + secondaryOffsetX, centerY + 200 + secondaryOffsetY, 0,
+        centerX + 200 + secondaryOffsetX, centerY + 200 + secondaryOffsetY, 160
       );
       secondaryGlow.addColorStop(0, 'rgba(139, 92, 246, 0.3)');
       secondaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -175,10 +177,13 @@ const CanvasBackground = () => {
 
       // Tertiary glow blob
       ctx.save();
+      ctx.filter = 'blur(20px)';
       ctx.globalAlpha = 0.2;
+      const tertiaryOffsetX = parallaxRef.current.x * 4;
+      const tertiaryOffsetY = parallaxRef.current.y * 4;
       const tertiaryGlow = ctx.createRadialGradient(
-        centerX + 150 + blobOffsetX * 0.4, centerY - 150 + blobOffsetY * 0.4, 0,
-        centerX + 150 + blobOffsetX * 0.4, centerY - 150 + blobOffsetY * 0.4, 144
+        centerX + 150 + tertiaryOffsetX, centerY - 150 + tertiaryOffsetY, 0,
+        centerX + 150 + tertiaryOffsetX, centerY - 150 + tertiaryOffsetY, 144
       );
       tertiaryGlow.addColorStop(0, 'rgba(20, 184, 166, 0.2)');
       tertiaryGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -254,7 +259,7 @@ const CanvasBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full"
-      style={{ zIndex: -1 }}
+      style={{ zIndex: -10 }}
     />
   );
 };

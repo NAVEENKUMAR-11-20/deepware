@@ -1,6 +1,5 @@
 import { Code, Mail, MapPin, Phone, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import GlassPanel from './GlassPanel';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
