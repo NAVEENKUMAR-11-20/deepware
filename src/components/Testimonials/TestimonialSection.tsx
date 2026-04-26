@@ -17,6 +17,13 @@ const TestimonialSection: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const fetchReviews = async () => {
+    if (!supabase) {
+      console.warn('Supabase not initialized. Using initial reviews.');
+      setReviews(INITIAL_REVIEWS);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -72,6 +79,11 @@ const TestimonialSection: React.FC = () => {
   }, [reviews, sortBy, filterBy]);
 
   const handleAddReview = async (newReview: Omit<Review, 'identity' | 'created_at'>) => {
+    if (!supabase) {
+      alert('Review system is temporarily unavailable. Please try again later.');
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('review')
