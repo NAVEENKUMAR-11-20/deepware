@@ -142,7 +142,7 @@ const RegistrationPage = () => {
                 </svg>
                 Call Us
               </a>
-              <a href="mailto:teamdenvex@gmail.com"
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=teamdenvex@gmail.com"
                 className="px-8 py-3 bg-transparent border border-blue-400 text-white rounded-full font-medium hover:bg-blue-800 transition-colors inline-flex items-center justify-center"
               >
                 <svg
