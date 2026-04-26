@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AnimatedBackground from './AnimatedBackground';
+import CanvasBackground from './CanvasBackground';
 import { useScrollBlur, useScrollSpotlight } from '../hooks/useScrollEffects';
 
 const Layout = () => {
@@ -12,8 +12,8 @@ const Layout = () => {
 
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-x-hidden" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
-      {/* Animated background layer */}
-      <AnimatedBackground />
+      {/* Canvas background layer */}
+      <CanvasBackground />
 
       {/* Scroll effect overlay */}
       <div
