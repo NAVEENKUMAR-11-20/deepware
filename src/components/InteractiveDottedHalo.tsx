@@ -15,14 +15,17 @@ const InteractiveDottedHalo = () => {
   const animationFrame = useRef<number | null>(null);
   const dotsRef = useRef<DotPoint[]>([]);
   const pointerRef = useRef({ x: 0, y: 0, vx: 0, vy: 0, strength: 0, lastX: 0, lastY: 0 });
+  // Separate raw target from the smoothed (rendered) position
+  const pointerTargetRef = useRef({ x: 0, y: 0 });
   const offsetRef = useRef({ x: 0, y: 0 });
   const sizeRef = useRef({ width: 0, height: 0, centerX: 0, centerY: 0, dpr: 1, maxRadius: 0 });
+  const resizeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
@@ -76,35 +79,18 @@ const InteractiveDottedHalo = () => {
       dotsRef.current = points;
     };
 
-    const updatePointer = (clientX: number, clientY: number) => {
-      const { centerX, centerY, width, height } = sizeRef.current;
-      const lastX = pointerRef.current.lastX;
-      const lastY = pointerRef.current.lastY;
-
-      const x = clamp(clientX - centerX, -width * 0.6, width * 0.6);
-      const y = clamp(clientY - centerY, -height * 0.6, height * 0.6);
-      const dx = x - lastX;
-      const dy = y - lastY;
-      const velocity = Math.hypot(dx, dy);
-      const strength = clamp(velocity / 48, 0, 1);
-
-      pointerRef.current = {
-        x,
-        y,
-        vx: dx,
-        vy: dy,
-        strength: lerp(pointerRef.current.strength, strength, 0.18),
-        lastX: x,
-        lastY: y,
-      };
-    };
-
+    // Lightweight mousemove handler — only stores the raw target coordinates.
+    // All heavy math (lerp, velocity, strength) is deferred to the rAF loop.
     const handlePointerMove = (event: MouseEvent | TouchEvent) => {
       const point = 'touches' in event ? event.touches[0] : event;
-      updatePointer(point.clientX, point.clientY);
+      const { centerX, centerY, width, height } = sizeRef.current;
+
+      // Store raw target — no lerp, no heavy math here
+      pointerTargetRef.current.x = clamp(point.clientX - centerX, -width * 0.6, width * 0.6);
+      pointerTargetRef.current.y = clamp(point.clientY - centerY, -height * 0.6, height * 0.6);
     };
 
-      const drawBackground = () => {
+    const drawBackground = () => {
       const { width, height, centerX, centerY, maxRadius } = sizeRef.current;
       ctx.clearRect(0, 0, width, height);
 
@@ -118,12 +104,40 @@ const InteractiveDottedHalo = () => {
 
     const draw = () => {
       const { centerX, centerY } = sizeRef.current;
+
+      // ── Smooth interpolation of pointer position (done once per frame) ──
+      const prevX = pointerRef.current.x;
+      const prevY = pointerRef.current.y;
+      const targetX = pointerTargetRef.current.x;
+      const targetY = pointerTargetRef.current.y;
+
+      // Fast lerp factor for responsive yet smooth tracking
+      const lerpFactor = isMobile ? 0.25 : 0.35;
+      const smoothX = lerp(prevX, targetX, lerpFactor);
+      const smoothY = lerp(prevY, targetY, lerpFactor);
+
+      const dx = smoothX - prevX;
+      const dy = smoothY - prevY;
+      const velocity = Math.sqrt(dx * dx + dy * dy); // faster than Math.hypot
+      const strength = clamp(velocity / 48, 0, 1);
+
+      pointerRef.current.x = smoothX;
+      pointerRef.current.y = smoothY;
+      pointerRef.current.vx = dx;
+      pointerRef.current.vy = dy;
+      pointerRef.current.strength = lerp(pointerRef.current.strength, strength, 0.45);
+      pointerRef.current.lastX = smoothX;
+      pointerRef.current.lastY = smoothY;
+
       drawBackground();
 
-      const cursorX = centerX + pointerRef.current.x;
-      const cursorY = centerY + pointerRef.current.y;
-      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * (isMobile ? 0.14 : 0.28), isMobile ? 0.08 : 0.12);
-      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * (isMobile ? 0.1 : 0.22), isMobile ? 0.08 : 0.12);
+      const cursorX = centerX + smoothX;
+      const cursorY = centerY + smoothY;
+      const motionLerp = isMobile ? 0.08 : 0.12;
+      const motionMultX = isMobile ? 0.14 : 0.28;
+      const motionMultY = isMobile ? 0.1 : 0.22;
+      const motionX = lerp(offsetRef.current.x, smoothX * motionMultX, motionLerp);
+      const motionY = lerp(offsetRef.current.y, smoothY * motionMultY, motionLerp);
       offsetRef.current.x = motionX;
       offsetRef.current.y = motionY;
 
@@ -138,6 +152,7 @@ const InteractiveDottedHalo = () => {
 
       const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.002) * 0.08;
       const cursorRadius = isMobile ? 48 : 70 + pointerRef.current.strength * 16;
+      const pStrength = pointerRef.current.strength;
 
       ctx.fillStyle = `rgba(56, 189, 248, ${isMobile ? 0.05 : 0.08})`;
       ctx.beginPath();
@@ -145,13 +160,19 @@ const InteractiveDottedHalo = () => {
       ctx.fill();
 
       ctx.globalCompositeOperation = 'lighter';
-      dotsRef.current.forEach((dot) => {
-        const dx = dot.x - cursorX;
-        const dy = dot.y - cursorY;
-        const distance = Math.hypot(dx, dy);
-        const influence = clamp(1 - distance / 170, 0, 1);
-        const repel = influence * pointerRef.current.strength * 18;
-        const angle = Math.atan2(dy, dx);
+
+      const dots = dotsRef.current;
+      const dotCount = dots.length;
+      const influenceRadiusInv = 1 / 170;
+
+      for (let i = 0; i < dotCount; i++) {
+        const dot = dots[i];
+        const ddx = dot.x - cursorX;
+        const ddy = dot.y - cursorY;
+        const distance = Math.sqrt(ddx * ddx + ddy * ddy); // faster than Math.hypot
+        const influence = clamp(1 - distance * influenceRadiusInv, 0, 1);
+        const repel = influence * pStrength * 18;
+        const angle = Math.atan2(ddy, ddx);
         const repelledX = dot.x + Math.cos(angle) * repel;
         const repelledY = dot.y + Math.sin(angle) * repel;
         const size = dot.radius * (1 + influence * 0.48) * pulse;
@@ -161,7 +182,7 @@ const InteractiveDottedHalo = () => {
         ctx.beginPath();
         ctx.arc(repelledX, repelledY, size, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
       ctx.globalCompositeOperation = 'source-over';
       ctx.restore();
       ctx.globalAlpha = 1;
@@ -173,19 +194,26 @@ const InteractiveDottedHalo = () => {
       animationFrame.current = requestAnimationFrame(animate);
     };
 
+    // Debounced resize to avoid layout thrashing
     const handleResize = () => {
-      resetCanvas();
+      if (resizeTimerRef.current) {
+        clearTimeout(resizeTimerRef.current);
+      }
+      resizeTimerRef.current = setTimeout(resetCanvas, 150);
     };
 
     resetCanvas();
     animate();
-    window.addEventListener('mousemove', handlePointerMove);
+    window.addEventListener('mousemove', handlePointerMove, { passive: true });
     window.addEventListener('touchmove', handlePointerMove, { passive: true });
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
+      }
+      if (resizeTimerRef.current) {
+        clearTimeout(resizeTimerRef.current);
       }
       window.removeEventListener('mousemove', handlePointerMove);
       window.removeEventListener('touchmove', handlePointerMove);
@@ -197,6 +225,9 @@ const InteractiveDottedHalo = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 z-10 w-full h-full pointer-events-none"
+      style={{
+        willChange: 'transform',
+      }}
     />
   );
 };
