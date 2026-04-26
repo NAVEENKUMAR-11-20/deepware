@@ -132,7 +132,7 @@ const HomePage = () => {
             >
               <div className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 backdrop-blur-sm">
                 <p className="text-sm font-medium bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
-                  Welcome to DenveX Studio
+                  Welcome to DenveX
                 </p>
               </div>
             </motion.div>
