@@ -34,35 +34,26 @@ const Contact = () => {
     setStatus('loading');
 
     try {
-      // Use Web3Forms API
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'YOUR_ACCESS_KEY_HERE', // User needs to replace this
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-          to: 'teamdenvex@gmail.com'
-        })
+      // Use EmailJS as requested
+      // We ensure the script is loaded and initialized from index.html
+      const response = await (window as any).emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        name: (document.querySelector("[name='name']") as HTMLInputElement).value,
+        email: (document.querySelector("[name='email']") as HTMLInputElement).value,
+        phone: (document.querySelector("[name='phone']") as HTMLInputElement).value,
+        subject: (document.querySelector("[name='subject']") as HTMLInputElement).value,
+        message: (document.querySelector("[name='message']") as HTMLTextAreaElement).value
       });
 
-      const result = await response.json();
-      if (result.success) {
+      if (response.status === 200) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
         setStatus('error');
-        setErrorMessage(result.message || 'Something went wrong. Please try again.');
+        setErrorMessage('Something went wrong. Please try again.');
       }
     } catch (error) {
       setStatus('error');
-      setErrorMessage('Network error. Please check your connection.');
+      setErrorMessage('Failed to send message. Please check your credentials or connection.');
     }
   };
 
