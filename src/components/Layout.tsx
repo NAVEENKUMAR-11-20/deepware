@@ -11,17 +11,21 @@ const Layout = () => {
   useScrollSpotlight();
 
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
+    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden" style={{ transform: 'translate3d(0,0,0)' }}>
       {/* Animated background layer */}
       <AnimatedBackground />
 
       {/* Scroll effect overlay */}
       <div
         className="fixed inset-0 z-5 pointer-events-none scroll-blur-overlay"
+        style={{
+          contain: 'layout paint',
+          willChange: 'backdrop-filter, opacity'
+        }}
         ref={(el) => {
           if (el) {
             el.style.setProperty('--blur-amount', `${scrollState.blurAmount}px`);
-            el.style.setProperty('--blur-opacity', Math.max(1 - scrollState.blurAmount / 12, 0.95).toString());
+            el.style.setProperty('--blur-opacity', Math.max(1 - scrollState.blurAmount / 8, 0.95).toString()); // Adjusted for reduced blur
           }
         }}
       />

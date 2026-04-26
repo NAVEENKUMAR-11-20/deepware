@@ -52,7 +52,7 @@ const InteractiveDottedHalo = () => {
 
     const generateDots = () => {
       const { centerX, centerY, maxRadius } = sizeRef.current;
-      const rings = isMobile ? 8 : 16;
+      const rings = isMobile ? 8 : 12; // Reduced rings on desktop
       const points: DotPoint[] = [];
 
       for (let ring = 0; ring < rings; ring += 1) {
@@ -60,7 +60,7 @@ const InteractiveDottedHalo = () => {
         const radius = lerp(isMobile ? 1.6 : 2.6, isMobile ? 5.2 : 8.2, 1 - progress);
         const alpha = lerp(isMobile ? 0.16 : 0.18, isMobile ? 0.75 : 0.92, 1 - progress);
         const ringRadius = lerp(maxRadius * (isMobile ? 0.22 : 0.18), maxRadius, progress);
-        const count = Math.round((isMobile ? 10 : 18) + progress * (isMobile ? 12 : 24) + ring * (isMobile ? 0.4 : 0.8));
+        const count = Math.round((isMobile ? 10 : 14) + progress * (isMobile ? 12 : 18) + ring * (isMobile ? 0.4 : 0.6)); // Reduced count
 
         for (let i = 0; i < count; i += 1) {
           const angle = (Math.PI * 2 * i) / count + (ring % 2 === 0 ? 0 : 0.12);
@@ -117,29 +117,29 @@ const InteractiveDottedHalo = () => {
     };
 
     const draw = () => {
-      const { width, height, centerX, centerY } = sizeRef.current;
+      const { centerX, centerY } = sizeRef.current;
       drawBackground();
 
       const cursorX = centerX + pointerRef.current.x;
       const cursorY = centerY + pointerRef.current.y;
-      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * (isMobile ? 0.14 : 0.28), isMobile ? 0.08 : 0.12);
-      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * (isMobile ? 0.1 : 0.22), isMobile ? 0.08 : 0.12);
+      const motionX = lerp(offsetRef.current.x, pointerRef.current.x * (isMobile ? 0.14 : 0.24), isMobile ? 0.08 : 0.1); // Reduced lerp factor
+      const motionY = lerp(offsetRef.current.y, pointerRef.current.y * (isMobile ? 0.1 : 0.18), isMobile ? 0.08 : 0.1);
       offsetRef.current.x = motionX;
       offsetRef.current.y = motionY;
 
       ctx.save();
       ctx.translate(motionX, motionY);
       if (!isMobile) {
-        ctx.shadowColor = 'rgba(96, 165, 250, 0.35)';
-        ctx.shadowBlur = 14;
+        ctx.shadowColor = 'rgba(96, 165, 250, 0.25)'; // Reduced shadow opacity
+        ctx.shadowBlur = 10; // Reduced blur
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
       }
 
-      const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.002) * 0.08;
-      const cursorRadius = isMobile ? 48 : 70 + pointerRef.current.strength * 16;
+      const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.0015) * 0.06; // Slower pulse
+      const cursorRadius = isMobile ? 48 : 60 + pointerRef.current.strength * 12; // Smaller cursor
 
-      ctx.fillStyle = `rgba(56, 189, 248, ${isMobile ? 0.05 : 0.08})`;
+      ctx.fillStyle = `rgba(56, 189, 248, ${isMobile ? 0.05 : 0.06})`;
       ctx.beginPath();
       ctx.arc(cursorX - motionX, cursorY - motionY, cursorRadius, 0, Math.PI * 2);
       ctx.fill();
@@ -149,15 +149,15 @@ const InteractiveDottedHalo = () => {
         const dx = dot.x - cursorX;
         const dy = dot.y - cursorY;
         const distance = Math.hypot(dx, dy);
-        const influence = clamp(1 - distance / 170, 0, 1);
-        const repel = influence * pointerRef.current.strength * 18;
+        const influence = clamp(1 - distance / 140, 0, 1); // Smaller influence radius
+        const repel = influence * pointerRef.current.strength * 14; // Reduced repel
         const angle = Math.atan2(dy, dx);
         const repelledX = dot.x + Math.cos(angle) * repel;
         const repelledY = dot.y + Math.sin(angle) * repel;
-        const size = dot.radius * (1 + influence * 0.48) * pulse;
+        const size = dot.radius * (1 + influence * 0.36) * pulse; // Reduced influence multiplier
 
-        ctx.globalAlpha = dot.alpha * (0.85 + influence * 0.4);
-        ctx.fillStyle = `rgba(166, 221, 255, ${0.75 + influence * 0.25})`;
+        ctx.globalAlpha = dot.alpha * (0.85 + influence * 0.3); // Reduced alpha boost
+        ctx.fillStyle = `rgba(166, 221, 255, ${0.65 + influence * 0.2})`; // Reduced base alpha
         ctx.beginPath();
         ctx.arc(repelledX, repelledY, size, 0, Math.PI * 2);
         ctx.fill();

@@ -151,6 +151,7 @@
     backdrop-filter: blur(var(--blur-amount, 0px));
     opacity: var(--blur-opacity, 0.95);
     will-change: backdrop-filter, opacity;
+    contain: layout paint;
   }
 
   /* Glass panel will-change */
