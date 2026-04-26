@@ -139,15 +139,22 @@ const InteractiveDottedHalo = () => {
 
       drawBackground();
 
-      // ── GPU-accelerated whole-canvas translation (translate3d) ──
-      parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.25);
-      parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.25);
+      // ── GPU-accelerated full-range canvas translation (translate3d) ──
+      parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.28);
+      parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.28);
 
-      const maxShift = isMobile ? 25 : 50; // px — visible but subtle parallax range
-      const targetTranslateX = parallaxRef.current.x * maxShift;
-      const targetTranslateY = parallaxRef.current.y * maxShift;
-      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.18);
-      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.18);
+      // Map cursor position to full container range so dots chase cursor to all edges/corners
+      const { width: cw, height: ch } = sizeRef.current;
+      const rangeX = cw * (isMobile ? 0.2 : 0.4);  // horizontal travel
+      const rangeY = ch * (isMobile ? 0.2 : 0.4);  // vertical travel
+      const amplify = 1.3;                          // amplify for noticeable motion
+
+      const targetTranslateX = parallaxRef.current.x * rangeX * amplify;
+      const targetTranslateY = parallaxRef.current.y * rangeY * amplify;
+
+      // Elastic-feel lerp: responsive yet smooth
+      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.12);
+      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.12);
 
       // Apply via CSS translate3d — composited on GPU, zero canvas redraw cost
       if (canvas) {

@@ -98,11 +98,11 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Fixed Background Layer - Does NOT move on scroll */}
       <div
         ref={heroBgRef}
-        className="hero-bg fixed top-0 left-0 w-full h-screen pointer-events-none will-change-filter"
+        className="hero-bg fixed top-0 left-0 w-full h-screen pointer-events-none will-change-filter overflow-visible"
         style={{
           zIndex: -1,
           transition: 'filter 0.3s ease',

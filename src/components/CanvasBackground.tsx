@@ -104,7 +104,7 @@ const CanvasBackground = () => {
       pointerTargetRef.current.x = clamp(point.clientX - centerX, -width * 0.6, width * 0.6);
       pointerTargetRef.current.y = clamp(point.clientY - centerY, -height * 0.6, height * 0.6);
 
-      // Store raw parallax target (normalized -1 to 1 from center)
+      // Store raw parallax target (normalized -1 to 1 from center of viewport)
       parallaxTargetRef.current.x = (point.clientX / window.innerWidth - 0.5) * 2;
       parallaxTargetRef.current.y = (point.clientY / window.innerHeight - 0.5) * 2;
     };
@@ -140,17 +140,23 @@ const CanvasBackground = () => {
       pointerRef.current.lastX = smoothX;
       pointerRef.current.lastY = smoothY;
 
-      // ── Smooth parallax interpolation ──
-      parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.25);
-      parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.25);
+      // ── Smooth parallax interpolation (fast tracking) ──
+      parallaxRef.current.x = lerp(parallaxRef.current.x, parallaxTargetRef.current.x, 0.28);
+      parallaxRef.current.y = lerp(parallaxRef.current.y, parallaxTargetRef.current.y, 0.28);
 
-      // ── GPU-accelerated whole-canvas translation (translate3d) ──
-      // Smooth lerp toward target offset for fluid motion
-      const maxShift = 50; // px — visible but subtle parallax range
-      const targetTranslateX = parallaxRef.current.x * maxShift;
-      const targetTranslateY = parallaxRef.current.y * maxShift;
-      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.18);
-      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.18);
+      // ── GPU-accelerated full-range canvas translation (translate3d) ──
+      // Map cursor position to full container range so dots chase cursor to all edges/corners
+      const { width: cw, height: ch } = sizeRef.current;
+      const rangeX = cw * 0.4;  // horizontal travel = 40% of container width
+      const rangeY = ch * 0.4;  // vertical travel = 40% of container height
+      const amplify = 1.3;      // amplify for more noticeable motion
+
+      const targetTranslateX = parallaxRef.current.x * rangeX * amplify;
+      const targetTranslateY = parallaxRef.current.y * rangeY * amplify;
+
+      // Elastic-feel lerp: fast enough to feel responsive, smooth enough to avoid jitter
+      translateRef.current.x = lerp(translateRef.current.x, targetTranslateX, 0.12);
+      translateRef.current.y = lerp(translateRef.current.y, targetTranslateY, 0.12);
 
       // Apply via CSS translate3d — composited on GPU, zero canvas redraw cost
       if (canvas) {
