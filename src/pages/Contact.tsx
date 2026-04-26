@@ -111,7 +111,7 @@ const Contact = () => {
                   </span>
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Office Location</p>
-                    <p className="font-medium text-white">Arumbakkam, Chennai - 600205</p>
+                    <p className="font-medium text-white">Arumbakkam, Chennai - 600106</p>
                   </div>
                 </motion.div>
 
