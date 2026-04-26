@@ -2,7 +2,7 @@ import { Review } from './types';
 
 export const INITIAL_REVIEWS: Review[] = [
   {
-    id: '1',
+    identity: 1,
     name: 'Hariharan',
     company: 'TechStart Inc.',
     rating: 5,
@@ -10,7 +10,7 @@ export const INITIAL_REVIEWS: Review[] = [
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
   },
   {
-    id: '2',
+    identity: 2,
     name: 'Omkar Varma',
     company: 'FinanceApp',
     rating: 5,
@@ -18,7 +18,7 @@ export const INITIAL_REVIEWS: Review[] = [
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 10).toISOString(), // 10 days ago
   },
   {
-    id: '3',
+    identity: 3,
     name: 'Tamilselvan',
     company: 'StyleShop',
     rating: 4,
@@ -26,7 +26,7 @@ export const INITIAL_REVIEWS: Review[] = [
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 24 * 15).toISOString(), // 15 days ago
   },
   {
-    id: '4',
+    identity: 4,
     name: 'Sarah Chen',
     company: 'Innovate.io',
     rating: 5,

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Send, X } from 'lucide-react';
+import { Star, Send, X, Loader2 } from 'lucide-react';
 import { Review } from './types';
 import GlassPanel from '../GlassPanel';
 
 interface TestimonialFormProps {
   onClose: () => void;
-  onSubmit: (review: Omit<Review, 'id' | 'created_at'>) => void;
+  onSubmit: (review: Omit<Review, 'identity' | 'created_at'>) => void;
 }
 
 const TestimonialForm: React.FC<TestimonialFormProps> = ({ onClose, onSubmit }) => {
@@ -16,6 +16,7 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onClose, onSubmit }) 
   const [message, setMessage] = useState('');
   const [hoverRating, setHoverRating] = useState(0);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -26,11 +27,18 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onClose, onSubmit }) 
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      onSubmit({ name, company, rating, message });
-      onClose();
+      setIsSubmitting(true);
+      try {
+        await onSubmit({ name, company: company || undefined, rating, message });
+        onClose();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -121,9 +129,14 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onClose, onSubmit }) 
 
             <button
               type="submit"
-              className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className={`w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              Submit Review <Send size={18} />
+              {isSubmitting ? (
+                <>Submitting... <Loader2 className="animate-spin" size={18} /></>
+              ) : (
+                <>Submit Review <Send size={18} /></>
+              )}
             </button>
           </form>
         </GlassPanel>

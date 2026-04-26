@@ -1,18 +1,45 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronDown, Plus, Filter, SortDesc } from 'lucide-react';
+import { Star, ChevronDown, Plus, Filter, SortDesc, Loader2 } from 'lucide-react';
 import { Review, SortOption, FilterOption } from './types';
 import { INITIAL_REVIEWS } from './data';
 import TestimonialCard from './TestimonialCard';
 import TestimonialForm from './TestimonialForm';
 import GlassPanel from '../GlassPanel';
+import { supabase } from '../../lib/supabaseClient';
 
 const TestimonialSection: React.FC = () => {
-  const [reviews, setReviews] = useState<Review[]>(INITIAL_REVIEWS);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<SortOption>('latest');
   const [filterBy, setFilterBy] = useState<FilterOption>('all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const fetchReviews = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('review')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setReviews(data || []);
+    } catch (err: any) {
+      console.error('Error fetching reviews:', err.message);
+      setError('Failed to load reviews');
+      // Fallback to initial reviews if fetch fails
+      setReviews(INITIAL_REVIEWS as any);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   const averageRating = useMemo(() => {
     if (reviews.length === 0) return 0;
@@ -46,13 +73,21 @@ const TestimonialSection: React.FC = () => {
     return result;
   }, [reviews, sortBy, filterBy]);
 
-  const handleAddReview = (newReview: Omit<Review, 'id' | 'created_at'>) => {
-    const review: Review = {
-      ...newReview,
-      id: Math.random().toString(36).substring(2, 9),
-      created_at: new Date().toISOString(),
-    };
-    setReviews([review, ...reviews]);
+  const handleAddReview = async (newReview: Omit<Review, 'identity' | 'created_at'>) => {
+    try {
+      const { data, error } = await supabase
+        .from('review')
+        .insert([newReview])
+        .select();
+
+      if (error) throw error;
+      if (data) {
+        setReviews([data[0], ...reviews]);
+      }
+    } catch (err: any) {
+      console.error('Error adding review:', err.message);
+      alert('Failed to submit review. Please try again.');
+    }
   };
 
   return (
@@ -165,12 +200,29 @@ const TestimonialSection: React.FC = () => {
       </div>
 
       {/* Reviews Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <AnimatePresence mode="popLayout">
-          {filteredAndSortedReviews.slice(0, visibleCount).map((review, index) => (
-            <TestimonialCard key={review.id} review={review} index={index} />
-          ))}
-        </AnimatePresence>
+      <div className="relative min-h-[400px]">
+        {loading && reviews.length === 0 ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
+              <p className="text-gray-400 animate-pulse">Loading reviews...</p>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {filteredAndSortedReviews.slice(0, visibleCount).map((review, index) => (
+                <TestimonialCard key={review.identity} review={review} index={index} />
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
+
+        {!loading && filteredAndSortedReviews.length === 0 && (
+          <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
+            <p className="text-gray-400 text-lg">No reviews found yet. Be the first to write one!</p>
+          </div>
+        )}
       </div>
 
       {/* View More Button */}
