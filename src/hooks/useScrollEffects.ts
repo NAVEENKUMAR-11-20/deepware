@@ -21,14 +21,14 @@ export const useScrollBlur = () => {
       const scrollY = lastScrollY;
       const maxScroll = 500;
 
-      // Calculate blur amount (max 8px blur after 500px scroll - reduced for performance)
-      const blurAmount = Math.min((scrollY / maxScroll) * 8, 8);
+      // Calculate blur amount (max 12px blur after 500px scroll)
+      const blurAmount = Math.min((scrollY / maxScroll) * 12, 12);
 
-      // Calculate brightness reduction (min 0.9 brightness - reduced intensity)
-      const brightness = Math.max(1 - (scrollY / maxScroll) * 0.1, 0.9);
+      // Calculate brightness reduction (min 0.85 brightness)
+      const brightness = Math.max(1 - (scrollY / maxScroll) * 0.15, 0.85);
 
       // Calculate parallax offset (moves slower than scroll)
-      const translateY = scrollY * 0.3; // Reduced parallax speed
+      const translateY = scrollY * 0.5;
 
       setState({
         blurAmount,

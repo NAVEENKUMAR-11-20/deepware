@@ -20,9 +20,9 @@ const AnimatedBackground = () => {
       const elements = container.querySelectorAll('[data-parallax]');
       elements.forEach((el) => {
         const speed = (el as HTMLElement).dataset.speed || '5';
-        const moveX = x * parseInt(speed) * 0.1; // Reduced movement
-        const moveY = y * parseInt(speed) * 0.1;
-        (el as HTMLElement).style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+        const moveX = x * parseInt(speed);
+        const moveY = y * parseInt(speed);
+        (el as HTMLElement).style.transform = `translate(${moveX}px, ${moveY}px)`;
       });
       ticking = false;
     };
@@ -45,7 +45,7 @@ const AnimatedBackground = () => {
     <div
       ref={containerRef}
       className="fixed inset-0 z-0 overflow-hidden bg-black"
-      style={{ contain: 'layout paint' }}
+      style={{ willChange: 'transform', transform: 'translateZ(0)' }}
     >
       {/* Base gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" />
@@ -56,25 +56,22 @@ const AnimatedBackground = () => {
       {/* Primary glow blob (top right) */}
       <div
         data-parallax
-        data-speed="4"
-        className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/40 to-cyan-500/20 blur-2xl animate-float-slow will-change-transform"
-        style={{ transform: 'translate3d(0,0,0)' }}
+        data-speed="8"
+        className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/40 to-cyan-500/20 blur-3xl animate-float-slow will-change-transform"
       />
 
       {/* Secondary glow blob (bottom left) */}
       <div
         data-parallax
-        data-speed="3"
-        className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-violet-600/30 to-indigo-500/20 blur-2xl animate-float-slow-delay-2 will-change-transform"
-        style={{ transform: 'translate3d(0,0,0)' }}
+        data-speed="6"
+        className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-gradient-to-tr from-violet-600/30 to-indigo-500/20 blur-3xl animate-float-slow-delay-2 will-change-transform"
       />
 
       {/* Tertiary glow blob (center-right) */}
       <div
         data-parallax
-        data-speed="2"
-        className="absolute top-1/3 -right-20 w-72 h-72 rounded-full bg-gradient-to-bl from-teal-500/20 to-blue-600/30 blur-2xl animate-float-slow-delay-4 will-change-transform"
-        style={{ transform: 'translate3d(0,0,0)' }}
+        data-speed="4"
+        className="absolute top-1/3 -right-20 w-72 h-72 rounded-full bg-gradient-to-bl from-teal-500/20 to-blue-600/30 blur-3xl animate-float-slow-delay-4 will-change-transform"
       />
 
       {/* Noise texture overlay */}
