@@ -11,7 +11,6 @@ import { supabase } from '../../lib/supabaseClient';
 const TestimonialSection: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<SortOption>('latest');
   const [filterBy, setFilterBy] = useState<FilterOption>('all');
   const [visibleCount, setVisibleCount] = useState(3);
@@ -27,11 +26,10 @@ const TestimonialSection: React.FC = () => {
 
       if (error) throw error;
       setReviews(data || []);
-    } catch (err: any) {
-      console.error('Error fetching reviews:', err.message);
-      setError('Failed to load reviews');
+    } catch (err: unknown) {
+      console.error('Error fetching reviews:', err instanceof Error ? err.message : String(err));
       // Fallback to initial reviews if fetch fails
-      setReviews(INITIAL_REVIEWS as any);
+      setReviews(INITIAL_REVIEWS);
     } finally {
       setLoading(false);
     }
@@ -84,8 +82,8 @@ const TestimonialSection: React.FC = () => {
       if (data) {
         setReviews([data[0], ...reviews]);
       }
-    } catch (err: any) {
-      console.error('Error adding review:', err.message);
+    } catch (err: unknown) {
+      console.error('Error adding review:', err instanceof Error ? err.message : String(err));
       alert('Failed to submit review. Please try again.');
     }
   };
