@@ -33,8 +33,6 @@ const HomePage = () => {
       const heroTranslate = -progress * (isMobileRef.current ? 70 : 110);
       const heroOpacity = clamp(1 - progress * 1.15, 0, 1);
       const heroScale = clamp(1 - progress * (isMobileRef.current ? 0.02 : 0.03), isMobileRef.current ? 0.98 : 0.97, 1);
-      const blurAmount = clamp(progress * (isMobileRef.current ? 8 : 20), 0, isMobileRef.current ? 8 : 20);
-      const brightness = clamp(1 - progress * 0.14, 0.82, 1);
       const heroTextBlur = isMobileRef.current ? 0 : clamp(progress * 1.6, 0, 1.6);
       const servicesProgress = clamp((next - (isMobileRef.current ? 80 : 100)) / (maxScroll - (isMobileRef.current ? 80 : 100)), 0, 1);
       const servicesTranslate = lerp(isMobileRef.current ? 30 : 45, 0, servicesProgress);
@@ -45,11 +43,6 @@ const HomePage = () => {
         heroContentRef.current.style.setProperty('--hero-opacity', `${heroOpacity}`);
         heroContentRef.current.style.setProperty('--hero-scale', `${heroScale}`);
         heroContentRef.current.style.setProperty('--hero-text-blur', `${heroTextBlur}px`);
-      }
-
-      if (heroBgRef.current) {
-        heroBgRef.current.style.setProperty('--hero-blur', `${blurAmount}px`);
-        heroBgRef.current.style.setProperty('--hero-brightness', `${brightness}`);
       }
 
       if (servicesContentRef.current) {
@@ -68,6 +61,15 @@ const HomePage = () => {
       scrollState.target = clamp(window.scrollY, 0, maxScroll);
       if (!scrollState.frame) {
         scrollState.frame = requestAnimationFrame(updateStyles);
+      }
+
+      // Apply blur to fixed background when scrolling past 40% of viewport height
+      if (heroBgRef.current) {
+        const blurThreshold = window.innerHeight * 0.4;
+        const blurAmount = window.scrollY > blurThreshold
+          ? Math.min((window.scrollY - blurThreshold) / 100, 12)
+          : 0;
+        heroBgRef.current.style.filter = `blur(${blurAmount}px)`;
       }
     };
 
@@ -97,15 +99,23 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div ref={heroBgRef} className="hero-background-fixed relative pointer-events-none">
+      {/* Fixed Background Layer - Does NOT move on scroll */}
+      <div
+        ref={heroBgRef}
+        className="hero-bg fixed top-0 left-0 w-full h-screen pointer-events-none will-change-filter"
+        style={{
+          zIndex: -1,
+          transition: 'filter 0.3s ease',
+        }}
+      >
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
         <div className="absolute top-20 left-[10%] z-0 w-[32rem] h-[28rem] rounded-full bg-blue-500/14 blur-3xl" />
         <div className="absolute bottom-10 right-[8%] z-0 w-[24rem] h-[24rem] rounded-full bg-cyan-500/14 blur-3xl" />
         <CanvasBackground />
       </div>
 
-      {/* Hero Section */}
-      <section className="pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 relative overflow-hidden">
+      {/* Hero Section - Scrolls normally, content moves over fixed background */}
+      <section className="relative min-h-screen pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 overflow-hidden z-10">
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_24%),radial-gradient(circle_at_80%_20%,rgba(96,165,250,0.12),transparent_22%)] opacity-80 pointer-events-none" />
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />

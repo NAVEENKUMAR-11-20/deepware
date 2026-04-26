@@ -28,6 +28,12 @@ const CanvasBackground = () => {
     if (!ctx) return;
 
     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
+    
+    // Skip heavy animations on mobile
+    if (isMobile) {
+      return;
+    }
+
     const resetCanvas = () => {
       const parent = canvas.parentElement ?? canvas;
       const width = parent.clientWidth;
@@ -54,15 +60,15 @@ const CanvasBackground = () => {
 
     const generateDots = () => {
       const { centerX, centerY, maxRadius } = sizeRef.current;
-      const rings = isMobile ? 8 : 16;
+      const rings = 16; // Desktop: more rings
       const points: DotPoint[] = [];
 
       for (let ring = 0; ring < rings; ring += 1) {
         const progress = ring / (rings - 1);
-        const radius = lerp(isMobile ? 1.6 : 2.6, isMobile ? 5.2 : 8.2, 1 - progress);
-        const alpha = lerp(isMobile ? 0.16 : 0.18, isMobile ? 0.75 : 0.92, 1 - progress);
-        const ringRadius = lerp(maxRadius * (isMobile ? 0.22 : 0.18), maxRadius, progress);
-        const count = Math.round((isMobile ? 10 : 18) + progress * (isMobile ? 12 : 24) + ring * (isMobile ? 0.4 : 0.8));
+        const radius = lerp(2.6, 8.2, 1 - progress);
+        const alpha = lerp(0.18, 0.92, 1 - progress);
+        const ringRadius = lerp(maxRadius * 0.18, maxRadius, progress);
+        const count = Math.round(18 + progress * 24 + ring * 0.8);
 
         for (let i = 0; i < count; i += 1) {
           const angle = (Math.PI * 2 * i) / count + (ring % 2 === 0 ? 0 : 0.12);
@@ -137,26 +143,24 @@ const CanvasBackground = () => {
       // Draw dots with interaction
       ctx.save();
       ctx.translate(patternOffsetX, patternOffsetY); // Apply global offset
-      if (!isMobile) {
-        ctx.shadowColor = 'rgba(56, 189, 248, 0.8)';
-        ctx.shadowBlur = 8;
-      }
+      ctx.shadowColor = 'rgba(56, 189, 248, 0.8)';
+      ctx.shadowBlur = 8;
 
-      const pulse = isMobile ? 1 : 1 + Math.sin(performance.now() * 0.002) * 0.08;
+      const pulse = 1 + Math.sin(performance.now() * 0.002) * 0.08;
 
       dotsRef.current.forEach((dot) => {
         const dx = dot.baseX - cursorX;
         const dy = dot.baseY - cursorY;
         const distance = Math.hypot(dx, dy);
-        const influence = clamp(1 - distance / 200, 0, 1); // Increased radius
-        const repel = influence * pointerRef.current.strength * 25; // Increased repel
+        const influence = clamp(1 - distance / 200, 0, 1); // Influence radius
+        const repel = influence * pointerRef.current.strength * 25;
         const angle = Math.atan2(dy, dx);
         const repelledX = dot.baseX + Math.cos(angle) * repel;
         const repelledY = dot.baseY + Math.sin(angle) * repel;
-        const size = dot.radius * (1 + influence * 0.6) * pulse; // Increased influence
+        const size = dot.radius * (1 + influence * 0.6) * pulse;
 
-        ctx.globalAlpha = dot.alpha * (1.2 + influence * 0.5); // Increased base alpha
-        ctx.fillStyle = `rgba(166, 221, 255, ${0.9 + influence * 0.3})`; // Brighter base
+        ctx.globalAlpha = dot.alpha * (1.2 + influence * 0.5);
+        ctx.fillStyle = `rgba(166, 221, 255, ${0.9 + influence * 0.3})`;
         ctx.beginPath();
         ctx.arc(repelledX, repelledY, size, 0, Math.PI * 2);
         ctx.fill();
@@ -178,7 +182,6 @@ const CanvasBackground = () => {
     resetCanvas();
     animate();
     window.addEventListener('mousemove', handlePointerMove, { passive: true });
-    window.addEventListener('touchmove', handlePointerMove, { passive: true });
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -186,7 +189,6 @@ const CanvasBackground = () => {
         cancelAnimationFrame(animationFrame.current);
       }
       window.removeEventListener('mousemove', handlePointerMove);
-      window.removeEventListener('touchmove', handlePointerMove);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -195,7 +197,10 @@ const CanvasBackground = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ zIndex: 1 }}
+      style={{
+        zIndex: 1,
+        willChange: 'contents',
+      }}
     />
   );
 };
