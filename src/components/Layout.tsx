@@ -10,7 +10,7 @@ const Layout = () => {
   useScrollSpotlight();
 
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
+    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
       {/* Canvas background layer */}
       {/* CanvasBackground moved to HomePage */}
 
