@@ -47,9 +47,9 @@ const RegistrationPage = () => {
             </p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden p-2">
+          <div className="bg-white/5 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden p-2 border border-white/10">
             <div className="grid md:grid-cols-5 gap-4">
-              <div className="md:col-span-3 bg-gradient-to-br from-blue-800 to-indigo-800 rounded-xl p-8">
+              <div className="md:col-span-3 bg-gradient-to-br from-[#1a3660] to-[#162d50] rounded-xl p-8 border border-white/10">
                 <h2 className="text-2xl font-semibold mb-6">Project Requirements</h2>
                 
                 <motion.div
@@ -62,7 +62,7 @@ const RegistrationPage = () => {
                   
                   <ul className="space-y-4">
                     <li className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="font-medium text-white">Project Overview and Objectives</h4>
                         <p className="text-blue-200 text-sm">
@@ -96,26 +96,26 @@ const RegistrationPage = () => {
                 </div>
               </div>
               
-              <div className="md:col-span-2 bg-white rounded-xl p-8 shadow-inner text-center flex flex-col items-center justify-center">
+              <div className="md:col-span-2 bg-[#0f2240]/80 backdrop-blur-md rounded-xl p-8 border border-white/10 text-center flex flex-col items-center justify-center">
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="w-full"
                 >
-                  <h3 className="text-gray-900 text-xl font-semibold mb-6">Ready to begin?</h3>
+                  <h3 className="text-white text-xl font-semibold mb-6">Ready to begin?</h3>
                   
                   <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSc-bbuHN90zWLgKHiaLJU3rLQNOYVYDt_z-CmBrpEJEkyzuiA/viewform?usp=header"  
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:from-blue-700 hover:to-indigo-700 mb-4 group"
+                    className="inline-flex items-center justify-center w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all hover:from-blue-600 hover:to-cyan-600 mb-4 group"
                   >
                     Open Requirements Form
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                   
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-400 text-sm">
                     Your information is secure and will only be used to contact you about your project.
                   </p>
                 </motion.div>
