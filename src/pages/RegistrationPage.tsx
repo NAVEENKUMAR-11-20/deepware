@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 
 const RegistrationPage = () => {
   return (
-    <div className="pt-20 min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-900 text-white relative overflow-hidden">
-      {/* Background glowing elements */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-500 rounded-full opacity-20 blur-3xl"></div>
+    <div className="pt-20 min-h-screen bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950 text-white relative overflow-hidden">
+      {/* Light navy blue gradient background with decorative glows */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_center,rgba(56,139,248,0.15),transparent_60%)]" />
+        <div className="absolute top-20 right-[15%] w-[28rem] h-[28rem] rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-[10%] w-96 h-96 rounded-full bg-gradient-to-bl from-blue-500/15 to-indigo-500/10 blur-3xl opacity-50" />
+        <div className="absolute bottom-1/3 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-sky-600/12 to-violet-500/8 blur-3xl opacity-40" />
+      </div>
       
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
