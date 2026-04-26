@@ -1,9 +1,71 @@
-import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import GlassPanel from '../components/GlassPanel';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus('error');
+      setErrorMessage('Please fill in all required fields.');
+      return;
+    }
+
+    setStatus('loading');
+
+    try {
+      // Use Web3Forms API
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'YOUR_ACCESS_KEY_HERE', // User needs to replace this
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          to: 'teamdenvex@gmail.com'
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+        setErrorMessage(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage('Network error. Please check your connection.');
+    }
+  };
+
   return (
     <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
       {/* Light navy blue gradient background with decorative glows */}
@@ -138,7 +200,7 @@ const Contact = () => {
           >
             <GlassPanel variant="gradient" blur="lg" className="p-10 h-full">
               <h2 className="text-2xl font-semibold mb-8 text-white">Send a Message</h2>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.label
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +211,11 @@ const Contact = () => {
                   <span className="text-sm font-medium text-gray-300 mb-2 block">Your Name</span>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="John Doe"
+                    required
                     className="w-full rounded-lg border border-white/20 bg-slate-900/50 px-4 py-3 text-white placeholder-gray-500 outline-none transition focus:border-emerald-400 focus:bg-slate-900/70"
                   />
                 </motion.label>
@@ -164,7 +230,11 @@ const Contact = () => {
                   <span className="text-sm font-medium text-gray-300 mb-2 block">Your Email</span>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="john@example.com"
+                    required
                     className="w-full rounded-lg border border-white/20 bg-slate-900/50 px-4 py-3 text-white placeholder-gray-500 outline-none transition focus:border-emerald-400 focus:bg-slate-900/70"
                   />
                 </motion.label>
@@ -179,6 +249,9 @@ const Contact = () => {
                   <span className="text-sm font-medium text-gray-300 mb-2 block">Phone Number</span>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     placeholder="+91 XXXXX XXXXX"
                     className="w-full rounded-lg border border-white/20 bg-slate-900/50 px-4 py-3 text-white placeholder-gray-500 outline-none transition focus:border-emerald-400 focus:bg-slate-900/70"
                   />
@@ -194,6 +267,9 @@ const Contact = () => {
                   <span className="text-sm font-medium text-gray-300 mb-2 block">Subject</span>
                   <input
                     type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     placeholder="Project inquiry"
                     className="w-full rounded-lg border border-white/20 bg-slate-900/50 px-4 py-3 text-white placeholder-gray-500 outline-none transition focus:border-emerald-400 focus:bg-slate-900/70"
                   />
@@ -209,10 +285,40 @@ const Contact = () => {
                   <span className="text-sm font-medium text-gray-300 mb-2 block">Your Message</span>
                   <textarea
                     rows={5}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Tell us about your project..."
+                    required
                     className="w-full rounded-lg border border-white/20 bg-slate-900/50 px-4 py-3 text-white placeholder-gray-500 outline-none transition focus:border-emerald-400 focus:bg-slate-900/70 resize-none"
                   />
                 </motion.label>
+
+                <AnimatePresence mode="wait">
+                  {status === 'success' ? (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 flex items-center gap-3"
+                    >
+                      <CheckCircle2 size={20} />
+                      <p className="text-sm font-medium">Your message has been sent successfully.</p>
+                    </motion.div>
+                  ) : status === 'error' ? (
+                    <motion.div
+                      key="error"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="p-4 rounded-lg bg-red-500/20 border border-red-500/30 text-red-300 flex items-center gap-3"
+                    >
+                      <AlertCircle size={20} />
+                      <p className="text-sm font-medium">{errorMessage}</p>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
 
                 <motion.button
                   initial={{ opacity: 0, y: 10 }}
@@ -220,9 +326,23 @@ const Contact = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.6 }}
                   type="submit"
-                  className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:shadow-emerald-500/50 hover:from-emerald-600 hover:to-teal-600"
+                  disabled={status === 'loading'}
+                  className="w-full inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:shadow-emerald-500/50 hover:from-emerald-600 hover:to-teal-600 disabled:opacity-70 disabled:cursor-not-allowed group"
                 >
-                  Send Message
+                  {status === 'loading' ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-slate-950" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      Send Message
+                      <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </span>
+                  )}
                 </motion.button>
               </form>
             </GlassPanel>
