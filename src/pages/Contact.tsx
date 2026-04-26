@@ -5,11 +5,14 @@ import GlassPanel from '../components/GlassPanel';
 
 const Contact = () => {
   return (
-    <div className="min-h-screen pt-28 pb-20 relative overflow-hidden">
-      {/* Animated background blobs */}
+    <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
+      {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 right-0 w-96 h-96 rounded-full bg-gradient-to-bl from-emerald-600/20 to-teal-500/10 blur-3xl opacity-40" />
-        <div className="absolute bottom-1/2 left-1/2 w-96 h-96 rounded-full bg-gradient-to-tr from-blue-600/20 to-violet-500/10 blur-3xl opacity-40" />
+        <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_center,rgba(56,139,248,0.15),transparent_60%)]" />
+        <div className="absolute top-20 right-[15%] w-[28rem] h-[28rem] rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-[10%] w-96 h-96 rounded-full bg-gradient-to-bl from-blue-500/15 to-indigo-500/10 blur-3xl opacity-50" />
+        <div className="absolute bottom-1/3 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-sky-600/12 to-violet-500/8 blur-3xl opacity-40" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
