@@ -23,7 +23,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('error');
@@ -36,7 +36,7 @@ const Contact = () => {
     try {
       // Use EmailJS as requested
       // We ensure the script is loaded and initialized from index.html
-      const response = await (window as any).emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      const response = await (window as any).emailjs.send("service_f37sh79", "template_exrmu2n", {
         name: (document.querySelector("[name='name']") as HTMLInputElement).value,
         email: (document.querySelector("[name='email']") as HTMLInputElement).value,
         phone: (document.querySelector("[name='phone']") as HTMLInputElement).value,
