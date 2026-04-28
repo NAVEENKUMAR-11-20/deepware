@@ -13,45 +13,45 @@ const projects = [
   },
   {
     id: 2,
-    title: "E-com Webs",
-    description: "Complete e-commerce solutions with seamless payment integration and optimized conversion funnels.",
-    category: "E-Commerce",
-    image: "/projects/project4.png",
-  },
-  {
-    id: 3,
-    title: "Web Redesign",
-    description: "Modernizing legacy websites with fresh UI/UX designs and improved performance metrics.",
-    category: "Optimization",
-    image: "/projects/project3.png",
-  },
-  {
-    id: 4,
     title: "Web Application",
     description: "Robust and scalable web applications designed to solve complex business challenges with ease.",
     category: "Software",
     image: "/projects/project5.png",
   },
   {
+    id: 3,
+    title: "E-com Webs",
+    description: "Complete e-commerce solutions with seamless payment integration and optimized conversion funnels.",
+    category: "E-Commerce",
+    image: "/projects/project4.png",
+  },
+  {
+    id: 4,
+    title: "Web Redesign",
+    description: "Modernizing legacy websites with fresh UI/UX designs and improved performance metrics.",
+    category: "Optimization",
+    image: "/projects/project3.png",
+  },
+  {
     id: 5,
+    title: "Rule-Based Chatbot",
+    description: "Intelligent automated assistants designed to enhance customer support and streamline user interactions.",
+    category: "AI & Automation",
+    image: "/projects/project5.png",
+  },
+  {
+    id: 6,
     title: "Maintenance & Support",
     description: "Dedicated technical support and regular maintenance to keep your digital assets secure and running smoothly.",
     category: "Support",
     image: "/projects/project2.png",
   },
   {
-    id: 6,
+    id: 7,
     title: "Deployment with Domain",
     description: "Hassle-free deployment services including cloud setup, domain mapping, and SSL configuration.",
     category: "Deployment",
     image: "/projects/project1.png",
-  },
-  {
-    id: 7,
-    title: "Rule-Based Chatbot",
-    description: "Intelligent automated assistants designed to enhance customer support and streamline user interactions.",
-    category: "AI & Automation",
-    image: "/projects/project5.png",
   }
 ];
 
@@ -121,7 +121,7 @@ const ProjectShowcase = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
           >
-            Our Work in <span className="gradient-text">Action</span>
+            Our Services in <span className="gradient-text">Action</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -130,7 +130,7 @@ const ProjectShowcase = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-gray-300 text-lg leading-relaxed"
           >
-            Explore our latest projects where we transform complex requirements into elegant, high-performance digital experiences.
+            Our services focus on transforming complex business requirements into elegant, scalable, and high-performance digital experiences.
           </motion.p>
         </div>
 
@@ -149,13 +149,13 @@ const ProjectShowcase = () => {
               >
                 <GlassPanel variant="gradient" blur="xl" className="p-1 w-full h-full shadow-[0_20px_50px_-15px_rgba(59,130,246,0.3)] overflow-hidden">
                   <div className="relative w-full h-full group overflow-hidden rounded-2xl">
-                    <img 
-                      src={projects[index].image} 
+                    <img
+                      src={projects[index].image}
                       alt={projects[index].title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90" />
-                    
+
                     <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
                       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div className="max-w-2xl">
@@ -181,7 +181,7 @@ const ProjectShowcase = () => {
 
             {/* Navigation Buttons */}
             <div className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-20">
-              <button 
+              <button
                 onClick={prevProject}
                 className="h-12 w-12 rounded-full bg-slate-900/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-blue-500/20 hover:border-blue-400/30 transition-all"
               >
@@ -189,7 +189,7 @@ const ProjectShowcase = () => {
               </button>
             </div>
             <div className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-20">
-              <button 
+              <button
                 onClick={nextProject}
                 className="h-12 w-12 rounded-full bg-slate-900/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-blue-500/20 hover:border-blue-400/30 transition-all"
               >
