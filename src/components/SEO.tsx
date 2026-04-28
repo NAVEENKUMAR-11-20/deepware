@@ -11,15 +11,15 @@ interface SEOProps {
   schema?: any;
 }
 
-const SEO = ({ 
-  title, 
-  description, 
-  keywords = "web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX", 
-  ogTitle, 
-  ogDescription, 
-  ogImage = "/DXlogo.jpg", 
+const SEO = ({
+  title,
+  description,
+  keywords = "web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX",
+  ogTitle,
+  ogDescription,
+  ogImage = "/projects/project5.jpg",
   canonical,
-  schema 
+  schema
 }: SEOProps) => {
   useEffect(() => {
     // Update Title
@@ -39,7 +39,7 @@ const SEO = ({
     // Update Meta Tags
     updateMetaTag('name', 'description', description);
     updateMetaTag('name', 'keywords', keywords);
-    
+
     // OG Tags
     updateMetaTag('property', 'og:title', ogTitle || title);
     updateMetaTag('property', 'og:description', ogDescription || description);
