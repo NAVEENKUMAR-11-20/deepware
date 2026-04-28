@@ -5,7 +5,7 @@ import { useScrollBlur, useScrollSpotlight } from '../hooks/useScrollEffects';
 
 const Layout = () => {
   const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === '/terms-and-conditions';
+  const hideNavbarAndFooter = location.pathname === '/terms-and-conditions' || location.pathname === '/privacy-policy';
   const scrollState = useScrollBlur();
   useScrollSpotlight();
 

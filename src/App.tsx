@@ -6,6 +6,7 @@ import About from './pages/about';
 import Contact from './pages/Contact';
 import RegistrationPage from './pages/RegistrationPage';
 import TermsAndConditions from './pages/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="register" element={<RegistrationPage />} />
           <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
         </Route>
       </Routes>
     </>
