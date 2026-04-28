@@ -1,6 +1,13 @@
+import SEO from '../components/SEO';
+
 const PrivacyPolicy = () => {
   return (
     <section className="bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950 text-white min-h-[calc(100vh-5rem)] relative overflow-hidden">
+      <SEO 
+        title="Privacy Policy – DenveX"
+        description="Read the DenveX privacy policy to understand how we collect, use, and protect your personal information."
+        keywords="privacy policy, DenveX privacy, data protection"
+      />
       {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />

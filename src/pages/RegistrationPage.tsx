@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const RegistrationPage = () => {
   return (
     <div className="pt-20 min-h-screen bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950 text-white relative overflow-hidden">
+      <SEO 
+        title="Start Your Project – DenveX Custom Web Solutions"
+        description="Ready to bring your vision to life? Fill out our project requirements form and get started with DenveX's professional web development services."
+        keywords="start web project, custom web solutions, project inquiry, DenveX registration"
+      />
       {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />

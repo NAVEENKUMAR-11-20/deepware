@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin } from "lucide-react";
 import GlassPanel from "../components/GlassPanel";
+import SEO from "../components/SEO";
 
 const team = [
   {
@@ -39,6 +40,11 @@ const teamMembers = team.slice(1);
 const About = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
+      <SEO 
+        title="About DenveX – Modern Website Design Agency"
+        description="Learn more about DenveX, a modern website design agency and UI/UX design company dedicated to creating powerful custom web solutions."
+        keywords="modern website design agency, UI/UX design company, web development experts, DenveX about"
+      />
       {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />

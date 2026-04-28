@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import GlassPanel from '../components/GlassPanel';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,6 +62,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
+      <SEO 
+        title="Contact DenveX – Get Custom Web Solutions Today"
+        description="Contact DenveX for high-end web development services and UI/UX design. Let's build your next digital masterpiece together."
+        keywords="contact DenveX, web design inquiry, custom web solutions, hire web developers, UI/UX design company"
+      />
       {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
 import CanvasBackground from '../components/CanvasBackground';
 import { TestimonialSection } from '../components/Testimonials';
+import SEO from '../components/SEO';
+import ProjectShowcase from '../components/ProjectShowcase';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -122,6 +124,56 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <SEO 
+        title="DenveX – Best Web Design Platform & Development Services"
+        description="DenveX offers modern web design, development, and UI/UX solutions. We provide custom web solutions and high-end digital services for businesses worldwide."
+        keywords="best web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "DenveX",
+          "url": "https://www.denvex.in",
+          "logo": "https://www.denvex.in/logo.png",
+          "sameAs": [
+            "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
+            "https://github.com/NAVEENKUMAR-11-20/"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-7358349394",
+            "contactType": "customer service",
+            "email": "teamdenvex@gmail.com"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Web Design and Development Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Development Services"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "UI/UX Design"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Web Solutions"
+                }
+              }
+            ]
+          }
+        }}
+      />
+
       {/* Fixed Background Layer - Does NOT move on scroll */}
       <div
         ref={heroBgRef}
@@ -147,7 +199,7 @@ const HomePage = () => {
         <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div ref={heroContentRef} className="max-w-4xl mx-auto text-center mb-16 md:mb-24 hero-scroll-content">
+          <div ref={heroContentRef} className="max-w-5xl mx-auto text-center mb-16 md:mb-24 hero-scroll-content">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -165,11 +217,11 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight"
             >
-              <span className="gradient-text">Transforming Ideas</span>
-              <br />
-              <span className="text-white">Into Digital Reality</span>
+              <span className="gradient-text block md:inline md:whitespace-nowrap">Best Web Design Platform</span>
+              <br className="hidden md:block" />
+              <span className="text-white block md:inline md:whitespace-nowrap">for Custom Web Solutions</span>
             </motion.h1>
 
             <motion.p
@@ -266,6 +318,68 @@ const HomePage = () => {
               link="https://post-woad-kappa.vercel.app/"
               delay={0.2}
             />
+          </div>
+        </div>
+      </section>
+
+      <ProjectShowcase />
+
+      {/* Why Choose DenveX Section */}
+      <section className="py-24 md:py-32 relative overflow-hidden bg-slate-900/30">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+                Why DenveX is the <span className="gradient-text">Best Web Design Platform</span>
+              </h2>
+              <div className="space-y-6 text-gray-300 text-lg">
+                <p>
+                  As a <span className="text-blue-300 font-semibold">modern website design agency</span>, we go beyond basic templates. We create <span className="text-blue-300 font-semibold">custom web solutions</span> that are tailored to your unique business goals.
+                </p>
+                <p>
+                  Our <span className="text-blue-300 font-semibold">web development services</span> leverage the latest technologies to ensure your site is fast, secure, and highly scalable. We pride ourselves on being a top-tier <span className="text-blue-300 font-semibold">UI/UX design company</span>, focusing on user-centric layouts that drive conversions.
+                </p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                  <li className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400" />
+                    <span>SEO Optimized Structure</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400" />
+                    <span>Responsive Mobile Design</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400" />
+                    <span>High-Performance Code</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400" />
+                    <span>User-Centric UI/UX</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
+              <GlassPanel variant="gradient" blur="xl" className="p-1 overflow-hidden">
+                <img 
+                  src="/DXlogo.jpg" 
+                  alt="DenveX Web Development Services" 
+                  className="rounded-2xl w-full h-auto object-cover opacity-80"
+                />
+              </GlassPanel>
+            </motion.div>
           </div>
         </div>
       </section>

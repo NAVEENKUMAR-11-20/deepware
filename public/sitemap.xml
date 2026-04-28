@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.denvex.in/</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.denvex.in/about</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.denvex.in/contact</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.denvex.in/register</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.denvex.in/terms-and-conditions</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.denvex.in/privacy-policy</loc>
+    <lastmod>2026-04-28</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>

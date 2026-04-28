@@ -1,6 +1,13 @@
+import SEO from '../components/SEO';
+
 const TermsAndConditions = () => {
   return (
     <section className="bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950 text-white min-h-[calc(100vh-5rem)] relative overflow-hidden">
+      <SEO 
+        title="Terms & Conditions – DenveX"
+        description="Review the terms and conditions for using DenveX's web design and development services."
+        keywords="terms and conditions, DenveX legal, service agreement"
+      />
       {/* Light navy blue gradient background with decorative glows */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />
