@@ -16,9 +16,9 @@ const team = [
   {
     name: "Dhinesh S",
     role: "Full Stack Developer & UI / UX Designer",
-    image: "/team2.jpg",
+    image: "/dhinesh.jpg",
     github: "https://github.com/DHINESH2307",
-    linkedin: "https://linkedin.com/in/member2",
+    linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
     description:
       "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications.",
   },
