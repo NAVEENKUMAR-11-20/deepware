@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
 import CanvasBackground from '../components/CanvasBackground';
@@ -16,6 +16,28 @@ const HomePage = () => {
   const heroBgRef = useRef<HTMLDivElement>(null);
   const servicesContentRef = useRef<HTMLDivElement>(null);
   const isMobileRef = useRef(false);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      { 
+        // Use a small margin to ensure it stays visible until it's mostly gone
+        // or trigger it exactly when it leaves the viewport
+        threshold: 0,
+        rootMargin: '0px'
+      }
+    );
+
+    if (heroSectionRef.current) {
+      observer.observe(heroSectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useLayoutEffect(() => {
     const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
@@ -106,7 +128,9 @@ const HomePage = () => {
         className="hero-bg fixed top-0 left-0 w-full h-screen pointer-events-none will-change-filter overflow-visible"
         style={{
           zIndex: -1,
-          transition: 'filter 0.3s ease',
+          transition: 'filter 0.3s ease, opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s',
+          opacity: isHeroVisible ? 1 : 0,
+          visibility: isHeroVisible ? 'visible' : 'hidden',
         }}
       >
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
@@ -116,7 +140,7 @@ const HomePage = () => {
       </div>
 
       {/* Hero Section - Scrolls normally, content moves over fixed background */}
-      <section className="relative min-h-screen pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 overflow-hidden z-10">
+      <section ref={heroSectionRef} className="relative min-h-screen pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 overflow-hidden z-10">
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_24%),radial-gradient(circle_at_80%_20%,rgba(96,165,250,0.12),transparent_22%)] opacity-80 pointer-events-none" />
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
