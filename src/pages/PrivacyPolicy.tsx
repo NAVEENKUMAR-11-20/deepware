@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
           </h1>
           <p className="text-blue-200">Effective Date: April 25, 2026</p>
           <p className="text-gray-300 leading-relaxed text-lg">
-            Welcome to DenveX (“Company,” “we,” “our,” or “us”). We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
+            Welcome to DenveX. We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
           <div>
             <h2 className="text-2xl font-semibold mt-6 mb-4 text-blue-300">1. Information We Collect</h2>
             <p className="text-gray-300 leading-relaxed mb-4">We may collect information about you in a variety of ways, including:</p>
-            
+
             <div className="space-y-4">
               <h3 className="text-xl font-medium text-blue-200">a. Personal Data</h3>
               <p className="text-gray-300 mb-2">Personally identifiable information that you voluntarily provide to us, such as:</p>
@@ -39,7 +39,12 @@ const PrivacyPolicy = () => {
                 <li>Company name</li>
                 <li>Project details or inquiries</li>
               </ul>
-              <p className="text-gray-300 mt-2">This typically happens when you fill out contact forms, request a quote, or subscribe to newsletters.</p>
+              <p>This typically happens when you:</p>
+              <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                <li>Fill out contact forms</li>
+                <li>Request a quote</li>
+                <li>Subscribe to newsletters</li>
+              </ul>
             </div>
 
             <div className="mt-6 space-y-4">
@@ -53,13 +58,18 @@ const PrivacyPolicy = () => {
                 <li>Time and date of visits</li>
                 <li>Referring URLs</li>
               </ul>
+              <p>This helps us understand user behavior and improve our services.</p>
             </div>
 
             <div className="mt-6 space-y-4">
               <h3 className="text-xl font-medium text-blue-200">c. Cookies and Tracking Technologies</h3>
-              <p className="text-gray-300 leading-relaxed">
-                We use cookies and similar technologies to enhance user experience, analyze website traffic, and remember user preferences. You can control cookie settings through your browser.
-              </p>
+              <p className="text-gray-300 leading-relaxed">We use cookies and similar technologies to:</p>
+              <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                <li>Enhance user experience</li>
+                <li>Analyze website traffic</li>
+                <li>Remember user preferences</li>
+              </ul>
+              <p>You can control cookie settings through your browser.</p>
             </div>
           </div>
 
