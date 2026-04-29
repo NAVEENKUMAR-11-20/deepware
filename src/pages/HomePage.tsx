@@ -373,11 +373,9 @@ const HomePage = () => {
             >
               <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
               <GlassPanel variant="gradient" blur="xl" className="p-1 overflow-hidden">
-                <img 
-                  src="/DXlogo.jpg" 
-                  alt="DenveX Web Development Services" 
-                  className="rounded-2xl w-full h-auto object-cover opacity-80"
-                />
+                <div className="aspect-[4/3] w-full bg-slate-800/40 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-700/50">
+                  <p className="text-slate-500 font-medium italic">Image Placeholder</p>
+                </div>
               </GlassPanel>
             </motion.div>
           </div>
