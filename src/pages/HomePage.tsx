@@ -26,7 +26,7 @@ const HomePage = () => {
       ([entry]) => {
         setIsHeroVisible(entry.isIntersecting);
       },
-      { 
+      {
         // Use a small margin to ensure it stays visible until it's mostly gone
         // or trigger it exactly when it leaves the viewport
         threshold: 0,
@@ -124,7 +124,7 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <SEO 
+      <SEO
         title="DenveX – Best Web Design Platform & Development Services"
         description="DenveX offers modern web design, development, and UI/UX solutions. We provide custom web solutions and high-end digital services for businesses worldwide."
         keywords="best web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX"
@@ -301,7 +301,7 @@ const HomePage = () => {
               icon={<Code size={28} />}
               title="Web Development"
               description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
-              image="/projects/project1.png"
+              image="webdev.avif"
               link="https://webdevelopment-gamma.vercel.app/"
               delay={0}
             />
@@ -309,7 +309,7 @@ const HomePage = () => {
               icon={<Smartphone size={28} />}
               title="Logo Design"
               description="Stunning visual identities and professional logos that capture your brand's essence and values."
-              image="/projects/project5.png"
+              image="lo.avif"
               link="https://logo-indol.vercel.app/"
               delay={0.1}
             />
@@ -317,7 +317,7 @@ const HomePage = () => {
               icon={<ShoppingCart size={28} />}
               title="Design & Branding"
               description="Complete design solutions from posters to pamphlets that elevate your brand presence."
-              image="/projects/project4.png"
+              image="ad.webp"
               link="https://post-woad-kappa.vercel.app/"
               delay={0.2}
             />
@@ -376,8 +376,8 @@ const HomePage = () => {
             >
               <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
               <GlassPanel variant="gradient" blur="xl" className="p-1 overflow-hidden">
-                <div className="aspect-[4/3] w-full bg-slate-800/40 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-700/50">
-                  <p className="text-slate-500 font-medium italic">Image Placeholder</p>
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                  <img src="/den.avif" alt="Why DenveX" className="w-full h-full object-cover" />
                 </div>
               </GlassPanel>
             </motion.div>
@@ -424,9 +424,9 @@ const HomePage = () => {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-16 text-center relative overflow-hidden">
             <div className="absolute inset-0 -z-10">
-              <img 
-                src="/projects/project3.png" 
-                alt="Workplace" 
+              <img
+                src="/projects/project3.png"
+                alt="Workplace"
                 className="w-full h-full object-cover opacity-30"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-950/40 to-slate-950" />
@@ -492,10 +492,10 @@ const ServiceCard = ({ icon, title, description, image, link, delay }: ServiceCa
     >
       <GlassPanel variant="gradient" blur="md" className="p-0 h-full hover:border-blue-400/40 overflow-hidden flex flex-col">
         <div className="h-48 w-full overflow-hidden relative">
-          <img 
-            src={image} 
-            alt={title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
         </div>
