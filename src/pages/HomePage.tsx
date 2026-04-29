@@ -301,6 +301,7 @@ const HomePage = () => {
               icon={<Code size={28} />}
               title="Web Development"
               description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
+              image="/projects/project1.png"
               link="https://webdevelopment-gamma.vercel.app/"
               delay={0}
             />
@@ -308,6 +309,7 @@ const HomePage = () => {
               icon={<Smartphone size={28} />}
               title="Logo Design"
               description="Stunning visual identities and professional logos that capture your brand's essence and values."
+              image="/projects/project5.png"
               link="https://logo-indol.vercel.app/"
               delay={0.1}
             />
@@ -315,6 +317,7 @@ const HomePage = () => {
               icon={<ShoppingCart size={28} />}
               title="Design & Branding"
               description="Complete design solutions from posters to pamphlets that elevate your brand presence."
+              image="/projects/project4.png"
               link="https://post-woad-kappa.vercel.app/"
               delay={0.2}
             />
@@ -419,38 +422,48 @@ const HomePage = () => {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-16 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold mb-6 text-white"
-            >
-              Ready to Start Your Project?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed text-lg"
-            >
-              Let's turn your vision into reality. Fill out our project requirements form and we'll get back to you within 24 hours.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Link
-                to="/register"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
+          <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-16 text-center relative overflow-hidden">
+            <div className="absolute inset-0 -z-10">
+              <img 
+                src="/projects/project3.png" 
+                alt="Workplace" 
+                className="w-full h-full object-cover opacity-30"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-950/40 to-slate-950" />
+            </div>
+            <div className="relative z-10">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold mb-6 text-white"
               >
-                Get Started Now
-              </Link>
-            </motion.div>
+                Ready to Start Your Project?
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed text-lg"
+              >
+                Let's turn your vision into reality. Fill out our project requirements form and we'll get back to you within 24 hours.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Link
+                  to="/register"
+                  className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
+                >
+                  Get Started Now
+                </Link>
+              </motion.div>
+            </div>
           </GlassPanel>
         </div>
       </section>
@@ -462,11 +475,12 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  image: string;
   link: string;
   delay: number;
 }
 
-const ServiceCard = ({ icon, title, description, link, delay }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, description, image, link, delay }: ServiceCardProps) => {
   return (
     <motion.a
       href={link}
@@ -476,14 +490,24 @@ const ServiceCard = ({ icon, title, description, link, delay }: ServiceCardProps
       transition={{ duration: 0.5, delay }}
       className="group"
     >
-      <GlassPanel variant="gradient" blur="md" className="p-8 h-full hover:border-blue-400/40">
-        <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center text-blue-300 mb-6 group-hover:from-blue-500/50 group-hover:to-cyan-500/50 transition-all">
-          {icon}
+      <GlassPanel variant="gradient" blur="md" className="p-0 h-full hover:border-blue-400/40 overflow-hidden flex flex-col">
+        <div className="h-48 w-full overflow-hidden relative">
+          <img 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
         </div>
-        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-200 transition-colors">{title}</h3>
-        <p className="text-gray-300 leading-relaxed">{description}</p>
-        <div className="mt-6 flex items-center text-blue-300 group-hover:text-blue-200 transition-colors">
-          Learn more →
+        <div className="p-8">
+          <div className="h-14 w-14 -mt-16 relative z-10 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center text-blue-300 mb-6 group-hover:from-blue-500/50 group-hover:to-cyan-500/50 transition-all border border-white/10 backdrop-blur-md">
+            {icon}
+          </div>
+          <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-200 transition-colors">{title}</h3>
+          <p className="text-gray-300 leading-relaxed">{description}</p>
+          <div className="mt-6 flex items-center text-blue-300 group-hover:text-blue-200 transition-colors">
+            Learn more →
+          </div>
         </div>
       </GlassPanel>
     </motion.a>
