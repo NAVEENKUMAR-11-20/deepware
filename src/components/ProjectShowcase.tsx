@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import GlassPanel from './GlassPanel';
 
 const projects = [
@@ -119,7 +119,7 @@ const ProjectShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            className="text-2xl md:text-5xl font-bold mb-6 text-white"
           >
             Our Services in <span className="gradient-text">Action</span>
           </motion.h2>
@@ -128,7 +128,7 @@ const ProjectShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-gray-300 text-lg leading-relaxed"
+            className="text-gray-300 text-sm md:text-lg leading-relaxed"
           >
             Our services focus on transforming complex business requirements into elegant, scalable, and high-performance digital experiences.
           </motion.p>
@@ -136,7 +136,7 @@ const ProjectShowcase = () => {
 
         <div className="relative max-w-5xl mx-auto flex flex-col items-center">
           {/* Main Showcase Area */}
-          <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] perspective-1000 overflow-visible py-10">
+          <div className="relative w-full aspect-[4/5] sm:aspect-[16/9] perspective-1000 overflow-visible py-10">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={index}
@@ -156,22 +156,19 @@ const ProjectShowcase = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90" />
 
-                    <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
+                    <div className="absolute bottom-0 left-0 w-full p-6 md:p-12">
                       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div className="max-w-2xl">
                           <span className="inline-block px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
                             {projects[index].category}
                           </span>
-                          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                          <h3 className="text-xl md:text-4xl font-bold text-white mb-4">
                             {projects[index].title}
                           </h3>
-                          <p className="text-gray-300 text-lg line-clamp-2">
+                          <p className="text-gray-300 text-sm md:text-lg line-clamp-2">
                             {projects[index].description}
                           </p>
                         </div>
-                        <button className="flex-shrink-0 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-medium hover:bg-white/20 transition-all flex items-center gap-2">
-                          View Project <ExternalLink size={18} />
-                        </button>
                       </div>
                     </div>
                   </div>
