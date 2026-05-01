@@ -12,7 +12,7 @@ const team = [
     image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
-    instagram: "https://www.instagram.com/",
+    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
     description:
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
@@ -24,7 +24,7 @@ const team = [
     image: "/dhinesh.jpg",
     github: "https://github.com/DHINESH2307",
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
-    instagram: "https://www.instagram.com/",
+    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
     description:
       "A creative visionary specialized in crafting beautiful, user-centric interfaces. Dhinesh bridges the gap between complex functionality and intuitive design, ensuring every digital product is as visually stunning as it is performant.",
   },
@@ -36,7 +36,7 @@ const team = [
     image: "/aswin.jpeg",
     github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
-    instagram: "https://www.instagram.com/",
+    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
     description:
       "Expert in building robust backend systems and high-performance frontends. Aswin focuses on scalability and efficiency, delivering seamless user experiences through clean code and modern development practices.",
   },
@@ -50,7 +50,7 @@ const About = () => {
         description="Learn more about DenveX, a modern website design agency and UI/UX design company dedicated to creating powerful custom web solutions."
         keywords="modern website design agency, UI/UX design company, web development experts, DenveX about"
       />
-      
+
       {/* Dynamic Navy Background with Animated Glows */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#162d50] via-[#0f172a] to-slate-950" />
@@ -75,7 +75,7 @@ const About = () => {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className={`flex-1 z-20 ${isReversed ? 'text-right' : 'text-left'}`}
                   >
-                    <motion.span 
+                    <motion.span
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -141,7 +141,7 @@ const About = () => {
                       {/* Layered Overlays for Depth */}
                       <div className={`absolute inset-0 bg-gradient-to-r z-10 ${isReversed ? 'from-transparent via-[#0f172a]/40 to-[#0f172a]' : 'from-[#0f172a] via-[#0f172a]/40 to-transparent'}`} />
                       <div className="absolute inset-0 bg-[#162d50]/10 backdrop-blur-[1px] z-10" />
-                      
+
                       {/* Image */}
                       <img
                         src={member.image}
@@ -149,7 +149,7 @@ const About = () => {
                         className="w-full h-full object-cover object-top filter grayscale contrast-110 brightness-90 transition-transform duration-[2s] hover:scale-105"
                       />
                     </div>
-                    
+
                     {/* Soft Ambient Glows */}
                     <div className={`absolute -top-20 ${isReversed ? '-left-20' : '-right-20'} w-80 h-80 bg-blue-500/10 blur-[100px] -z-10`} />
                     <div className={`absolute -bottom-20 ${isReversed ? '-right-20' : '-left-20'} w-80 h-80 bg-indigo-500/10 blur-[100px] -z-10`} />
