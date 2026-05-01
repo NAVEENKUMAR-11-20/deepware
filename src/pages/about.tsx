@@ -14,7 +14,7 @@ const team = [
     description:
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
-  {
+  /*{
     name: "Dhinesh S",
     role: "Full Stack Developer & UI / UX Designer",
     image: "/dhinesh.jpg",
@@ -22,7 +22,7 @@ const team = [
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
     description:
       "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications.",
-  },
+  },*/
   {
     name: "Aswin L",
     role: "Frontend & Backend Developer",
@@ -40,7 +40,7 @@ const teamMembers = team.slice(1);
 const About = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
-      <SEO 
+      <SEO
         title="About DenveX – Modern Website Design Agency"
         description="Learn more about DenveX, a modern website design agency and UI/UX design company dedicated to creating powerful custom web solutions."
         keywords="modern website design agency, UI/UX design company, web development experts, DenveX about"
