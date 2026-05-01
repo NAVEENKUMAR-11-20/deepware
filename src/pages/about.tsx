@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 import GlassPanel from "../components/GlassPanel";
 import SEO from "../components/SEO";
 
@@ -8,222 +8,181 @@ const team = [
     name: "Naveen Kumar P",
     role: "Founder & CEO",
     title: "Full Stack Developer",
+    label: "Founder",
     image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
+    instagram: "https://www.instagram.com/",
     description:
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
-  /*{
+  {
     name: "Dhinesh S",
-    role: "Full Stack Developer & UI / UX Designer",
+    role: "Full Stack Developer",
+    title: "UI / UX Designer",
+    label: "Creative Lead",
     image: "/dhinesh.jpg",
     github: "https://github.com/DHINESH2307",
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
+    instagram: "https://www.instagram.com/",
     description:
-      "Creative designer and full-stack developer crafting beautiful, user-friendly interfaces and building scalable web applications.",
-  },*/
+      "A creative visionary specialized in crafting beautiful, user-centric interfaces. Dhinesh bridges the gap between complex functionality and intuitive design, ensuring every digital product is as visually stunning as it is performant.",
+  },
   {
     name: "Aswin L",
-    role: "Frontend & Backend Developer",
+    role: "Full Stack Developer",
+    title: "Systems Architect",
+    label: "Technical Expert",
     image: "/aswin.jpeg",
     github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
+    instagram: "https://www.instagram.com/",
     description:
-      "Full-stack developer specializing in backend development and responsive frontends with efficient server-side systems.",
+      "Expert in building robust backend systems and high-performance frontends. Aswin focuses on scalability and efficiency, delivering seamless user experiences through clean code and modern development practices.",
   },
 ];
 
-const founder = team[0];
-const teamMembers = team.slice(1);
-
 const About = () => {
   return (
-    <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-gradient-to-b from-[#162d50] via-[#1a3358] to-slate-950">
+    <div className="min-h-screen pt-28 pb-20 relative overflow-hidden bg-[#0f172a]">
       <SEO
         title="About DenveX – Modern Website Design Agency"
         description="Learn more about DenveX, a modern website design agency and UI/UX design company dedicated to creating powerful custom web solutions."
         keywords="modern website design agency, UI/UX design company, web development experts, DenveX about"
       />
-      {/* Light navy blue gradient background with decorative glows */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-br from-[#1e3f6e]/80 via-[#1b3660]/60 to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_center,rgba(56,139,248,0.15),transparent_60%)]" />
-        <div className="absolute top-20 right-[15%] w-[28rem] h-[28rem] rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 left-[10%] w-96 h-96 rounded-full bg-gradient-to-bl from-blue-500/15 to-indigo-500/10 blur-3xl opacity-50" />
-        <div className="absolute bottom-1/3 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-sky-600/12 to-violet-500/8 blur-3xl opacity-40" />
+      
+      {/* Dynamic Navy Background with Animated Glows */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#162d50] via-[#0f172a] to-slate-950" />
+        <div className="absolute top-0 left-0 w-full h-[60%] bg-[radial-gradient(ellipse_at_top,rgba(56,139,248,0.1),transparent_70%)]" />
+        <div className="absolute top-[-10%] right-[-5%] w-[40rem] h-[40rem] rounded-full bg-blue-600/5 blur-[120px]" />
+        <div className="absolute bottom-[20%] left-[-10%] w-[35rem] h-[35rem] rounded-full bg-indigo-600/5 blur-[100px]" />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            Meet Our Team
-          </h1>
-          <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
-            The passionate team behind DenveX creating modern, scalable, and innovative digital solutions that help businesses thrive.
-          </p>
-        </motion.div>
-
-        {/* Team Hierarchy */}
-        <div className="flex flex-col items-center mb-20">
-          {/* Founder */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0 }}
-            className="scale-125 mb-8"
-          >
-            <GlassPanel variant="dark" blur="lg" className="p-8 h-full text-center border-2 border-blue-400/60 shadow-2xl shadow-blue-400/20">
-              {/* Image */}
-              <img
-                src={founder.image}
-                alt={founder.name}
-                className="w-28 h-28 mx-auto rounded-full object-cover border-3 border-blue-400/50 mb-6"
-              />
-
-              {/* Name */}
-              <h3 className="text-2xl font-semibold text-white mb-2">
-                {founder.name}
-              </h3>
-
-              {/* Role */}
-              <p className="text-blue-300 text-sm font-medium mb-2">
-                {founder.role}
-              </p>
-
-              {/* Secondary title */}
-              <p className="text-blue-300 text-sm font-medium mb-2">
-                {founder.title}
-              </p>
-
-              {/* Description */}
-              <p className="text-slate-300 text-sm mb-8 leading-relaxed max-w-xl mx-auto">
-                {founder.description}
-              </p>
-
-              {/* Social Links */}
-              <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
-                <a
-                  href={founder.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="GitHub"
-                  className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
-                >
-                  <Github size={18} />
-                </a>
-
-                <a
-                  href={founder.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="LinkedIn"
-                  className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
-                >
-                  <Linkedin size={18} />
-                </a>
-              </div>
-            </GlassPanel>
-          </motion.div>
-
-          {/* Horizontal Connector and Team */}
-          <div className="flex items-center w-full max-w-4xl">
-            <div className="hidden md:block w-8 h-px bg-gradient-to-r from-transparent to-white/10"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
-              {teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                >
-                  <GlassPanel variant="dark" blur="lg" className="p-8 h-full text-center hover:border-blue-400/40">
-                    {/* Image */}
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-28 h-28 mx-auto rounded-full object-cover border-3 border-blue-400/50 mb-6"
-                    />
-
-                    {/* Name */}
-                    <h3 className="text-2xl font-semibold text-white mb-2">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        {/* Team Members Loop */}
+        <div className="flex flex-col gap-24 md:gap-40">
+          {team.map((member, index) => {
+            const isReversed = index % 2 !== 0;
+            return (
+              <section key={member.name} className="relative pt-10">
+                <div className={`flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-between gap-12 md:gap-20`}>
+                  {/* Content Side */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isReversed ? 40 : -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className={`flex-1 z-20 ${isReversed ? 'text-right' : 'text-left'}`}
+                  >
+                    <motion.span 
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2, duration: 0.5 }}
+                      className="inline-block text-blue-400 text-sm font-semibold tracking-[0.2em] uppercase mb-4"
+                    >
+                      {member.label}
+                    </motion.span>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1] md:whitespace-nowrap">
                       {member.name}
-                    </h3>
-
-                    {/* Role */}
-                    <p className="text-blue-300 text-sm font-medium mb-4">
-                      {member.role}
+                    </h2>
+                    <p className={`text-white/80 text-xl md:text-2xl font-light mb-8 italic border-blue-500/50 pl-6 py-1 ${isReversed ? 'border-r-2 border-l-0 pr-6 pl-0' : 'border-l-2'}`}>
+                      {member.role} | {member.title}
                     </p>
-
-                    {/* Description */}
-                    <p className="text-gray-300 text-sm mb-8 leading-relaxed">
+                    <p className={`text-gray-400 text-lg md:text-xl leading-relaxed max-w-xl mb-12 font-light ${isReversed ? 'ml-auto' : ''}`}>
                       {member.description}
                     </p>
 
-                    {/* Social Links */}
-                    <div className="flex justify-center gap-4 pt-4 border-t border-white/10">
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="GitHub"
-                        className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
-                      >
-                        <Github size={18} />
-                      </a>
-
+                    {/* Minimalist Social Icons */}
+                    <div className={`flex gap-10 items-center ${isReversed ? 'justify-end' : 'justify-start'}`}>
                       <a
                         href={member.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        title="LinkedIn"
-                        className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-600/30 hover:text-blue-300 transition-all"
+                        className="group relative flex items-center justify-center"
+                        aria-label="LinkedIn"
                       >
-                        <Linkedin size={18} />
+                        <div className="absolute -inset-2 bg-blue-500/0 group-hover:bg-blue-500/10 rounded-full transition-all duration-300" />
+                        <Linkedin size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
+                      </a>
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex items-center justify-center"
+                        aria-label="Instagram"
+                      >
+                        <div className="absolute -inset-2 bg-pink-500/0 group-hover:bg-pink-500/10 rounded-full transition-all duration-300" />
+                        <Instagram size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-pink-400 transition-colors duration-300" />
+                      </a>
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex items-center justify-center"
+                        aria-label="GitHub"
+                      >
+                        <div className="absolute -inset-2 bg-white/0 group-hover:bg-white/5 rounded-full transition-all duration-300" />
+                        <Github size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
                       </a>
                     </div>
-                  </GlassPanel>
-                </motion.div>
-              ))}
-            </div>
-            <div className="hidden md:block w-8 h-px bg-gradient-to-l from-transparent to-white/10"></div>
-          </div>
+                  </motion.div>
+
+                  {/* Image Side */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98, x: isReversed ? -40 : 40 }}
+                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full md:w-[50%] relative"
+                  >
+                    <div className="relative aspect-[4/5] md:aspect-[5/6] w-full overflow-hidden rounded-2xl shadow-2xl">
+                      {/* Layered Overlays for Depth */}
+                      <div className={`absolute inset-0 bg-gradient-to-r z-10 ${isReversed ? 'from-transparent via-[#0f172a]/40 to-[#0f172a]' : 'from-[#0f172a] via-[#0f172a]/40 to-transparent'}`} />
+                      <div className="absolute inset-0 bg-[#162d50]/10 backdrop-blur-[1px] z-10" />
+                      
+                      {/* Image */}
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top filter grayscale contrast-110 brightness-90 transition-transform duration-[2s] hover:scale-105"
+                      />
+                    </div>
+                    
+                    {/* Soft Ambient Glows */}
+                    <div className={`absolute -top-20 ${isReversed ? '-left-20' : '-right-20'} w-80 h-80 bg-blue-500/10 blur-[100px] -z-10`} />
+                    <div className={`absolute -bottom-20 ${isReversed ? '-right-20' : '-left-20'} w-80 h-80 bg-indigo-500/10 blur-[100px] -z-10`} />
+                  </motion.div>
+                </div>
+              </section>
+            );
+          })}
         </div>
 
         {/* Vision Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
+          className="pt-40 pb-20"
         >
-          <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <GlassPanel variant="gradient" blur="xl" className="p-12 md:p-20 text-center border-none shadow-2xl">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white tracking-tight">
               Our Vision
             </h2>
 
-            <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
-              At DenveX, we believe in building modern digital products that combine beautiful design with powerful technology. Our mission is to help businesses grow by creating scalable, innovative, and user-friendly digital solutions that stand out in the digital landscape.
+            <p className="text-gray-400 max-w-3xl mx-auto text-xl md:text-2xl leading-relaxed font-light">
+              At DenveX, we bridge the gap between imagination and reality. Our mission is to empower businesses with cutting-edge digital solutions that are as functional as they are beautiful.
             </p>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-6">
-              <div className="px-6 py-3 rounded-full bg-blue-500/20 border border-blue-400/50">
-                <p className="text-blue-200 text-sm font-medium">Innovation First</p>
-              </div>
-              <div className="px-6 py-3 rounded-full bg-cyan-500/20 border border-cyan-400/50">
-                <p className="text-cyan-200 text-sm font-medium">User Focused</p>
-              </div>
-              <div className="px-6 py-3 rounded-full bg-violet-500/20 border border-violet-400/50">
-                <p className="text-violet-200 text-sm font-medium">Quality Driven</p>
-              </div>
+            <div className="mt-16 flex flex-wrap justify-center gap-8">
+              {['Innovation', 'Excellence', 'Integrity'].map((value) => (
+                <div key={value} className="px-8 py-3 rounded-full bg-blue-500/5 border border-white/10 hover:border-blue-500/30 transition-colors">
+                  <p className="text-blue-300 text-sm font-medium tracking-[0.2em] uppercase">{value}</p>
+                </div>
+              ))}
             </div>
           </GlassPanel>
         </motion.div>
