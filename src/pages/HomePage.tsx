@@ -133,7 +133,7 @@ const HomePage = () => {
           "@type": "Organization",
           "name": "DenveX",
           "url": "https://www.denvex.in",
-          "logo": "https://www.denvex.in/Untitled design (12).png",
+          "logo": "https://www.denvex.in/logo.png",
           "sameAs": [
             "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
             "https://github.com/NAVEENKUMAR-11-20/"

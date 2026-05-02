@@ -28,14 +28,14 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/70 border-b border-white/10 shadow-lg py-3">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center h-[60px] md:h-[70px] lg:h-[65px]">
+        <div className="flex justify-between items-center h-20 md:h-24 lg:h-28">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center group">
             <img
-              src="/Untitled design (12).png"
-              alt="DenveX Studio Logo"
-              className="h-16 md:h-[80px] lg:h-[85px] w-auto object-contain"
+              src="/logo.png"
+              alt="DenveX Logo"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 

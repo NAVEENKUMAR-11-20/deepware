@@ -10,9 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <Code size={28} className="text-blue-400" />
-              <span className="font-bold text-2xl bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">DenveX</span>
+            <div className="flex items-center mb-6">
+              <img 
+                src="/logo.png" 
+                alt="DenveX Logo" 
+                className="h-14 md:h-16 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-400 mb-8 leading-relaxed">
               Creating innovative digital solutions that help businesses thrive in the modern world.
