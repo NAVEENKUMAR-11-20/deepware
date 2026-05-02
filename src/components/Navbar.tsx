@@ -33,7 +33,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/logo.png"
+              src="/Untitled design (12).png"
               alt="DenveX Studio Logo"
               className="h-16 md:h-[80px] lg:h-[85px] w-auto object-contain"
             />

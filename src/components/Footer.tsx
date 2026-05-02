@@ -26,7 +26,7 @@ const Footer = () => {
                 <Briefcase size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/in/naveen-kumar-p-034658300/"
+                href="https://www.linkedin.com/company/denvex/"
                 className="h-10 w-10 rounded-full bg-white/10 hover:bg-blue-600/30 flex items-center justify-center text-white/70 hover:text-blue-300 transition-all"
                 title="LinkedIn"
               >
