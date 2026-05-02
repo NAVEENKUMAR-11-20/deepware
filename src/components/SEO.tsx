@@ -17,7 +17,7 @@ const SEO = ({
   keywords = "web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX",
   ogTitle,
   ogDescription,
-  ogImage = "/Untitled design (12).png",
+  ogImage = "/favicon-2.png",
   canonical,
   schema
 }: SEOProps) => {
