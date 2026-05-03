@@ -3,11 +3,41 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <!-- ✅ FAVICON (use renamed file to break cache) -->
+  <link rel="icon" href="/favicon-v2.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
+
+  <!-- ✅ VIEWPORT -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ SITE NAME (helps Google show "DenveX") -->
+  <meta name="application-name" content="DenveX">
+  <meta property="og:site_name" content="DenveX">
+  <meta name="apple-mobile-web-app-title" content="DenveX">
+
+  <!-- ✅ EXTRA SEO (recommended) -->
+  <meta name="description" content="DenveX offers modern web design, development, and UI/UX solutions for businesses.">
+  <meta property="og:title" content="DenveX">
+  <meta property="og:description" content="Modern web design and development solutions.">
+  <meta property="og:url" content="https://denvex.in/">
+  <meta property="og:type" content="website">
+
+  <!-- ✅ MOST IMPORTANT: STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DenveX",
+    "url": "https://denvex.in/"
+  }
+  </script>
+
+  <!-- ✅ TITLE -->
   <title>DenveX</title>
+
+  <!-- ✅ FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,14 +45,18 @@
 
 <body>
   <div id="root"></div>
+
+  <!-- ✅ MAIN SCRIPT -->
   <script type="module" src="/src/main.tsx"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script type="text/javascript">
+
+  <!-- ✅ EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
     (function () {
-      // Initialize EmailJS with your Public Key
       emailjs.init("Kf7G5u5RL0_0JVLDN");
     })();
   </script>
+
 </body>
 
 </html>
