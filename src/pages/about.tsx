@@ -9,7 +9,7 @@ const team = [
     role: "Founder & CEO",
     title: "Full Stack Developer",
     label: "Founder",
-    image: "/NAV.jpeg",
+    image: "/naveens.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
     portfolio: "https://naveen-sport.vercel.app/",
