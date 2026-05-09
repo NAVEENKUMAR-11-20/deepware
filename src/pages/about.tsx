@@ -21,7 +21,7 @@ const team = [
     role: "Co-Founder",
     title: "Full Stack Developer",
     label: "Co-Founder",
-    image: "/.png",
+    image: "/sridhar.jpeg",
     github: "https://github.com/",
     linkedin: "https://www.linkedin.com/",
     portfolio: "#",
