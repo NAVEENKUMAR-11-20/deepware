@@ -1,4 +1,4 @@
-import { Code, Mail, MapPin, Phone, Briefcase } from 'lucide-react';
+import { Code, Mail, MapPin, Phone, Briefcase, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -22,11 +22,11 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3">
               <a
-                href="https://naveen-sport.vercel.app/"
-                className="h-10 w-10 rounded-full bg-white/10 hover:bg-blue-600/30 flex items-center justify-center text-white/70 hover:text-blue-300 transition-all"
-                title="Portfolio"
+                href="https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA=="
+                className="h-10 w-10 rounded-full bg-white/10 hover:bg-pink-600/30 flex items-center justify-center text-white/70 hover:text-pink-300 transition-all"
+                title="Instagram"
               >
-                <Briefcase size={18} />
+                <Instagram size={18} />
               </a>
               <a
                 href="https://www.linkedin.com/company/denvex/"

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram } from "lucide-react";
+import { Github, Linkedin, Briefcase } from "lucide-react";
 import GlassPanel from "../components/GlassPanel";
 import SEO from "../components/SEO";
 
@@ -12,9 +12,21 @@ const team = [
     image: "/NAV.jpeg",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
-    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
+    portfolio: "https://naveen-sport.vercel.app/",
     description:
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
+  },
+  {
+    name: "Sridhar C",
+    role: "Co-Founder",
+    title: "Full Stack Developer",
+    label: "Co-Founder",
+    image: "/.png",
+    github: "https://github.com/",
+    linkedin: "https://www.linkedin.com/",
+    portfolio: "#",
+    description:
+      "Sridhar is a co-founder and full-stack developer at DenveX, dedicated to building scalable and efficient web applications. He focuses on delivering high-quality digital solutions that combine technical precision with exceptional user experience.",
   },
   {
     name: "Dhinesh S",
@@ -24,7 +36,7 @@ const team = [
     image: "/dhinesh.jpg",
     github: "https://github.com/DHINESH2307",
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
-    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
+    portfolio: "#",
     description:
       "A creative visionary specialized in crafting beautiful, user-centric interfaces. Dhinesh bridges the gap between complex functionality and intuitive design, ensuring every digital product is as visually stunning as it is performant.",
   },
@@ -36,7 +48,7 @@ const team = [
     image: "/aswin.jpeg",
     github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
-    instagram: "https://www.instagram.com/denvex_official?igsh=MTZoYTMyZWJqa2lsdA==",
+    portfolio: "#",
     description:
       "Expert in building robust backend systems and high-performance frontends. Aswin focuses on scalability and efficiency, delivering seamless user experiences through clean code and modern development practices.",
   },
@@ -107,14 +119,14 @@ const About = () => {
                         <Linkedin size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
                       </a>
                       <a
-                        href={member.instagram}
+                        href={member.portfolio}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative flex items-center justify-center"
-                        aria-label="Instagram"
+                        aria-label="Portfolio"
                       >
-                        <div className="absolute -inset-2 bg-pink-500/0 group-hover:bg-pink-500/10 rounded-full transition-all duration-300" />
-                        <Instagram size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-pink-400 transition-colors duration-300" />
+                        <div className="absolute -inset-2 bg-blue-500/0 group-hover:bg-blue-500/10 rounded-full transition-all duration-300" />
+                        <Briefcase size={26} strokeWidth={1.2} className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300" />
                       </a>
                       <a
                         href={member.github}
