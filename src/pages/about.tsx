@@ -73,7 +73,7 @@ const About = () => {
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Team Members Loop */}
-        <div className="flex flex-col gap-24 md:gap-40">
+        <div className="flex flex-col gap-16 md:gap-24">
           {team.map((member, index) => {
             const isReversed = index % 2 !== 0;
             return (
@@ -96,13 +96,13 @@ const About = () => {
                     >
                       {member.label}
                     </motion.span>
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1] md:whitespace-nowrap">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight leading-[1.1] md:whitespace-nowrap">
                       {member.name}
                     </h2>
-                    <p className={`text-white/80 text-xl md:text-2xl font-light mb-8 italic border-blue-500/50 pl-6 py-1 ${isReversed ? 'border-r-2 border-l-0 pr-6 pl-0' : 'border-l-2'}`}>
+                    <p className={`text-white/80 text-lg md:text-xl font-light mb-6 italic border-blue-500/50 pl-6 py-1 ${isReversed ? 'border-r-2 border-l-0 pr-6 pl-0' : 'border-l-2'}`}>
                       {member.role} | {member.title}
                     </p>
-                    <p className={`text-gray-400 text-lg md:text-xl leading-relaxed max-w-xl mb-12 font-light ${isReversed ? 'ml-auto' : ''}`}>
+                    <p className={`text-gray-400 text-base md:text-lg leading-relaxed max-w-xl mb-8 font-light ${isReversed ? 'ml-auto' : ''}`}>
                       {member.description}
                     </p>
 
@@ -147,9 +147,9 @@ const About = () => {
                     whileInView={{ opacity: 1, scale: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full md:w-[50%] relative"
+                    className="w-full md:w-[40%] relative"
                   >
-                    <div className="relative aspect-[4/5] md:aspect-[5/6] w-full overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="relative aspect-[4/5] md:aspect-[1/1] w-full overflow-hidden rounded-2xl shadow-2xl">
                       {/* Layered Overlays for Depth */}
                       <div className={`absolute inset-0 bg-gradient-to-r z-10 ${isReversed ? 'from-transparent via-[#0f172a]/40 to-[#0f172a]' : 'from-[#0f172a] via-[#0f172a]/40 to-transparent'}`} />
                       <div className="absolute inset-0 bg-[#162d50]/10 backdrop-blur-[1px] z-10" />
