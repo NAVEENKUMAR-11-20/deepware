@@ -52,6 +52,18 @@ const team = [
     description:
       "Expert in building robust backend systems and high-performance frontends. Aswin focuses on scalability and efficiency, delivering seamless user experiences through clean code and modern development practices.",
   },
+  {
+    name: "Hariharan M",
+    role: "COO - Chief Executive Officer",
+    title: "Operations Lead",
+    label: "COO",
+    image: "/hari.jpeg",
+    github: "https://github.com/",
+    linkedin: "https://www.linkedin.com/",
+    portfolio: "#",
+    description:
+      "Hariharan is the Chief Operating Officer at DenveX, overseeing the strategic direction and operational excellence of the company. With a focus on growth and efficiency, he ensures that every project aligns with our core mission of delivering world-class digital solutions.",
+  },
 ];
 
 const About = () => {
