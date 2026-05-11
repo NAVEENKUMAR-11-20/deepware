@@ -58,9 +58,9 @@ const team = [
     title: "Full Stack Developer",
     label: "COO",
     image: "/hari.png",
-    github: "https://github.com/",
-    linkedin: "https://www.linkedin.com/",
-    portfolio: "#",
+    github: "https://github.com/24900770",
+    linkedin: "https://www.linkedin.com/in/hariharan-m-15797032a/",
+
     description:
       "Hariharan is the Chief Operating Officer at DenveX, overseeing the strategic direction and operational excellence of the company. With a focus on growth and efficiency, he ensures that every project aligns with our core mission of delivering world-class digital solutions.",
   },
