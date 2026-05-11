@@ -57,7 +57,7 @@ const team = [
     role: "COO - Chief Operating Officer",
     title: "Operations Lead",
     label: "COO",
-    image: "/hari.jpeg",
+    image: "/hari.png",
     github: "https://github.com/",
     linkedin: "https://www.linkedin.com/",
     portfolio: "#",
