@@ -54,7 +54,7 @@ const team = [
   },
   {
     name: "Hariharan M",
-    role: "COO - Chief Executive Officer",
+    role: "COO - Chief Operating Officer",
     title: "Operations Lead",
     label: "COO",
     image: "/hari.jpeg",
