@@ -9,7 +9,7 @@ const team = [
     role: "Founder & CEO",
     title: "Full Stack Developer",
     label: "Founder",
-    image: "/naveens.jpeg",
+    image: "/naveenk.png",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
     portfolio: "https://naveen-sport.vercel.app/",
@@ -161,16 +161,16 @@ const About = () => {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="w-full md:w-[40%] relative"
                   >
-                    <div className="relative aspect-[4/5] md:aspect-[1/1] w-full overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="relative aspect-[3/4.5] md:aspect-[3/4.5] w-full overflow-hidden rounded-2xl shadow-2xl">
                       {/* Layered Overlays for Depth */}
                       <div className={`absolute inset-0 bg-gradient-to-r z-10 ${isReversed ? 'from-transparent via-[#0f172a]/40 to-[#0f172a]' : 'from-[#0f172a] via-[#0f172a]/40 to-transparent'}`} />
-                      <div className="absolute inset-0 bg-[#162d50]/10 backdrop-blur-[1px] z-10" />
+                      <div className="absolute inset-0 bg-[#162d50]/5 backdrop-blur-[0.5px] z-10" />
 
                       {/* Image */}
                       <img
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top filter grayscale contrast-110 brightness-90 transition-transform duration-[2s] hover:scale-105"
+                        className="w-full h-full object-cover object-top contrast-[1.05] brightness-100 transition-transform duration-[2s] hover:scale-105"
                       />
                     </div>
 
