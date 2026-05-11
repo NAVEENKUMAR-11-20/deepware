@@ -55,7 +55,7 @@ const team = [
   {
     name: "Hariharan M",
     role: "COO - Chief Operating Officer",
-    title: "Operations Lead",
+    title: "Full Stack Developer",
     label: "COO",
     image: "/hari.png",
     github: "https://github.com/",
