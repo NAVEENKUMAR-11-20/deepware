@@ -36,7 +36,7 @@ const team = [
     image: "/dhinesh.jpg",
     github: "https://github.com/DHINESH2307",
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
-    portfolio: "#",
+    portfolio: "https://dhinesh-portfolio-ten.vercel.app/",
     description:
       "A creative visionary specialized in crafting beautiful, user-centric interfaces. Dhinesh bridges the gap between complex functionality and intuitive design, ensuring every digital product is as visually stunning as it is performant.",
   },
