@@ -39,7 +39,11 @@ const Contact = () => {
       // We ensure the script is loaded and initialized from index.html
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const emailjs = (window as any).emailjs;
-      const response = await emailjs.send("service_f37sh79", "template_exrmu2n", {
+      if (!emailjs) {
+        throw new Error('EmailJS is not loaded. Check that the CDN script and initialization are present in index.html.');
+      }
+
+      const response = await emailjs.send('service_f37sh79', 'template_exrmu2n', {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -52,11 +56,16 @@ const Contact = () => {
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
         setStatus('error');
-        setErrorMessage('Something went wrong. Please try again.');
+        setErrorMessage(response.text || 'Something went wrong. Please try again.');
       }
-    } catch {
+    } catch (error) {
+      console.error('Contact form error:', error);
       setStatus('error');
-      setErrorMessage('Failed to send message. Please check your credentials or connection.');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Failed to send message. Please check your connection and EmailJS credentials.'
+      );
     }
   };
 
