@@ -26,16 +26,16 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/70 border-b border-white/10 shadow-lg py-3">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/8 shadow-sm">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center h-20 md:h-24 lg:h-28">
+        <div className="flex justify-between items-center h-[72px]">
 
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
               src="/logo.png"
               alt="DenveX Logo"
-              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
@@ -43,41 +43,41 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              className="text-[0.95rem] font-medium text-gray-100 hover:text-blue-300 transition-colors"
             >
               Home
             </Link>
 
             <button
               onClick={() => navigateToSection('services')}
-              className="font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              className="text-[0.95rem] font-medium text-gray-100 hover:text-blue-300 transition-colors"
             >
               Services
             </button>
 
             <button
               onClick={() => navigateToSection('testimonials')}
-              className="font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              className="text-[0.95rem] font-medium text-gray-100 hover:text-blue-300 transition-colors"
             >
               Testimonials
             </button>
             <Link
               to="/about"
-              className="font-medium text-gray-100 hover:text-blue-300"
+              className="text-[0.95rem] font-medium text-gray-100 hover:text-blue-300"
             >
               About
             </Link>
 
             <Link
               to="/contact"
-              className="font-medium text-gray-100 hover:text-blue-300"
+              className="text-[0.95rem] font-medium text-gray-100 hover:text-blue-300"
             >
               Contact
             </Link>
 
             <Link
               to="/register"
-              className="px-5 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-medium shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
+              className="px-6 py-2.5 text-[0.95rem] bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-medium shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
             >
               Start Project
             </Link>

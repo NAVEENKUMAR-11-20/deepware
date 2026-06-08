@@ -54,10 +54,8 @@ const projects = [
     image: "domain.avif",
   }
 ];
-
 const ProjectShowcase = () => {
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -68,12 +66,10 @@ const ProjectShowcase = () => {
   }, []);
 
   const nextProject = () => {
-    setDirection(1);
     setIndex((prev) => (prev + 1) % projects.length);
   };
 
   const prevProject = () => {
-    setDirection(-1);
     setIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
@@ -217,7 +213,6 @@ const ProjectShowcase = () => {
                 <button
                   key={i}
                   onClick={() => {
-                    setDirection(i > index ? 1 : -1);
                     setIndex(i);
                   }}
                   className={`h-2 transition-all duration-300 rounded-full ${i === index ? 'w-10 bg-blue-400' : 'w-2 bg-gray-600 hover:bg-gray-500'}`}

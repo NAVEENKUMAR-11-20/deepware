@@ -10,10 +10,8 @@ const Layout = () => {
   useScrollSpotlight();
 
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
-      {/* Canvas background layer */}
-      {/* CanvasBackground moved to HomePage */}
-
+    /* Root wrapper must NOT have overflow:hidden — it breaks position:fixed on the navbar */
+    <div className="relative min-h-screen bg-slate-950">
       {/* Scroll effect overlay */}
       <div
         className="fixed inset-0 z-5 pointer-events-none scroll-blur-overlay"
@@ -25,9 +23,11 @@ const Layout = () => {
         }}
       />
 
-      {/* Content layer */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        {!hideNavbarAndFooter && <Navbar />}
+      {/* Navbar — rendered outside any overflow or z-index stacking context */}
+      {!hideNavbarAndFooter && <Navbar />}
+
+      {/* Content layer — overflow-x-hidden here only, below the fixed navbar */}
+      <div className="relative z-10 flex flex-col min-h-screen overflow-x-hidden">
         <main className="flex-grow">
           <Outlet />
         </main>

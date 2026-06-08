@@ -3,7 +3,6 @@ import { ArrowDown, Code, Smartphone, ShoppingCart } from 'lucide-react';
 import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GlassPanel from '../components/GlassPanel';
-import CanvasBackground from '../components/CanvasBackground';
 import { TestimonialSection } from '../components/Testimonials';
 import SEO from '../components/SEO';
 import ProjectShowcase from '../components/ProjectShowcase';
@@ -42,40 +41,30 @@ const HomePage = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
-    isMobileRef.current = isMobile;
-    const maxScroll = isMobile ? 320 : 440;
     const scrollState = {
       current: 0,
       target: 0,
       frame: 0 as number | null,
     };
 
+    // Only moves the TEXT content upward; background stays completely fixed.
     const updateStyles = () => {
-      const next = lerp(scrollState.current, scrollState.target, 0.18);
+      const next = lerp(scrollState.current, scrollState.target, 0.12);
       scrollState.current = next;
+
+      const maxScroll = 500;
       const progress = clamp(next / maxScroll, 0, 1);
-      const heroTranslate = -progress * (isMobileRef.current ? 70 : 110);
-      const heroOpacity = clamp(1 - progress * 1.15, 0, 1);
-      const heroScale = clamp(1 - progress * (isMobileRef.current ? 0.02 : 0.03), isMobileRef.current ? 0.98 : 0.97, 1);
-      const heroTextBlur = isMobileRef.current ? 0 : clamp(progress * 1.6, 0, 1.6);
-      const servicesProgress = clamp((next - (isMobileRef.current ? 80 : 100)) / (maxScroll - (isMobileRef.current ? 80 : 100)), 0, 1);
-      const servicesTranslate = lerp(isMobileRef.current ? 30 : 45, 0, servicesProgress);
-      const servicesOpacity = clamp(servicesProgress, 0, 1);
+
+      // Text slides up and fades — background does NOT move
+      const textTranslate = -progress * 140;
+      const textOpacity = clamp(1 - progress * 1.4, 0, 1);
 
       if (heroContentRef.current) {
-        heroContentRef.current.style.setProperty('--hero-translate', `${heroTranslate}px`);
-        heroContentRef.current.style.setProperty('--hero-opacity', `${heroOpacity}`);
-        heroContentRef.current.style.setProperty('--hero-scale', `${heroScale}`);
-        heroContentRef.current.style.setProperty('--hero-text-blur', `${heroTextBlur}px`);
+        heroContentRef.current.style.transform = `translateY(${textTranslate}px)`;
+        heroContentRef.current.style.opacity = `${textOpacity}`;
       }
 
-      if (servicesContentRef.current) {
-        servicesContentRef.current.style.setProperty('--services-translate', `${servicesTranslate}px`);
-        servicesContentRef.current.style.setProperty('--services-opacity', `${servicesOpacity}`);
-      }
-
-      if (Math.abs(scrollState.current - scrollState.target) > 0.5) {
+      if (Math.abs(scrollState.current - scrollState.target) > 0.3) {
         scrollState.frame = requestAnimationFrame(updateStyles);
       } else {
         scrollState.frame = null;
@@ -83,18 +72,9 @@ const HomePage = () => {
     };
 
     const handleScroll = () => {
-      scrollState.target = clamp(window.scrollY, 0, maxScroll);
+      scrollState.target = window.scrollY;
       if (!scrollState.frame) {
         scrollState.frame = requestAnimationFrame(updateStyles);
-      }
-
-      // Apply blur to fixed background when scrolling past 40% of viewport height
-      if (heroBgRef.current) {
-        const blurThreshold = window.innerHeight * 0.4;
-        const blurAmount = window.scrollY > blurThreshold
-          ? Math.min((window.scrollY - blurThreshold) / 100, 12)
-          : 0;
-        heroBgRef.current.style.filter = `blur(${blurAmount}px)`;
       }
     };
 
@@ -188,66 +168,64 @@ const HomePage = () => {
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 opacity-95" />
         <div className="absolute top-20 left-[10%] z-0 w-[32rem] h-[28rem] rounded-full bg-blue-500/14 blur-3xl" />
         <div className="absolute bottom-10 right-[8%] z-0 w-[24rem] h-[24rem] rounded-full bg-cyan-500/14 blur-3xl" />
-        <CanvasBackground />
       </div>
 
-      {/* Hero Section - Scrolls normally, content moves over fixed background */}
-      <section ref={heroSectionRef} className="relative min-h-screen pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 overflow-hidden z-10">
+      {/* Hero Section - background is fixed; only text moves on scroll */}
+      <section ref={heroSectionRef} className="relative pt-32 pb-10 md:pb-14 z-10">
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_24%),radial-gradient(circle_at_80%_20%,rgba(96,165,250,0.12),transparent_22%)] opacity-80 pointer-events-none" />
         <div className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-500/20 blur-3xl animate-blob-float opacity-60" />
         <div className="absolute -bottom-32 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-violet-600/25 to-indigo-500/15 blur-3xl animate-blob-float-delay-2 opacity-50" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div ref={heroContentRef} className="max-w-5xl mx-auto text-center mb-16 md:mb-24 hero-scroll-content">
+          <div ref={heroContentRef} className="max-w-5xl mx-auto text-center mb-6 md:mb-8" style={{ willChange: 'transform, opacity' }}>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: -16, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="inline-block mb-6"
             >
-              <div className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 backdrop-blur-sm">
-                <p className="text-sm font-medium bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
-                  Welcome to DenveX
+              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 backdrop-blur-sm">
+                <p className="text-sm font-medium bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent tracking-wide">
+                  ✦ Welcome to DenveX
                 </p>
               </div>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight"
             >
-              <span className="gradient-text block md:inline md:whitespace-nowrap">Best Web Design Platform</span>
-              <br className="hidden md:block" />
-              <span className="text-white block md:inline md:whitespace-nowrap">for Custom Web Solutions</span>
+              <span className="gradient-text block">Best Web Design Platform</span>
+              <span className="text-white block">for Custom Web Solutions</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed"
             >
               We create stunning websites, powerful applications, and unforgettable digital experiences for businesses that want to stand out in the digital landscape.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               <Link
                 to="/register"
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
               >
                 Start Your Project
               </Link>
               <a
                 href="#services"
-                className="px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 text-white rounded-full font-semibold hover:bg-white/20 transition-all flex items-center justify-center gap-2"
+                className="px-8 py-4 backdrop-blur-md bg-white/10 border border-white/20 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
               >
                 Our Services <ArrowDown size={18} />
               </a>
@@ -257,7 +235,7 @@ const HomePage = () => {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="flex justify-center mt-12"
+              className="flex justify-center mt-6"
             >
               <div className="text-gray-400">
                 <ArrowDown size={24} />
@@ -268,19 +246,28 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} id="services" className="py-24 md:py-32 relative overflow-hidden">
+      <section ref={servicesRef} id="services" className="py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-500/10 blur-3xl opacity-40" />
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-gradient-to-tl from-blue-600/15 to-violet-500/10 blur-3xl opacity-40" />
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-blue-600/20 to-cyan-500/10 blur-3xl opacity-40" />
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-gradient-to-tl from-blue-600/15 to-cyan-500/10 blur-3xl opacity-40" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div ref={servicesContentRef} className="text-center max-w-3xl mx-auto mb-20 services-reveal">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+          <div ref={servicesContentRef} className="text-center max-w-3xl mx-auto mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5 }}
+              className="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-semibold tracking-widest uppercase"
+            >
+              What We Do
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl md:text-5xl font-bold mb-6 text-white"
             >
               Our Services
@@ -288,15 +275,24 @@ const HomePage = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="text-gray-300 leading-relaxed text-lg"
             >
               We offer comprehensive digital solutions tailored to help your business thrive and stand out in the digital landscape.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } },
+            }}
+          >
             <ServiceCard
               icon={<Code size={28} />}
               title="Web Development"
@@ -311,7 +307,7 @@ const HomePage = () => {
               description="Stunning visual identities and professional logos that capture your brand's essence and values."
               image="lo.avif"
               link="https://logo-indol.vercel.app/"
-              delay={0.1}
+              delay={0.15}
             />
             <ServiceCard
               icon={<ShoppingCart size={28} />}
@@ -319,9 +315,9 @@ const HomePage = () => {
               description="Complete design solutions from posters to pamphlets that elevate your brand presence."
               image="ad.webp"
               link="https://post-woad-kappa.vercel.app/"
-              delay={0.2}
+              delay={0.3}
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -332,10 +328,10 @@ const HomePage = () => {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -48 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
                 Why DenveX is the <span className="gradient-text">Best Web Design Platform</span>
@@ -368,10 +364,10 @@ const HomePage = () => {
               </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, x: 48, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="relative"
             >
               <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
@@ -416,6 +412,7 @@ const HomePage = () => {
 
       {/* CTA Section */}
       <section className="py-24 md:py-32 relative overflow-hidden">
+
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-violet-600/20" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full bg-radial-gradient opacity-40 blur-3xl" />
@@ -433,28 +430,28 @@ const HomePage = () => {
             </div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="text-4xl md:text-5xl font-bold mb-6 text-white"
               >
                 Ready to Start Your Project?
               </motion.h2>
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed text-lg"
               >
                 Let's turn your vision into reality. Fill out our project requirements form and we'll get back to you within 24 hours.
               </motion.p>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Link
                   to="/register"
@@ -484,10 +481,11 @@ const ServiceCard = ({ icon, title, description, image, link, delay }: ServiceCa
   return (
     <motion.a
       href={link}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
       className="group"
     >
       <GlassPanel variant="gradient" blur="md" className="p-0 h-full hover:border-blue-400/40 overflow-hidden flex flex-col">
