@@ -96,7 +96,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
     isFading.current = true;
     setFadeOut(true);
     if (onStartRef.current) onStartRef.current();
-    setTimeout(() => onDoneRef.current(), 1500);
+    setTimeout(() => onDoneRef.current(), 500);
   }, []);
 
   // ── Main Three.js setup ──────────────────────────────────────────────────────
@@ -195,9 +195,11 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
 
     // Orb core (solid sphere)
     const orbGeo = new THREE.SphereGeometry(0.18, 24, 24);
-    const orbMat = new THREE.MeshStandardMaterial({
-      color: 0xffffff, emissive: 0x38bdf8, emissiveIntensity: 6,
-      roughness: 0.05, metalness: 0.1, transparent: true, opacity: 1,
+    const orbMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 1,
+      depthWrite: false,
     });
     const orbMesh = new THREE.Mesh(orbGeo, orbMat);
     scene.add(orbMesh);
@@ -238,9 +240,11 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
      const logoMat = new THREE.MeshBasicMaterial({
       transparent: true, opacity: 0,
       depthWrite: false,
+      depthTest: false,
+      blending: THREE.NormalBlending,
     });
     const logoMesh = new THREE.Mesh(logoGeo, logoMat);
-    logoMesh.position.set(0, 0.5, 0);
+    logoMesh.position.set(0, 0.5, -0.05);
     logoMesh.visible = false;
     scene.add(logoMesh);
 
@@ -500,7 +504,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
         key="dx-cinematic"
         initial={{ opacity: 1 }}
         animate={{ opacity: fadeOut ? 0 : 1 }}
-        transition={{ duration: 1.5, ease: 'easeInOut' }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
         style={{
           position: 'fixed', inset: 0, zIndex: 99999,
           overflow: 'hidden',

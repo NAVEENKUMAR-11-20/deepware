@@ -62,9 +62,9 @@ function App() {
       */}
       <div
         style={{
-          filter: showIntro ? 'blur(20px)' : 'none',
-          opacity: showIntro ? 0 : 1,
-          transition: 'filter 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1)',
+          filter: showIntro && !introFading ? 'blur(20px)' : 'none',
+          opacity: showIntro && !introFading ? 0 : 1,
+          transition: 'filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
           width: '100%',
           height: '100%',
         }}
