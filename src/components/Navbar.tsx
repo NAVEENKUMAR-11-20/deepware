@@ -26,7 +26,7 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/8 shadow-sm">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 shadow-sm">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center h-[72px]">
 
@@ -97,58 +97,67 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          className="md:hidden absolute top-full left-0 right-0 p-4 backdrop-blur-lg bg-slate-900/90 border-b border-white/10 shadow-xl"
-        >
-          <div className="flex flex-col space-y-4">
+        <>
+          {/* Dark backdrop overlay to dim the right side page content */}
+          <div
+            className="md:hidden fixed inset-0 top-[72px] z-40 bg-black/40 backdrop-blur-[1px]"
+            onClick={() => setIsOpen(false)}
+          />
 
-            <Link
-              to="/"
-              className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
-            >
-              Home
-            </Link>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-full left-0 w-[60%] p-4 bg-[#020B24] border-r border-b border-white/10 shadow-xl z-50"
+            style={{ opacity: 1 }}
+          >
+            <div className="flex flex-col space-y-4">
 
-            <button
-              onClick={() => navigateToSection('services')}
-              className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 text-left transition-colors"
-            >
-              Services
-            </button>
+              <Link
+                to="/"
+                className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              >
+                Home
+              </Link>
 
-            <button
-              onClick={() => navigateToSection('testimonials')}
-              className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 text-left transition-colors"
-            >
-              Testimonials
-            </button>
+              <button
+                onClick={() => navigateToSection('services')}
+                className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 text-left transition-colors"
+              >
+                Services
+              </button>
 
-            <Link
-              to="/about"
-              className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
-            >
-              About
-            </Link>
+              <button
+                onClick={() => navigateToSection('testimonials')}
+                className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 text-left transition-colors"
+              >
+                Testimonials
+              </button>
 
-            <Link
-              to="/contact"
-              className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
-            >
-              Contact
-            </Link>
+              <Link
+                to="/about"
+                className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              >
+                About
+              </Link>
 
-            <Link
-              to="/register"
-              className="px-4 py-2 text-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-lg font-medium shadow-lg shadow-blue-500/30 transition-all"
-            >
-              Start Project
-            </Link>
+              <Link
+                to="/contact"
+                className="px-4 py-2 font-medium text-gray-100 hover:text-blue-300 transition-colors"
+              >
+                Contact
+              </Link>
 
-          </div>
-        </motion.div>
+              <Link
+                to="/register"
+                className="px-4 py-2 text-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-lg font-medium shadow-lg shadow-blue-500/30 transition-all"
+              >
+                Start Project
+              </Link>
+
+            </div>
+          </motion.div>
+        </>
       )}
     </nav>
   );
