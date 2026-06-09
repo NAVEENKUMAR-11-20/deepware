@@ -410,6 +410,10 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
 
         logoMat.opacity = easedLogoFade;
         auraMat.opacity = easedLogoFade * 0.45;
+
+        const isMobile = window.innerWidth < 768;
+        logoMesh.scale.setScalar(isMobile ? 0.6 : 1.0);
+        logoMesh.position.y = isMobile ? 0.65 : 0.5;
       } else {
         logoMesh.visible = false;
         logoMat.opacity = 0;
@@ -428,7 +432,9 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
         auraMat.color.setHSL(hue, 1, 0.6);
 
         // Gentle float + micro-wobble
-        logoMesh.position.y  = 0.5 + Math.sin(t*0.9)*0.09;
+        const isMobile = window.innerWidth < 768;
+        logoMesh.scale.setScalar(isMobile ? 0.6 : 1.0); // 40% smaller logo on mobile viewports
+        logoMesh.position.y  = (isMobile ? 0.65 : 0.5) + Math.sin(t*0.9)*0.09;
         logoMesh.rotation.y  = Math.sin(t*0.45)*0.045;
         logoMesh.rotation.x  = Math.cos(t*0.35)*0.02;
       }
@@ -537,7 +543,19 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
           boxSizing: 'border-box',
         }}>
           {/* Vertical spacer to sit typography perfectly centered below the 3D logo coordinates */}
-          <div style={{ height: '23dvh' }} />
+          <div className="intro-spacer" />
+
+          {/* Dynamic styling for responsive mobile vertical spacer */}
+          <style>{`
+            .intro-spacer {
+              height: 23dvh;
+            }
+            @media (max-width: 768px) {
+              .intro-spacer {
+                height: 12dvh;
+              }
+            }
+          `}</style>
 
           {/* Safe responsive content container */}
           <div style={{
