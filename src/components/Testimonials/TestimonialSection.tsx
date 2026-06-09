@@ -11,7 +11,7 @@ import { supabase } from '../../lib/supabaseClient';
 const TestimonialSection: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState<SortOption>('latest');
+  const [sortBy, setSortBy] = useState<SortOption>('highest');
   const [filterBy, setFilterBy] = useState<FilterOption>('all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -28,8 +28,7 @@ const TestimonialSection: React.FC = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from('review')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .select('*');
 
       if (error) throw error;
       setReviews(data || []);
@@ -73,7 +72,12 @@ const TestimonialSection: React.FC = () => {
     if (sortBy === 'latest') {
       result.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     } else if (sortBy === 'highest') {
-      result.sort((a, b) => b.rating - a.rating);
+      result.sort((a, b) => {
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
     }
 
     return result;
