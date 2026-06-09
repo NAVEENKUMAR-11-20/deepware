@@ -22,8 +22,8 @@ const team = [
     title: "Full Stack Developer",
     label: "Co-Founder",
     image: "/srii.png",
-    github: "https://github.com/",
-    linkedin: "https://www.linkedin.com/",
+    github: "https://github.com/sridhar241030",
+    linkedin: "https://www.linkedin.com/in/sridhar-c-447796315/",
     portfolio: "#",
     description:
       "Sridhar is a co-founder and full-stack developer at DenveX, dedicated to building scalable and efficient web applications. He focuses on delivering high-quality digital solutions that combine technical precision with exceptional user experience.",
