@@ -12,7 +12,7 @@ const team = [
     image: "/naveend.png",
     github: "https://github.com/NAVEENKUMAR-11-20",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
-    portfolio: "https://naveen-sport.vercel.app/",
+    portfolio: "https://naveen-port.vercel.app/",
     description:
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
