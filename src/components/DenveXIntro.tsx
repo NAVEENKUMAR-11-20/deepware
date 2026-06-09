@@ -90,6 +90,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
   const [showServices,   setShowServices]   = useState(false);
   const [showLightSweep, setShowLightSweep] = useState(false);
   const [fadeOut,        setFadeOut]        = useState(false);
+  const [isMobile,       setIsMobile]       = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   const finish = useCallback(() => {
     if (isFading.current) return;
@@ -404,17 +405,17 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
       // SCENE 3 & 4 – LOGO MATERIALIZATION (4s – 6s)
       // ══════════════════════════════════════════════════════════════════════
       if (t >= T.s3) {
-        logoMesh.visible = true;
+        const isMobileViewport = window.innerWidth < 768;
+        logoMesh.visible = !isMobileViewport;
         const logoFadeP = Math.min((t - T.s3) / 1.5, 1.0); // 1.5 seconds smooth transition fade
         const easedLogoFade = logoFadeP * logoFadeP * (3.0 - 2.0 * logoFadeP);
 
         logoMat.opacity = easedLogoFade;
         auraMat.opacity = easedLogoFade * 0.45;
 
-        const isMobile = window.innerWidth < 768;
-        logoMesh.scale.setScalar(isMobile ? 0.48 : 1.0);
+        logoMesh.scale.setScalar(isMobileViewport ? 0.48 : 1.0);
         logoMesh.position.x = 0;
-        logoMesh.position.y = isMobile ? 0.75 : 0.5;
+        logoMesh.position.y = isMobileViewport ? 0.75 : 0.5;
       } else {
         logoMesh.visible = false;
         logoMat.opacity = 0;
@@ -422,7 +423,8 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
       }
 
       if (t >= T.s4) {
-        logoMesh.visible  = true;
+        const isMobileViewport = window.innerWidth < 768;
+        logoMesh.visible  = !isMobileViewport;
         logoMat.opacity   = 1;
 
         // Pulsing aura brightness
@@ -433,10 +435,9 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
         auraMat.color.setHSL(hue, 1, 0.6);
 
         // Gentle float + micro-wobble
-        const isMobile = window.innerWidth < 768;
-        logoMesh.scale.setScalar(isMobile ? 0.48 : 1.0); // 48% size logo on mobile viewports
+        logoMesh.scale.setScalar(isMobileViewport ? 0.48 : 1.0); // 48% size logo on mobile viewports
         logoMesh.position.x = 0;
-        logoMesh.position.y  = (isMobile ? 0.75 : 0.5) + Math.sin(t*0.9)*(isMobile ? 0.05 : 0.09);
+        logoMesh.position.y  = (isMobileViewport ? 0.75 : 0.5) + Math.sin(t*0.9)*(isMobileViewport ? 0.05 : 0.09);
         logoMesh.rotation.y  = Math.sin(t*0.45)*0.045;
         logoMesh.rotation.x  = Math.cos(t*0.35)*0.02;
       }
@@ -491,8 +492,10 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener('resize', onResize);
+    onResize();
 
     return () => {
       clearInterval(syncId);
@@ -560,7 +563,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
             }
             @media (max-width: 768px) {
               .intro-spacer {
-                height: 11dvh;
+                display: none;
               }
             }
           `}</style>
@@ -579,6 +582,49 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
             boxSizing: 'border-box',
             textAlign: 'center',
           }}>
+            {/* R/DX Logo (Mobile only) */}
+            <AnimatePresence>
+              {isMobile && showTitle && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                  style={{
+                    position: 'relative',
+                    width: '110px',
+                    height: '110px',
+                    marginBottom: '4px', // Combined with parent flex gap 16px, this makes exactly 20px spacing between logo and heading
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {/* Glowing background aura (matches the desktop Three.js aura glow) */}
+                  <div style={{
+                    position: 'absolute',
+                    width: '180px',
+                    height: '180px',
+                    background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(14,165,233,0.05) 50%, transparent 70%)',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                    filter: 'blur(10px)',
+                  }} />
+                  
+                  <img
+                    src="/relogo.png"
+                    alt="R/DX Logo"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      position: 'relative',
+                      zIndex: 1,
+                    }}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* DenveX heading */}
             <AnimatePresence>
               {showTitle && (
