@@ -533,10 +533,11 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
           position: 'absolute', inset: 0, pointerEvents: 'none',
           display: 'flex', flexDirection: 'column',
           alignItems: 'center', justifyContent: 'center',
-          gap: '16px',
+          height: '100dvh', width: '100vw',
+          boxSizing: 'border-box',
         }}>
           {/* Vertical spacer to sit typography perfectly centered below the 3D logo coordinates */}
-          <div style={{ height: '23vh' }} />
+          <div style={{ height: '23dvh' }} />
 
           {/* Safe responsive content container */}
           <div style={{
@@ -656,7 +657,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
 
         {/* ── Progress bar ── */}
         <div style={{
-          position: 'absolute', bottom: '5.5vh',
+          position: 'absolute', bottom: '5.5dvh',
           left: '50%', transform: 'translateX(-50%)',
           width: 'clamp(90px,16vw,150px)', height: '1.5px',
           background: 'rgba(255,255,255,0.06)',
