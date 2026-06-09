@@ -412,8 +412,9 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
         auraMat.opacity = easedLogoFade * 0.45;
 
         const isMobile = window.innerWidth < 768;
-        logoMesh.scale.setScalar(isMobile ? 0.6 : 1.0);
-        logoMesh.position.y = isMobile ? 0.65 : 0.5;
+        logoMesh.scale.setScalar(isMobile ? 0.48 : 1.0);
+        logoMesh.position.x = 0;
+        logoMesh.position.y = isMobile ? 0.75 : 0.5;
       } else {
         logoMesh.visible = false;
         logoMat.opacity = 0;
@@ -433,8 +434,9 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
 
         // Gentle float + micro-wobble
         const isMobile = window.innerWidth < 768;
-        logoMesh.scale.setScalar(isMobile ? 0.6 : 1.0); // 40% smaller logo on mobile viewports
-        logoMesh.position.y  = (isMobile ? 0.65 : 0.5) + Math.sin(t*0.9)*0.09;
+        logoMesh.scale.setScalar(isMobile ? 0.48 : 1.0); // 48% size logo on mobile viewports
+        logoMesh.position.x = 0;
+        logoMesh.position.y  = (isMobile ? 0.75 : 0.5) + Math.sin(t*0.9)*(isMobile ? 0.05 : 0.09);
         logoMesh.rotation.y  = Math.sin(t*0.45)*0.045;
         logoMesh.rotation.x  = Math.cos(t*0.35)*0.02;
       }
@@ -535,24 +537,30 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
         {/* ══════════════════════════════════════════════════════════════
             SCENE 4 / 5  —  Text overlays (above Three.js canvas)
         ══════════════════════════════════════════════════════════════ */}
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          height: '100dvh', width: '100vw',
-          boxSizing: 'border-box',
-        }}>
+        <div className="intro-text-container">
           {/* Vertical spacer to sit typography perfectly centered below the 3D logo coordinates */}
           <div className="intro-spacer" />
 
           {/* Dynamic styling for responsive mobile vertical spacer */}
           <style>{`
+            .intro-text-container {
+              position: absolute;
+              inset: 0;
+              pointer-events: none;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100dvh;
+              width: 100vw;
+              box-sizing: border-box;
+            }
             .intro-spacer {
               height: 23dvh;
             }
             @media (max-width: 768px) {
               .intro-spacer {
-                height: 12dvh;
+                height: 11dvh;
               }
             }
           `}</style>
