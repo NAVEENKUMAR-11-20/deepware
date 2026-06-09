@@ -16,17 +16,31 @@ function App() {
    * Uses localStorage so the intro never plays again on the same browser.
    * Set to false initially so there's no flash; useEffect checks storage.
    */
-  const [showIntro, setShowIntro] = useState<boolean>(true);
+  const [showIntro, setShowIntro] = useState<boolean>(false);
   const [introChecked, setIntroChecked] = useState<boolean>(false);
   const [introFading, setIntroFading] = useState<boolean>(false);
 
   useEffect(() => {
-    // Always show intro on every page load
-    document.body.style.overflow = 'hidden';
+    const today = new Date().toDateString();
+    const sessionIntroShown = sessionStorage.getItem('introShownThisSession');
+    const localLastShownDate = localStorage.getItem('introLastShownDate');
+
+    const needsIntro = !sessionIntroShown || localLastShownDate !== today;
+
+    if (needsIntro) {
+      setShowIntro(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      setShowIntro(false);
+      document.body.style.overflow = '';
+    }
     setIntroChecked(true);
   }, []);
 
   const handleIntroComplete = () => {
+    const today = new Date().toDateString();
+    sessionStorage.setItem('introShownThisSession', 'true');
+    localStorage.setItem('introLastShownDate', today);
     setShowIntro(false);
     setIntroFading(false);
     document.body.style.overflow = '';
@@ -36,7 +50,7 @@ function App() {
     setIntroFading(true);
   };
 
-  // Don't render anything until we've checked localStorage
+  // Don't render anything until we've checked the session parameters
   // (avoids a brief flash of the homepage before intro)
   if (!introChecked) return null;
 
