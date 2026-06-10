@@ -1,13 +1,51 @@
+import { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { useScrollBlur, useScrollSpotlight } from '../hooks/useScrollEffects';
+import { useScrollSpotlight } from '../hooks/useScrollEffects';
 
 const Layout = () => {
   const location = useLocation();
   const hideNavbarAndFooter = location.pathname === '/terms-and-conditions' || location.pathname === '/privacy-policy';
-  const scrollState = useScrollBlur();
+  const overlayRef = useRef<HTMLDivElement>(null);
   useScrollSpotlight();
+
+  useEffect(() => {
+    let ticking = false;
+    let lastScrollY = window.scrollY;
+
+    const updateScrollEffects = () => {
+      const scrollY = lastScrollY;
+      const maxScroll = 500;
+      
+      const isMobile = window.innerWidth < 768;
+      
+      // On mobile, keep it clean and disable the heavy backdrop-filter blur overlay
+      const blurVal = isMobile ? 0 : Math.min((scrollY / maxScroll) * 12, 12);
+      const opacityVal = isMobile ? 1 : Math.max(1 - blurVal / 12, 0.95);
+
+      if (overlayRef.current) {
+        overlayRef.current.style.setProperty('--blur-amount', `${blurVal}px`);
+        overlayRef.current.style.setProperty('--blur-opacity', opacityVal.toString());
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Set initial values
+    updateScrollEffects();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     /* Root wrapper must NOT have overflow:hidden — it breaks position:fixed on the navbar */
@@ -15,12 +53,7 @@ const Layout = () => {
       {/* Scroll effect overlay */}
       <div
         className="fixed inset-0 z-5 pointer-events-none scroll-blur-overlay"
-        ref={(el) => {
-          if (el) {
-            el.style.setProperty('--blur-amount', `${scrollState.blurAmount}px`);
-            el.style.setProperty('--blur-opacity', Math.max(1 - scrollState.blurAmount / 12, 0.95).toString());
-          }
-        }}
+        ref={overlayRef}
       />
 
       {/* Navbar — rendered outside any overflow or z-index stacking context */}

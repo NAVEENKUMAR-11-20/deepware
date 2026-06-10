@@ -8,7 +8,7 @@ interface SEOProps {
   ogDescription?: string;
   ogImage?: string;
   canonical?: string;
-  schema?: Record<string, unknown>;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const SEO = ({
@@ -41,15 +41,28 @@ const SEO = ({
     updateMetaTag('name', 'keywords', keywords);
 
     // OG Tags
+    updateMetaTag('property', 'og:site_name', 'DenveX');
     updateMetaTag('property', 'og:title', ogTitle || title);
     updateMetaTag('property', 'og:description', ogDescription || description);
     updateMetaTag('property', 'og:image', ogImage);
     updateMetaTag('property', 'og:type', 'website');
-    updateMetaTag('property', 'og:url', window.location.href);
+
+    // Make sure og:url uses www.denvex.in
+    let finalOgUrl = window.location.href;
+    try {
+      const urlObj = new URL(finalOgUrl);
+      if (urlObj.hostname === 'denvex.in') {
+        urlObj.hostname = 'www.denvex.in';
+      }
+      finalOgUrl = urlObj.toString();
+    } catch (e) {
+      finalOgUrl = 'https://www.denvex.in';
+    }
+    updateMetaTag('property', 'og:url', finalOgUrl);
 
     // Twitter Tags
     updateMetaTag('name', 'twitter:card', 'summary_large_image');
-    updateMetaTag('name', 'twitter:title', ogTitle || title);
+    updateMetaTag('name', 'twitter:title', 'DenveX');
     updateMetaTag('name', 'twitter:description', ogDescription || description);
     updateMetaTag('name', 'twitter:image', ogImage);
 
@@ -60,7 +73,18 @@ const SEO = ({
       canonicalTag.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalTag);
     }
-    canonicalTag.setAttribute('href', canonical || window.location.href);
+    
+    let finalCanonical = canonical || window.location.href;
+    try {
+      const urlObj = new URL(finalCanonical);
+      if (urlObj.hostname === 'denvex.in') {
+        urlObj.hostname = 'www.denvex.in';
+      }
+      finalCanonical = urlObj.toString();
+    } catch (e) {
+      finalCanonical = 'https://www.denvex.in';
+    }
+    canonicalTag.setAttribute('href', finalCanonical);
 
     // Structured Data (Schema)
     if (schema) {

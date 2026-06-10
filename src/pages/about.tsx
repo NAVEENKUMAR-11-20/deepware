@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 
 const team = [
   {
-    name: "Naveen Kumar P",
+    name: "Naveen Kumar P.",
     role: "Founder & CEO",
     title: "Full Stack Developer",
     label: "Founder",
@@ -17,7 +17,7 @@ const team = [
       "Naveen is a passionate developer and entrepreneur behind DenveX, focused on crafting modern, scalable digital experiences. He combines technical expertise with creative thinking to help businesses stand out and grow in today’s competitive digital landscape.",
   },
   {
-    name: "Sridhar C",
+    name: "Sridhar C.",
     role: "Co-Founder",
     title: "Full Stack Developer",
     label: "Co-Founder",
@@ -29,41 +29,96 @@ const team = [
       "Sridhar is a co-founder and full-stack developer at DenveX, dedicated to building scalable and efficient web applications. He focuses on delivering high-quality digital solutions that combine technical precision with exceptional user experience.",
   },
   {
-    name: "Dhinesh S",
-    role: "Full Stack Developer",
-    title: "UI / UX Designer",
-    label: "Creative Lead",
+    name: "Dhinesh S.",
+    role: "Chairperson",
+    title: "Executive Leadership",
+    label: "Chairperson",
     image: "/dhineshs.png",
     github: "https://github.com/DHINESH2307",
     linkedin: "https://www.linkedin.com/in/dhinesh-s-5987a732a/",
     portfolio: "https://dhinesh-portfolio-ten.vercel.app/",
     description:
-      "A creative visionary specialized in crafting beautiful, user-centric interfaces. Dhinesh bridges the gap between complex functionality and intuitive design, ensuring every digital product is as visually stunning as it is performant.",
+      "Dhinesh serves as a Chairperson at DenveX, providing leadership and strategic governance. He plays a vital role in guiding the organization's vision and ensuring alignment with its core mission.",
   },
   {
-    name: "Aswin L",
-    role: "Full Stack Developer",
-    title: "Systems Architect",
-    label: "Technical Expert",
+    name: "Aswin L.",
+    role: "Chairperson",
+    title: "Executive Leadership",
+    label: "Chairperson",
     image: "/aswin.png",
     github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
     portfolio: "#",
     description:
-      "Expert in building robust backend systems and high-performance frontends. Aswin focuses on scalability and efficiency, delivering seamless user experiences through clean code and modern development practices.",
+      "Aswin serves as a Chairperson at DenveX, focusing on governance, strategy, and leadership execution. He drives organizational success and guides DenveX toward its long-term objectives.",
   },
   {
-    name: "Hariharan M",
-    role: "COO - Chief Operating Officer",
+    name: "Hariharan M.",
+    role: "Chief Operating Officer (COO)",
     title: "Full Stack Developer",
     label: "COO",
     image: "/hari.png",
     github: "https://github.com/24900770",
     linkedin: "https://www.linkedin.com/in/hariharan-m-15797032a/",
-
     description:
-      "Hariharan is the Chief Operating Officer at DenveX, overseeing the strategic direction and operational excellence of the company. With a focus on growth and efficiency, he ensures that every project aligns with our core mission of delivering world-class digital solutions.",
+      "Hariharan is the Chief Operating Officer (COO) at DenveX, overseeing the strategic direction and operational excellence of the company. With a focus on growth and efficiency, he ensures that every project aligns with our core mission of delivering world-class digital solutions.",
   },
+];
+
+const orgSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DenveX",
+    "alternateName": "DenveX Technologies",
+    "url": "https://www.denvex.in"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DenveX",
+    "url": "https://www.denvex.in",
+    "logo": "https://www.denvex.in/logo.png",
+    "founder": [
+      {
+        "@type": "Person",
+        "name": "Naveen Kumar P.",
+        "jobTitle": "Founder & CEO"
+      },
+      {
+        "@type": "Person",
+        "name": "Sridhar C.",
+        "jobTitle": "Co-Founder"
+      }
+    ],
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "Naveen Kumar P.",
+        "jobTitle": "Founder & CEO"
+      },
+      {
+        "@type": "Person",
+        "name": "Sridhar C.",
+        "jobTitle": "Co-Founder"
+      },
+      {
+        "@type": "Person",
+        "name": "Hariharan M.",
+        "jobTitle": "Chief Operating Officer (COO)"
+      },
+      {
+        "@type": "Person",
+        "name": "Dhinesh S.",
+        "jobTitle": "Chairperson"
+      },
+      {
+        "@type": "Person",
+        "name": "Aswin L.",
+        "jobTitle": "Chairperson"
+      }
+    ]
+  }
 ];
 
 const About = () => {
@@ -73,6 +128,7 @@ const About = () => {
         title="About DenveX – Modern Website Design Agency"
         description="Learn more about DenveX, a modern website design agency and UI/UX design company dedicated to creating powerful custom web solutions."
         keywords="modern website design agency, UI/UX design company, web development experts, DenveX about"
+        schema={orgSchema}
       />
 
       {/* Dynamic Navy Background with Animated Glows */}

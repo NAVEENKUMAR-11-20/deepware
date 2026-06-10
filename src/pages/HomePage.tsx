@@ -49,6 +49,15 @@ const HomePage = () => {
 
     // Only moves the TEXT content upward; background stays completely fixed.
     const updateStyles = () => {
+      if (window.innerWidth < 768) {
+        if (heroContentRef.current) {
+          heroContentRef.current.style.transform = '';
+          heroContentRef.current.style.opacity = '';
+        }
+        scrollState.frame = null;
+        return;
+      }
+
       const next = lerp(scrollState.current, scrollState.target, 0.12);
       scrollState.current = next;
 
@@ -72,6 +81,7 @@ const HomePage = () => {
     };
 
     const handleScroll = () => {
+      if (window.innerWidth < 768) return;
       scrollState.target = window.scrollY;
       if (!scrollState.frame) {
         scrollState.frame = requestAnimationFrame(updateStyles);
@@ -108,50 +118,59 @@ const HomePage = () => {
         title="DenveX – Best Web Design Platform & Development Services"
         description="DenveX offers modern web design, development, and UI/UX solutions. We provide custom web solutions and high-end digital services for businesses worldwide."
         keywords="best web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "DenveX",
-          "url": "https://www.denvex.in",
-          "logo": "https://www.denvex.in/favicon-2.png",
-          "sameAs": [
-            "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
-            "https://github.com/NAVEENKUMAR-11-20/"
-          ],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91-7358349394",
-            "contactType": "customer service",
-            "email": "teamdenvex@gmail.com"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "DenveX",
+            "alternateName": "DenveX Technologies",
+            "url": "https://www.denvex.in"
           },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Web Design and Development Services",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Web Development Services"
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DenveX",
+            "url": "https://www.denvex.in",
+            "logo": "https://www.denvex.in/logo.png",
+            "sameAs": [
+              "https://www.linkedin.com/in/naveen-kumar-p-034658300/",
+              "https://github.com/NAVEENKUMAR-11-20/"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-7358349394",
+              "contactType": "customer service",
+              "email": "teamdenvex@gmail.com"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Web Design and Development Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Development Services"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UI/UX Design"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom Web Solutions"
+                  }
                 }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "UI/UX Design"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Custom Web Solutions"
-                }
-              }
-            ]
+              ]
+            }
           }
-        }}
+        ]}
       />
 
       {/* Fixed Background Layer - Does NOT move on scroll */}
