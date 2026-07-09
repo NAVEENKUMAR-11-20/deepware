@@ -92,6 +92,8 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="about" element={<About />} />
             <Route path="about/ourservice" element={<About />} />
+            <Route path="about/service" element={<About />} />
+            <Route path="about/customerservice" element={<About />} />
             <Route path="services" element={<Services />} />
             <Route path="testimonials" element={<Testimonials />} />
             <Route path="team" element={<Team />} />

@@ -27,10 +27,18 @@ const About = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/about/ourservice') {
+    const path = location.pathname.replace(/\/$/, ""); // strip trailing slash if present
+    if (path === '/about/ourservice' || path === '/about/service') {
       const element = document.getElementById('ourservice');
       if (element) {
-        // Use a short timeout to ensure the DOM is fully rendered before scrolling
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    } else if (path === '/about/customerservice') {
+      const element = document.getElementById('customerservice');
+      if (element) {
         const timer = setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 150);
@@ -240,7 +248,7 @@ const About = () => {
       </section>
 
       {/* 4. Client Testimonials - Cut from Testimonials.tsx */}
-      <section className="relative bg-[#082052] overflow-x-hidden pt-16 pb-16 z-20">
+      <section id="customerservice" className="relative bg-[#082052] overflow-x-hidden pt-16 pb-16 z-20">
         {/* Background decorations */}
         <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-bl from-violet-600/20 to-blue-500/10 blur-3xl opacity-40" />

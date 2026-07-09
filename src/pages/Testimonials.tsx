@@ -6,7 +6,7 @@ const Testimonials = () => {
   return (
     <div className="relative min-h-screen bg-[#082052] overflow-x-hidden pt-24 pb-16">
       <SEO
-        title="Testimonials – DenveX"
+        title="Customer Reviews – DenveX"
         description="See what our clients say about DenveX's web design and development services."
         keywords="testimonials, client reviews, DenveX reviews, web design clients"
       />
