@@ -173,7 +173,7 @@ const PrivacyPolicy = () => {
                 <span className="text-blue-300 font-medium">Phone:</span> +91 73583 49394
               </p>
               <p className="text-gray-200">
-                <span className="text-blue-300 font-medium">Address:</span> Arumbakkam, Chennai - 600205
+                <span className="text-blue-300 font-medium">Address:</span> Arumbakkam, Chennai - 600106
               </p>
             </div>
           </div>

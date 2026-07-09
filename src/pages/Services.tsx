@@ -60,7 +60,6 @@ const Services = () => {
             title="Web Development"
             description="Custom websites built for performance, user experience, and conversion rates that help your business grow."
             image="webdev.avif"
-            link="https://webdevelopment-gamma.vercel.app/"
             delay={0}
           />
           <ServiceCard
@@ -68,7 +67,6 @@ const Services = () => {
             title="Logo Design"
             description="Stunning visual identities and professional logos that capture your brand's essence and values."
             image="lo.avif"
-            link="https://logo-indol.vercel.app/"
             delay={0.15}
           />
           <ServiceCard
@@ -76,7 +74,6 @@ const Services = () => {
             title="Design & Branding"
             description="Complete design solutions from posters to pamphlets that elevate your brand presence."
             image="ad.webp"
-            link="https://post-woad-kappa.vercel.app/"
             delay={0.3}
           />
         </motion.div>
@@ -90,14 +87,12 @@ interface ServiceCardProps {
   title: string;
   description: string;
   image: string;
-  link: string;
   delay: number;
 }
 
-const ServiceCard = ({ icon, title, description, image, link, delay }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, description, image, delay }: ServiceCardProps) => {
   return (
-    <motion.a
-      href={link}
+    <motion.div
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -120,12 +115,9 @@ const ServiceCard = ({ icon, title, description, image, link, delay }: ServiceCa
           </div>
           <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-200 transition-colors">{title}</h3>
           <p className="text-gray-300 leading-relaxed">{description}</p>
-          <div className="mt-6 flex items-center text-blue-300 group-hover:text-blue-200 transition-colors">
-            Learn more →
-          </div>
         </div>
       </GlassPanel>
-    </motion.a>
+    </motion.div>
   );
 };
 
