@@ -5,16 +5,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-slate-950/80 backdrop-blur-xl border-t border-white/10 text-white">
-      <div className="container mx-auto px-4 py-16 md:py-20">
+    <footer className="relative bg-[#082052]/95 backdrop-blur-xl border-t border-white/10 text-white rounded-t-[3rem] -mt-8 z-30 shadow-[0_-20px_40px_rgba(0,0,0,0.2)]">
+      <div className="container mx-auto px-4 py-8 md:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-6">
               <img 
-                src="/logo.png" 
+                src="/DenveX.svg" 
                 alt="DenveX Logo" 
-                className="h-14 md:h-16 w-auto object-contain"
+                className="h-16 md:h-20 w-auto object-contain"
               />
             </div>
             <p className="text-gray-400 mb-8 leading-relaxed">
@@ -114,23 +114,26 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="text-blue-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400">Arumbakkam, Chennai - 600205</span>
+                <span className="text-gray-400">Arumbakkam, Chennai - 600106</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={20} className="text-blue-400 flex-shrink-0" />
-                <span className="text-gray-400">+91 73583 49394</span>
+              <li className="flex items-start gap-3">
+                <Phone size={20} className="text-blue-400 flex-shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1 text-gray-400 whitespace-nowrap">
+                  <span>+91 73583 49394</span>
+                  <span>+91 8940788486</span>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-blue-400 flex-shrink-0" />
-                <span className="text-gray-400">teamdenvex@gmail.com</span>
+                <span className="text-gray-400">team@denvex.in</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* MSME Badge and Copyright */}
-        <div className="border-t border-white/10 mt-16 pt-12">
-          <div className="flex flex-col items-center justify-center gap-4 mb-8 sm:flex-row sm:gap-6">
+        <div className="border-t border-white/10 mt-8 pt-6">
+          <div className="flex flex-col items-center justify-center gap-4 mb-4 sm:flex-row sm:gap-6">
             <div className="flex items-center justify-center rounded-full border border-amber-300/40 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 ring-1 ring-amber-200/30 px-5 py-3 shadow-[0_8px_30px_-12px_rgba(245,158,11,0.3)]">
               <img
                 src="/msme.png"

@@ -108,7 +108,7 @@ const ProjectShowcase = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section className="pt-8 md:pt-12 pb-4 md:pb-8 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-blue-500/10 blur-[120px] opacity-30" />
       </div>
@@ -120,16 +120,16 @@ const ProjectShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl md:text-5xl font-bold mb-6 text-white"
+            className="text-2xl md:text-5xl font-bold mb-6 text-[#082052]"
           >
-            Our Services in <span className="gradient-text">Action</span>
+            Our Services in <span className="text-cyan-500">Action</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-gray-300 text-sm md:text-lg leading-relaxed"
+            className="text-[#4A5568] text-sm md:text-lg leading-relaxed"
           >
             Our services focus on transforming complex business requirements into elegant, scalable, and high-performance digital experiences.
           </motion.p>

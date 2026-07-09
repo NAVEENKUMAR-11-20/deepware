@@ -216,7 +216,7 @@ const TestimonialSection: React.FC = () => {
       </div>
 
       {/* Reviews Grid */}
-      <div className="relative min-h-[400px]">
+      <div className="relative min-h-0">
         {loading && reviews.length === 0 ? (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">

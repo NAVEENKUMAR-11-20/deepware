@@ -14,7 +14,7 @@ interface SEOProps {
 const SEO = ({
   title,
   description,
-  keywords = "web design platform, web development services, modern website design agency, UI/UX design company, custom web solutions, DenveX",
+  keywords = "web design platform, web development services, modern website design service, UI/UX design company, custom web solutions, DenveX",
   ogTitle,
   ogDescription,
   ogImage = "/relogo.png",

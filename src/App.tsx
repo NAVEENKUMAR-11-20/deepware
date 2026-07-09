@@ -4,6 +4,9 @@ import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import About from './pages/about';
+import Services from './pages/Services';
+import Testimonials from './pages/Testimonials';
+import Team from './pages/Team';
 import Contact from './pages/Contact';
 import RegistrationPage from './pages/RegistrationPage';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -88,6 +91,10 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<About />} />
+            <Route path="about/ourservice" element={<About />} />
+            <Route path="services" element={<Services />} />
+            <Route path="testimonials" element={<Testimonials />} />
+            <Route path="team" element={<Team />} />
             <Route path="contact" element={<Contact />} />
             <Route path="register" element={<RegistrationPage />} />
             <Route path="terms-and-conditions" element={<TermsAndConditions />} />

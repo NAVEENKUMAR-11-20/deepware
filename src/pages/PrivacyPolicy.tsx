@@ -167,7 +167,7 @@ const PrivacyPolicy = () => {
                 <span className="text-blue-300 font-medium">Company:</span> DenveX
               </p>
               <p className="text-gray-200">
-                <span className="text-blue-300 font-medium">Email:</span> teamdenvex@gmail.com
+                <span className="text-blue-300 font-medium">Email:</span> team@denvex.in
               </p>
               <p className="text-gray-200">
                 <span className="text-blue-300 font-medium">Phone:</span> +91 73583 49394

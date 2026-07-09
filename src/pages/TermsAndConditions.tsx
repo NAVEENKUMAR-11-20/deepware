@@ -125,7 +125,7 @@ const TermsAndConditions = () => {
             </p>
             <div className="bg-white/5 rounded-2xl p-6 border border-white/10 space-y-2">
               <p className="text-gray-200">
-                <span className="text-blue-300 font-medium">Email:</span> teamdenvex@gmail.com
+                <span className="text-blue-300 font-medium">Email:</span> team@denvex.in
               </p>
               <p className="text-gray-200">
                 <span className="text-blue-300 font-medium">Mobile:</span> +91-7358349394
