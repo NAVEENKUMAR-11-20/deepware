@@ -68,7 +68,7 @@ const team = [
     image: "/aswin.png",
     github: "https://github.com/theaswinloganathan",
     linkedin: "https://www.linkedin.com/in/aswin-loganathan-186812347",
-    portfolio: "#",
+    portfolio: "https://theaswinportfolio.vercel.app/",
     description: "Aswin serves as a Chairperson at DenveX, focusing on governance, strategy, and leadership execution.",
   },
   {
