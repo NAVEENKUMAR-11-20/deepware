@@ -84,7 +84,7 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
 
   // React-layer states
   const [progress,       setProgress]       = useState(0);
-  const [showSkip,       setShowSkip]       = useState(false);
+  const [showSkip,       setShowSkip]       = useState(true);
   const [showTitle,      setShowTitle]      = useState(false);
   const [showTagline,    setShowTagline]    = useState(false);
   const [showServices,   setShowServices]   = useState(false);
@@ -747,6 +747,56 @@ const DenveXIntro: React.FC<DenveXIntroProps> = ({ onComplete, onStartTransition
           />
         </div>
 
+        {/* ── Skip Button (Bottom-Right Corner) ── */}
+        {showSkip && (
+          <motion.button
+            onClick={finish}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              position: 'absolute',
+              bottom: 'clamp(20px, 4.5dvh, 32px)',
+              right: 'clamp(20px, 3.5vw, 36px)',
+              zIndex: 100,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 20px',
+              borderRadius: '9999px',
+              background: 'rgba(6, 18, 48, 0.7)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid rgba(56, 189, 248, 0.35)',
+              color: 'rgba(255, 255, 255, 0.9)',
+              fontSize: 'clamp(0.72rem, 1.2vw, 0.82rem)',
+              fontWeight: 600,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              boxShadow: '0 0 15px rgba(14, 165, 233, 0.2)',
+              transition: 'all 0.25s ease',
+              outline: 'none',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.8)';
+              e.currentTarget.style.backgroundColor = 'rgba(14, 165, 233, 0.22)';
+              e.currentTarget.style.boxShadow = '0 0 22px rgba(56, 189, 248, 0.45)';
+              e.currentTarget.style.color = '#ffffff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+              e.currentTarget.style.backgroundColor = 'rgba(6, 18, 48, 0.7)';
+              e.currentTarget.style.boxShadow = '0 0 15px rgba(14, 165, 233, 0.2)';
+              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+            }}
+            aria-label="Skip intro"
+          >
+            {"SKIP -->"}
+          </motion.button>
+        )}
 
         {/* Google Fonts */}
         <style>{`
